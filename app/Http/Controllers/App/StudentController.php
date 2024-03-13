@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers\App;
 use App\Http\Controllers\Controller; 
-use Illuminate\Http\Request;
-use App\Models\Teacher;  
-use App\Models\User;
 use Illuminate\Validation\Rules;
+use App\Models\Student;
+use App\Models\User;
 use Spatie\Permission\Models\Role; 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-class TeacherController extends Controller
+
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $teachers = Teacher::all();
+        $students = Student::all();
         
-        return view('app.teacher', compact('teachers'));   
+        return view('app.student', compact('students'));   
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -42,20 +42,19 @@ class TeacherController extends Controller
         ]);
 
         // Create the teacher
-        $teacher = Teacher::create($validatedData);
+        $student = Student::create($validatedData);
 
         // Create a user with the teacher's details
         $user = User::create([
-            'name' => $teacher->name,
-            'email' => $teacher->email,
+            'name' => $student->name,
+            'email' => $student->email,
             'password' => Hash::make($request->password), // Ensure to hash the password
         ]);
 
         // Login the user
        
-
+        
         return redirect()->route('dashboard');
-
     }
 
     /**

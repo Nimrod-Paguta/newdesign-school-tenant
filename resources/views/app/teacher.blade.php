@@ -62,6 +62,34 @@
             </div>
         </div>
 
+
+    <h1>List of Teachers</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($teachers as $teacher)
+                <tr>
+                    <td>{{ $teacher->name }}</td>
+                    <td>{{ $teacher->email }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
              <!-- Custom styles for this template-->
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/noanimation.css') }}" rel="stylesheet">

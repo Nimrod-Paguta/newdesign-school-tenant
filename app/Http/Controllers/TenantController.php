@@ -17,8 +17,9 @@ class TenantController extends Controller
         $tenants = Tenant::with('domains')->get(); 
 
         return view('tenants.index', ['tenants'=>$tenants]);    
-        
-        
+
+
+
     }
 
     /**
@@ -45,12 +46,14 @@ class TenantController extends Controller
         ]); 
         
         $tenant = Tenant::create([
-            'id' => Str::uuid(),
+            'id' => $request->name, 
                 'name' => $request->name, 
                 'email' => $request->email, 
                 'domain_name' => $request->domain_name, 
                 'password' => $request->password,
         ]); 
+
+
         
 
 

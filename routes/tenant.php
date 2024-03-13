@@ -8,7 +8,8 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use App\Http\Controllers\App\{
     ProfileController, 
     UserController, 
-    TeacherController
+    TeacherController, 
+    StudentController
 };
 
 
@@ -26,55 +27,39 @@ use App\Http\Controllers\App\{
 | Feel free to customize them however you want. Good luck!
 |
 */
-
 Route::middleware([
     'web',
     InitializeTenancyByDomain::class,
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
-    Route::get('/',function(){
-        return view('app.welcome'); 
+    Route::get('/', function () {
+        return view('app.welcome');
     });
 
     Route::get('/dashboard', function () {
         return view('app.dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
-    
+
     Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
         Route::group(['middleware' => ['role:admin']], function () {
-            Route::resource('users', UserController::class); 
+            Route::resource('users', UserController::class);
         });
-
-        Route::resource('teacher', TeacherController::class)->only([
-            'index', 'store'
-        ]);
-      
-        Route::get('/teacher', 'TeacherController@index')->name('app.teacher');
-
-        
-
     });
 
-    
-
- 
-
-    Route::get('/teacher', function () {
-        return view('app.teacher');
-    })->name('app.teacher'); 
-
-   
+    Route::resource('teacher', TeacherController::class)->only('index');
+    Route::resource('teacher', TeacherController::class)->only('store');
 
 
-    Route::get('/student', function () {
-        return view('app.student');
-    })->name('app.student'); 
+    Route::resource('student', StudentController::class)->only('store');
+    Route::resource('student', StudentController::class)->only('index');
+
+
     
     require __DIR__.'/tenant-auth.php';
-    
-
 });
+
+

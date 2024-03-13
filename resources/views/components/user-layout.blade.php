@@ -75,14 +75,14 @@
             </li>
            
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('app.teacher')}}">
+                <a class="nav-link" href="/teacher">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Teachers</span></a>
             </li>
 
             
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('app.student')}}">
+                <a class="nav-link" href="/student">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Students</span></a>
             </li>
