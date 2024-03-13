@@ -12,15 +12,15 @@ class TenantController extends Controller
     /**
      * Display a listing of the resource.
      */
+    
     public function index()
     {
         $tenants = Tenant::with('domains')->get(); 
-
-        return view('tenants.index', ['tenants'=>$tenants]);    
-
-
-
+        $totalTenants = Tenant::count();
+    
+        return view('tenants.index', ['tenants' => $tenants, 'totalTenants' => $totalTenants]);    
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -30,6 +30,7 @@ class TenantController extends Controller
         
         return view('tenants.create'); 
     }
+    
 
     /**
      * Store a newly created resource in storage.

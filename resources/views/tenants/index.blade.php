@@ -1,5 +1,8 @@
 <x-newuser-layout>
 
+
+<h1>Total Tenants: {{ $totalTenants }}</h1>
+
     <style>
         /* Add some basic styling to your table for better design */
         #tenantsTable {
@@ -35,6 +38,8 @@
             cursor: pointer;
         }
     </style>
+
+    
 
     <table id="tenantsTable">
         <thead>

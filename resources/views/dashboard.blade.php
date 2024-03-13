@@ -1,5 +1,12 @@
 <x-newuser-layout>
 
+
+<h1>Total Tenants: {{ $totalTenants }}</h1>
+<ul>
+        @foreach($tenantNames as $name)
+            <li>{{ $name }}</li>
+        @endforeach
+    </ul>
 			<!-- <div class="form-head" style="background-image:url('images/background/bg3.jpg');background-position: bottom; ">
 				<div class="container max d-flex align-items-center mt-0">
 					<h2 class="font-w600 title text-white mb-2 mr-auto ">Dashboard</h2>
