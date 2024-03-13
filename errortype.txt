@@ -1,0 +1,1 @@
+404 not found in Provider - route service provider and int the routes - tenant.php
