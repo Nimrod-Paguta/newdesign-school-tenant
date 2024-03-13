@@ -62,51 +62,6 @@
             </div>
         </div>
 
-
-
-        @foreach($tenants as $tenant)
-<tr>
-    <td class="px-6 py-4 whitespace-nowrap">
-        <div class="flex items-center">
-            <div class="ml-4">
-                <div class="text-sm font-medium text-gray-900">
-                    {{ $tenant->name }}
-                </div>
-            </div>
-        </div>
-    </td>
-    <td class="px-6 py-4 whitespace-nowrap">
-        <span class="text-blue-500">
-            {{ $tenant->email }}
-        </span>
-    </td>
-    <!-- Assuming domains relationship is defined -->
-    <td class="px-6 py-4 whitespace-nowrap">
-        <span class="text-green-500">
-            @foreach($tenant->domains as $domain)
-                {{ $domain->domain }}{{ $loop->last ? '' : ',' }}
-            @endforeach
-        </span>
-    </td>
-    <!-- Actions for each tenant, e.g., edit, delete -->
-    <td class="px-6 py-4 whitespace-nowrap">
-        <form action="{{ route('tenants.destroy', $tenant->id) }}" method="post">
-            @csrf
-            @method('DELETE') 
-            <input type="submit" class="btn btn-danger btn-sm" value="Delete"/>
-        </form>
-
-        <form action="{{ route('tenants.edit', $tenant->id) }}" method="get">
-            @csrf
-            <button type="submit" class="btn btn-edit btn-sm">Edit</button>
-        </form>
-    </td>
-</tr>
-@endforeach
-
-
-
-
              <!-- Custom styles for this template-->
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/noanimation.css') }}" rel="stylesheet">
