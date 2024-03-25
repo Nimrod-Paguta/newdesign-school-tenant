@@ -4,6 +4,11 @@
 
 <x-btn-link href="{{ route('users.index')}}">Users</x-btn-link> 
 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Add Department
+</button>
+<x-input-error :messages="$errors->get('email')" class="mt-2" />
+<!-- 
 <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -12,21 +17,21 @@
                             <form method="POST" action="{{ route('teacher.store') }}">
                     @csrf
 
-                    <!-- Name -->
-                    <div>
+                    
+                    <div >
                         <x-input-label for="name" :value="__('Name')" />
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
-                    <!-- Email Address -->
+                   
                     <div class="mt-4">
                         <x-input-label for="email" :value="__('Email')" />
                         <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
-                    <!-- Password -->
+                   
                     <div class="mt-4">
                         <x-input-label for="password" :value="__('Password')" />
 
@@ -38,7 +43,7 @@
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
-                    <!-- Confirm Password -->
+                 
                     <div class="mt-4">
                         <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
@@ -61,6 +66,91 @@
                 </div> 
             </div>
         </div>
+
+
+
+
+ -->
+
+
+
+
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document"> <!-- Change modal-dialog class to adjust width (e.g., modal-sm, modal-lg, modal-xl) -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+
+     
+                <form method="POST" action="{{ route('teacher.store') }}" class="row g-3">
+                    
+                @csrf
+
+                <!-- Name -->
+                <div class="col-md-6">
+                    <label for="name" class="form-label">Name</label>
+                    <input id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                    <!-- Add error messages here if necessary -->
+                </div>
+
+                <!-- Email Address -->
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" class="form-control" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                    <!-- Add error messages here if necessary -->
+                </div>
+
+                <!-- Password -->
+                <div class="col-md-6">
+                    <label for="password" class="form-label">Password</label>
+                    <input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" />
+                    <!-- Add error messages here if necessary -->
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="col-md-6">
+                    <label for="password_confirmation" class="form-label">Confirm Password</label>
+                    <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
+                    <!-- Add error messages here if necessary -->
+                </div>
+          
+
+
+
+                </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" >Add Teacher</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <h1>List of Teachers</h1>

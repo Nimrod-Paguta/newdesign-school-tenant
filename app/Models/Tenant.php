@@ -18,7 +18,8 @@ class Tenant extends BaseTenant implements TenantWithDatabase
                 'name', 
                 'email', 
                 'domain_name', 
-                'password'
+                'password', 
+                'tenantadmin'
             ]; 
     }
         public function setPasswordAttribute($value){

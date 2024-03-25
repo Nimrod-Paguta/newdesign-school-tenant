@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TenantController; 
 use App\Http\Controllers\AnotherPageController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,23 +32,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
+
+
+    
+    Route::get('add', 'AdminController@add'); 
+    Route::resource('admin', AdminController::class); 
     Route::resource('tenants', TenantController::class); 
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    
 
-    
-  
-    
-    
+
 });
 
 
 
-Route::get('/department', function () {
-    return view('department');
-});
+// Route::get('/department', function () {
+//     return view('department');
+// });
 
 
 

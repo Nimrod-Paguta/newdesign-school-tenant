@@ -50,6 +50,14 @@ Route::middleware([
         });
     });
 
+   
+    
+  
+    
+
+    Route::get('/teacher', function () {
+        return view('app.teacher');
+    }); 
     Route::resource('teacher', TeacherController::class)->only('index');
     Route::resource('teacher', TeacherController::class)->only('store');
 

@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Validation\ValidationException;
 
 use App\Models\Tenant;
+use App\Models\Tenantadmin;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Str;
@@ -17,8 +19,9 @@ class TenantController extends Controller
     {
         $tenants = Tenant::with('domains')->get(); 
         $totalTenants = Tenant::count();
+        $tenantadmins = Tenantadmin::all(); 
     
-        return view('tenants.index', ['tenants' => $tenants, 'totalTenants' => $totalTenants]);    
+        return view('tenants.index', ['tenants' => $tenants, 'totalTenants' => $totalTenants], compact('tenantadmins'));    
     }
     
 
@@ -27,43 +30,51 @@ class TenantController extends Controller
      */
     public function create()
     {
-        
-        return view('tenants.create'); 
+        $tenantadmins = Tenantadmin::all(); 
+        return view('tenants.index', compact('tenantadmins')); 
     }
     
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        // dd($request->all());   
-        //validation 
-        $ValidatedData = $request->validate([ 
-                'name' => 'required|string|max:255', 
-                'email' => 'required|email|max:255', 
-                'domain_name' => 'required|string|max:255|unique:domains,domain', 
-                'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]); 
-        
+  
+
+
+public function store(Request $request)
+{
+    // Validate the request data
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255|unique:tenants,email', // Check uniqueness in the 'tenants' table
+        'domain_name' => 'required|string|max:255|unique:domains,domain',
+        'tenantadmin' => 'required|string|max:255',
+        'password' => ['required', 'confirmed', Rules\Password::defaults()],
+    ]);
+
+    try {
+        // Create the tenant
         $tenant = Tenant::create([
-            'id' => $request->name, 
-                'name' => $request->name, 
-                'email' => $request->email, 
-                'domain_name' => $request->domain_name, 
-                'password' => $request->password,
-        ]); 
+            'id' => $request->name,
+            'name' => $request->name,
+            'email' => $request->email,
+            'domain_name' => $request->domain_name,
+            'tenantadmin' => $request->tenantadmin,
+            'password' => $request->password,
+        ]);
 
-
-        
-
-
+        // Create domain for the tenant
         $tenant->domains()->create([
-            'domain' => $ValidatedData['domain_name'].'.'.config('app.domain')
-        ]); 
-        return redirect()->route('tenants.index'); 
+            'domain' => $validatedData['domain_name'] . '.' . config('app.domain')
+        ]);
 
-    } 
+        return redirect()->route('tenants.index')->with('success', 'Tenant created successfully');
+    } catch (ValidationException $e) {
+        // If email validation fails due to uniqueness, show an alert
+        return back()->withErrors(['email' => 'The email address already exists.'])->withInput();
+    }
+}
+
 
     /**
      * Display the specified resource.
