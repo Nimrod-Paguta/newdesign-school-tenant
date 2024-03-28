@@ -12,12 +12,15 @@ class Tenantadmin extends Model
     protected $table = "tenantadmin";
 
     protected $fillable = [
-
-        'firstname', 
-        'middlename', 
-        'lastname', 
-        'contactnumber', 
-        'email' 
+        'id', 
+        'email', 
+        'password', 
+        'adminfirstname', 
+        'adminmiddlename', 
+        'adminlastname', 
+        'adminaddress', 
+     
+       
         
     ]; 
 

@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('tenantadmin', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname');
-            $table->string('middlename');
-            $table->string('lastname');
-            $table->string('contactnumber');
             $table->string('email');
+            $table->string('password');
+            $table->string('adminfirstname');
+            $table->string('adminmiddlename');
+            $table->string('adminlastname');
+            $table->string('adminaddress');
             $table->timestamps();
         });
+     
     }
-
 
     /**
      * Reverse the migrations.

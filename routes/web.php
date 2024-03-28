@@ -3,9 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TenantController; 
-use App\Http\Controllers\AnotherPageController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('tenants', TenantController::class); 
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
+    Route::get('send-email', [MailController::class, 'index']); 
+    
+
+
+
 
 
 

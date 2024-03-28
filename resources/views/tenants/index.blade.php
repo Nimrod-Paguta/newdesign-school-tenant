@@ -1,7 +1,6 @@
 <x-newuser-layout>
 
 
-    <h1>Total Tenants: {{ $totalTenants }}</h1>
 
     <style>
         /* Add some basic styling to your table for better design */
@@ -39,8 +38,8 @@
         }
     </style>
 
-    <a class="nav-link" href="{{ route('tenants.create')}}">
-        <span>Add new Department</span></a>
+<h1>Total Tenants: {{ $totalTenants }}</h1>
+
 
 
     <!-- Button trigger modal -->
@@ -52,6 +51,8 @@
         {{ $errors->first('email') }}
     </div>
     @endif
+
+
 
 
     <table id="tenantsTable">
@@ -111,7 +112,7 @@
         <div class="modal-dialog modal-lg" role="document"> <!-- Change modal-dialog class to adjust width (e.g., modal-sm, modal-lg, modal-xl) -->
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -132,26 +133,59 @@
 
     <!-- Domain Name -->
     <div class="col-md-6">
-        <label for="domain_name" class="form-label">Domain Name</label>
+        <label for="domain_name" class="form-label">Department Domain:</label>
         <input id="domain_name" class="form-control" type="text" name="domain_name" value="{{ old('domain_name') }}" required autofocus autocomplete="domain_name" />
         <x-input-error :messages="$errors->get('domain_name')" class="mt-2" />
     </div>
 
-    <!-- Select Student Name -->
+
+
+
+        <!-- Domain Name -->
+        <div class="col-md-10">
+        <label for="domain_name" class="form-label"><p><center>Admin for Department:</center></p></label>
+        </div>
+
+
+
+    <!-- firstname  -->
     <div class="col-md-6">
-        <label for="tenantadmin" class="form-label">Select Student Name</label>
-        <select id="tenantadmin" name="tenantadmin" class="form-select" required>
-            @foreach($tenantadmins as $tenantadmin)
-                <option value="{{ $tenantadmin->firstname }}">{{ $tenantadmin->firstname }}</option>
-            @endforeach
-        </select>
+        <label for="adminfirstname" class="form-label">First Name:</label>
+        <input id="adminfirstname" class="form-control" type="text" name="adminfirstname" value="{{ old('adminfirstname') }}" required autofocus autocomplete="adminfirstname" />
+        <x-input-error :messages="$errors->get('adminfirstname')" class="mt-2" />
     </div>
 
+    <!-- middlename -->
+    <div class="col-md-6">
+        <label for="adminmiddlename" class="form-label">Middle Name:</label>
+        <input id="adminmiddlename" class="form-control" type="text" name="adminmiddlename" value="{{ old('adminmiddlename') }}" required autofocus autocomplete="adminmiddlename" />
+        <x-input-error :messages="$errors->get('adminmiddlename')" class="mt-2" />
+    </div>
+
+    <!-- lastname -->
+    <div class="col-md-6">
+        <label for="adminlastname" class="form-label">Last Name:</label>
+        <input id="adminlastname" class="form-control" type="text" name="adminlastname" value="{{ old('adminlastname') }}" required autofocus autocomplete="adminlastname" />
+        <x-input-error :messages="$errors->get('adminlastname')" class="mt-2" />
+    </div>
+
+
+    <!-- Address -->
+    <div class="col-md-6">
+        <label for="adminaddress" class="form-label">Address:</label>
+        <input id="adminaddress" class="form-control" type="text" name="adminaddress" value="{{ old('adminaddress') }}" required autofocus autocomplete="adminaddress" />
+        <x-input-error :messages="$errors->get('adminaddress')" class="mt-2" />
+    </div>
+
+     
+
+ 
     <!-- Email Address -->
     <div class="col-md-6">
         <label for="email" class="form-label">Email</label>
         <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" />
     </div>
+
 
     <!-- Password -->
     <div class="col-md-6">
@@ -159,7 +193,7 @@
         <input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" />
         <x-input-error :messages="$errors->get('password')" class="mt-2" />
     </div>
-
+ 
     <!-- Confirm Password -->
     <div class="col-md-6">
         <label for="password_confirmation" class="form-label">Confirm Password</label>

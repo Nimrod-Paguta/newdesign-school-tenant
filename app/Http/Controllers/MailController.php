@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Tenantadmin;
-class AdminController extends Controller
+use Illuminate\Support\Facades\Mail; 
+use App\Mail\MailNotify; 
+use App\Models\Tenant; 
+class MailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,11 +14,24 @@ class AdminController extends Controller
     public function index()
     {
 
-       
-        $admins = Tenantadmin::all();
-      
+        $password = 'password'; // Assuming this is the password you want to pass
+        $mailData = [
+            'title' => 'This is Mail',
+            'body' => 'This is another mail',
+            'password' => $password // Corrected the assignment operator here
+        ];
+
+
+
+        // $tenants = Tenant::all();
         
-        return view('admin.index', compact('admins'));   
+        // return view('mails.welcome', compact('tenants')); 
+
+
+
+        // Mail::to('nimnom729@gmail.com')->send(new MailNotify($mailData)); 
+
+        // dd('Email Success'); 
     }
 
     /**
@@ -32,22 +47,8 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'firstname' => 'required|string|max:255',
-            'middlename' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'contactnumber' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
-            
-           
-        ]);
-
-        Tenantadmin::create($request->all());
-
-        return redirect()->route('admin.index')->with('success', 'Student created successfully!');
+        //
     }
-
-
 
     /**
      * Display the specified resource.
