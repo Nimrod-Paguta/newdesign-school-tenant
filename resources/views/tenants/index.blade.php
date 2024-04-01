@@ -188,18 +188,26 @@
 
 
     <!-- Password -->
-    <div class="col-md-6">
-        <label for="password" class="form-label">Password</label>
-        <input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" />
-        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+<div class="col-md-6">
+    <label for="password" class="form-label">Password</label>
+    <div class="input-group">
+        <input id="password" class="form-control" type="password" name="password" readonly required autocomplete="new-password" />
+        <button type="button" class="btn btn-secondary" id="generatePassword">Generate</button>
     </div>
+    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+</div>
+
+
  
-    <!-- Confirm Password -->
-    <div class="col-md-6">
-        <label for="password_confirmation" class="form-label">Confirm Password</label>
+<div class="col-md-6" id="confirmPasswordWrapper" style="display: none;">
+    <label for="password_confirmation" class="form-label">Confirm Password</label>
+    <div class="input-group">
         <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
-        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <button type="button" class="btn btn-primary" id="confirmPassword">Confirm</button>
     </div>
+    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+</div>
+
 
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -211,6 +219,40 @@
             </div>
         </div>
     </div>
+
+    <script>
+    // Function to generate random password
+    function generatePassword() {
+        const length = 10; // Length of the generated password
+        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+<>?"; // Characters to include in the password
+        let password = "";
+        for (let i = 0; i < length; ++i) {
+            const randomIndex = Math.floor(Math.random() * charset.length);
+            password += charset[randomIndex];
+        }
+        return password;
+    }
+
+    // Event listener for the generate password button
+    document.getElementById("generatePassword").addEventListener("click", function() {
+        const passwordField = document.getElementById("password");
+        const confirmPasswordField = document.getElementById("password_confirmation");
+        const generatedPassword = generatePassword();
+        passwordField.value = generatedPassword;
+        confirmPasswordField.value = generatedPassword;
+        passwordField.removeAttribute("readonly"); // Make password field editable
+        passwordField.focus(); // Set focus to the password field
+    });
+
+    // Event listener for confirming the password
+    document.getElementById("confirmPassword").addEventListener("click", function() {
+        const passwordField = document.getElementById("password");
+        passwordField.setAttribute("readonly", true); // Make password field readonly again
+    });
+</script>
+
+
+
 
 
 
