@@ -49,60 +49,45 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <!-- Sidebar -->
+<ul class="navbar-nav bg-white sidebar sidebar-light accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <div class="sidebar-brand-icon rotate-n-15">
+        <i class="fas fa-laugh-wink"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3 text-black">SB Admin <sup>2</sup></div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
+<!-- Nav Item - Dashboard -->
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('dashboard')}}">
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('dashboard')}}">
+        <span class="text-black">Dashboard</span>
+    </a>
+</li>
 
-                    <span>Dashboard</span></a>
-            </li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('tenants.index')}}">
+        <span class="text-black">Colleges</span>
+    </a>
+</li>
 
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('admin.index')}}">
+        <span class="text-black">Tenant Admins</span>
+    </a>
+</li>
 
+<!-- Divider -->
+<hr class="sidebar-divider">
+</ul>
+<!-- End of Sidebar -->
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('tenants.index')}}">
-
-                    <span>View All Departments</span></a>
-            </li>
-
-
-
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.index')}}">
-
-                    <span>Admins</span></a>
-            </li>
-
-
-
-
-
-
-
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-
-
-        </ul>
-        <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

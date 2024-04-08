@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Tenantadmin extends Model
 {
     use HasFactory;
@@ -14,6 +15,7 @@ class Tenantadmin extends Model
     protected $fillable = [
         'id', 
         'email', 
+        'tenantadmin', 
         'password', 
         'adminfirstname', 
         'adminmiddlename', 
@@ -23,6 +25,11 @@ class Tenantadmin extends Model
        
         
     ]; 
+
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class, 'tenantadmin');
+    }
 
 }
 

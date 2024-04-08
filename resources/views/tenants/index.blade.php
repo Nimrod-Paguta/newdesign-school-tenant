@@ -2,108 +2,83 @@
 
 
 
-    <style>
-        /* Add some basic styling to your table for better design */
-        #tenantsTable {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+<style>
+    .card {
+        width: calc(25% - 20px); /* Adjust the width as needed */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px;
+        display: flex;
+        vertical-align: top;
+        box-sizing: border-box;
+    }
 
-        #tenantsTable th,
-        #tenantsTable td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
+    .card-header {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
 
-        #tenantsTable th {
-            background-color: #f2f2f2;
-        }
+    .card-body {
+        color: #555;
+    }
 
-        .btn-danger {
-            background-color: #dc3545;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
+    .card-actions {
+        margin-top: 10px;
+    }
 
-        .btn-edit {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-    </style>
+    .btn-danger,
+    .btn-edit {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
 
+    .btn-danger {
+        background-color: #dc3545;
+    }
+</style>
 <h1>Total Tenants: {{ $totalTenants }}</h1>
 
-
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Add Department
-    </button>
-    @if ($errors->has('email'))
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Add Department
+</button>
+@if ($errors->has('email'))
     <div class="alert alert-danger mt-2" role="alert">
         {{ $errors->first('email') }}
     </div>
-    @endif
+@endif
 
 
 
-
-    <table id="tenantsTable">
-        <thead>
-            <tr>
-                <th scope="col" class="px-6 py-3">Name</th>
-                <th scope="col" class="px-6 py-3">Email</th>
-                <th scope="col" class="px-6 py-3">Domain</th>
-                <th scope="col" class="px-6 py-3">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($tenants as $tenant)
-            <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-4">
-                            <div class="text-sm font-medium text-gray-900">
-                                {{$tenant->name}}
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="text-blue-500">
-                        {{$tenant->email}}
-                    </span>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
+<div id="cardsContainer" class="row">
+    @foreach($tenants as $tenant)
+        <div class="card">
+            <div class="card-header">{{ $tenant->name }}</div>
+            <div class="card-body">
+                <p>Email: <span class="text-blue-500">{{ $tenant->email }}</span></p>
+                <p>Domain:
                     <span class="text-green-500">
                         @foreach($tenant->domains as $domain)
-                        {{ $domain->domain }}{{ $loop->last ? '' : ',' }}
+                            {{ $domain->domain }}{{ $loop->last ? '' : ',' }}
                         @endforeach
                     </span>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <form action="{{ route('tenants.destroy', $tenant->id) }}" method="post">
+                </p>
+            </div>
+            <a href="{{ route('tenants.view', $tenant->id) }}">
+            <form action="{{ route('tenants.destroy', $tenant->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <input type="submit" class="btn btn-danger btn-sm" value="Delete" />
                     </form>
 
-                    <form action="{{ route('tenants.edit', $tenant->id) }}" method="get">
-                        @csrf
-                        <button type="submit" class="btn btn-edit btn-sm">Edit</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+        <button type="button" class="btn btn-secondary actions-buttons">View</button>
+    </a>
+        </div>
+    @endforeach
+</div>
 
 
 

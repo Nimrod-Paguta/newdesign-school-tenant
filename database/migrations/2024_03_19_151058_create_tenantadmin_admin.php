@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tenantadmin', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
+            $table->string('tenantadmin');
             $table->string('email');
             $table->string('password');
             $table->string('adminfirstname');

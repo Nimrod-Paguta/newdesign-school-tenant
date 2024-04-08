@@ -71,6 +71,7 @@ class TenantController extends Controller
              // Create the tenant admin
              $tenantadmin = Tenantadmin::create([
                  'tenant_id' => $tenant->id,
+                 'tenantadmin' =>  $tenant->id,
                  'email' => $request->email,
                  'adminfirstname' => $request->adminfirstname,
                  'adminmiddlename' => $request->adminmiddlename,
@@ -106,9 +107,10 @@ class TenantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tenant $tenant)
+    public function show(Tenant $id)
     {
-        //
+        $tenants = Tenant::findOrFail($id);
+        return view('tenants.view', compact('tenants'));
     }
 
     /**
@@ -138,11 +140,18 @@ class TenantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tenant $tenant)
-    {
-       
-        $tenant->delete();
+/**
+ * Remove the specified resource from storage.
+ */
+public function destroy(Tenant $tenant)
+{
+    // Delete associated Tenantadmin
+    $tenant->admin()->delete();
 
-        return redirect()->route('tenants.index')->with('success', 'Tenant deleted successfully');
-    }
+    // Delete the tenant
+    $tenant->delete();
+
+    return redirect()->route('tenants.index')->with('success', 'Tenant and associated admin deleted successfully');
+}
+
 }
