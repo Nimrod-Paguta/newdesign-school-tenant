@@ -66,25 +66,58 @@
 
 
 
-
-
-
-    <h1>List of Students</h1>
-    <table>
-        <thead>
+    
+    <table id="yourDataTableID" class="table table-striped" style="width:100%">
+        <thead class="table-header">
             <tr>
-                <th>Name</th>
+                <th>First Name:</th>
+                <th>Middle Name:</th>
+                <th>Last Name:</th>
+                <th>Street:</th>
+                <th>Barangay:</th>
+                <th>Municipality</th>
+                <th>City</th>
                 <th>Email</th>
             </tr>
         </thead>
         <tbody>
             @foreach($admins as $student)
                 <tr>
-                    <td>{{ $student->name }}</td>
+                    <td>{{ $student->adminfirstname }}</td>
+                    <td>{{ $student->adminmiddlename }}</td>
+                    <td>{{ $student->adminlastname }}</td>
+                    <td>{{ $student->street }}</td>
+                    <td> {{ $student->barangay }}</td>
+                    <td>{{ $student->municipality }}</td>
+                    <td>{{ $student->city }}</td>
                     <td>{{ $student->email }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+
+
+    
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Include DataTables JS -->
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
+
+    <script>
+        $(document).ready(function() {
+            $('#yourDataTableID').DataTable();
+        });
+    </script>
 
 </x-newuser-layout>

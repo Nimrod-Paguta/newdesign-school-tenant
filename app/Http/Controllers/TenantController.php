@@ -54,7 +54,10 @@ class TenantController extends Controller
              'adminfirstname' => 'required|string|max:255',
              'adminmiddlename' => 'required|string|max:255',
              'adminlastname' => 'required|string|max:255',
-             'adminaddress' => 'required|string|max:255',
+             'street' => 'required|string|max:255',
+             'barangay' => 'required|string|max:255',
+             'municipality' => 'required|string|max:255',
+             'city' => 'required|string|max:255',
              'password' => ['required', 'confirmed', Rules\Password::defaults()],
          ]);
      
@@ -70,13 +73,16 @@ class TenantController extends Controller
      
              // Create the tenant admin
              $tenantadmin = Tenantadmin::create([
-                 'tenant_id' => $tenant->id,
+                 'tenant_id' => $tenant->id,    
                  'tenantadmin' =>  $tenant->id,
                  'email' => $request->email,
                  'adminfirstname' => $request->adminfirstname,
                  'adminmiddlename' => $request->adminmiddlename,
                  'adminlastname' => $request->adminlastname,
-                 'adminaddress' => $request->adminaddress,
+                 'street' => $request->street,
+                 'barangay' => $request->barangay,
+                 'municipality' => $request->municipality,
+                 'city' => $request->city,
                  'password' => $request->password, // Store the password as provided, without hashing
              ]);
      
@@ -107,11 +113,11 @@ class TenantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tenant $id)
+    public function show(Tenant $tenant)
     {
-        $tenants = Tenant::findOrFail($id);
-        return view('tenants.view', compact('tenants'));
+        return view('tenants.view', compact('tenant'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.

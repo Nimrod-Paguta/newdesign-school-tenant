@@ -20,7 +20,10 @@ class Tenantadmin extends Model
         'adminfirstname', 
         'adminmiddlename', 
         'adminlastname', 
-        'adminaddress', 
+        'street', 
+        'barangay', 
+        'municipality', 
+        'city', 
      
        
         

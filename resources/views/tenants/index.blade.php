@@ -58,8 +58,8 @@
         <div class="card">
             <div class="card-header">{{ $tenant->name }}</div>
             <div class="card-body">
-                <p>Email: <span class="text-blue-500">{{ $tenant->email }}</span></p>
-                <p>Domain:
+                <p>Department Admin: <span class="text-blue-500">{{ $tenant->email }}</span></p>
+                <p>Domain: 
                     <span class="text-green-500">
                         @foreach($tenant->domains as $domain)
                             {{ $domain->domain }}{{ $loop->last ? '' : ',' }}
@@ -147,9 +147,30 @@
 
     <!-- Address -->
     <div class="col-md-6">
-        <label for="adminaddress" class="form-label">Address:</label>
-        <input id="adminaddress" class="form-control" type="text" name="adminaddress" value="{{ old('adminaddress') }}" required autofocus autocomplete="adminaddress" />
-        <x-input-error :messages="$errors->get('adminaddress')" class="mt-2" />
+        <label for="street" class="form-label">Street:</label>
+        <input id="street" class="form-control" type="text" name="street" value="{{ old('street') }}" required autofocus autocomplete="street" />
+        <x-input-error :messages="$errors->get('street')" class="mt-2" />
+    </div>
+
+      <!-- Address -->
+      <div class="col-md-6">
+        <label for="barangay" class="form-label">Barangay:</label>
+        <input id="barangay" class="form-control" type="text" name="barangay" value="{{ old('barangay') }}" required autofocus autocomplete="barangay" />
+        <x-input-error :messages="$errors->get('barangay')" class="mt-2" />
+    </div>
+
+      <!-- Address -->
+      <div class="col-md-6">
+        <label for="municipality" class="form-label">Municipality:</label>
+        <input id="municipality" class="form-control" type="text" name="municipality" value="{{ old('municipality') }}" required autofocus autocomplete="municipality" />
+        <x-input-error :messages="$errors->get('municipality')" class="mt-2" />
+    </div>
+
+      <!-- Address -->
+      <div class="col-md-6">
+        <label for="city" class="form-label">City:</label>
+        <input id="city" class="form-control" type="text" name="city" value="{{ old('city') }}" required autofocus autocomplete="city" />
+        <x-input-error :messages="$errors->get('city')" class="mt-2" />
     </div>
 
      
@@ -183,11 +204,11 @@
     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
 </div>
 
+<div class="modal-footer" style="padding-top: 26px;">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Add Department</button>
+</div>
 
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Add Department</button>
-    </div>
 </form>
 
                 </div>

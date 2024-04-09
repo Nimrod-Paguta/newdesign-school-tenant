@@ -19,12 +19,14 @@ return new class extends Migration
             $table->string('adminfirstname');
             $table->string('adminmiddlename');
             $table->string('adminlastname');
-            $table->string('adminaddress');
-            $table->timestamps();
+            $table->string('street');
+            $table->string('barangay');
+            $table->string('municipality');
+            $table->string('city');
+            $table->timestamps(); 
         });
      
     }
-
     /**
      * Reverse the migrations.
      */
