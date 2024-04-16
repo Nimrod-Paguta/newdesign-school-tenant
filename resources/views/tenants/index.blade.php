@@ -198,7 +198,7 @@
 <div class="col-md-6" id="confirmPasswordWrapper" style="display: none;">
     <label for="password_confirmation" class="form-label">Confirm Password</label>
     <div class="input-group">
-        <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
+        <input id="password_confirmation" class="form-control" type="text" name="password_confirmation" required autocomplete="new-password" />
         <button type="button" class="btn btn-primary" id="confirmPassword">Confirm</button>
     </div>
     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />

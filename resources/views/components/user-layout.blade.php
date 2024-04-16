@@ -67,7 +67,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-              @role('admin')
+             
             <li class="nav-item">
                 <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -82,13 +82,19 @@
 
             
             <li class="nav-item">
-                <a class="nav-link" href="/student">
+                <a class="nav-link" href="/students">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Students</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/department">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Department</span></a>
+            </li>
            
 
-            @endrole
+       
 
             <li class="nav-item">
                 <a class="nav-link" href="index.html">

@@ -48,7 +48,7 @@ Route::middleware([
         Route::group(['middleware' => ['role:admin']], function () {
             Route::resource('users', UserController::class);
 
-            
+
         });
     });
 
@@ -62,10 +62,16 @@ Route::middleware([
     }); 
     Route::resource('teacher', TeacherController::class)->only('index');
     Route::resource('teacher', TeacherController::class)->only('store');
-
-
-    Route::resource('student', StudentController::class)->only('store');
-    Route::resource('student', StudentController::class)->only('index');
+    
+    // -------------------------------------------------------
+    // crud 
+    
+    Route::get('add', 'StudentController@add'); 
+    Route::get('/students', [StudentController::class, 'index'])->name('app.students');
+    Route::resource('students', StudentController::class);
+    Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
+    Route::put('/students/{id}', [StudentController::class, 'update'])->name('students.update');
+    
 
 
     

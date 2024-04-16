@@ -14,8 +14,8 @@ class TenantDatabaseSeeder extends Seeder
     public function run(): void
     {
         Role::create(['name'=>'admin']); 
-        Role::create(['name'=>'teacher']); 
-        Role::create(['name'=>'student']);  
+        Role::create(['name'=>'department']); 
+        
          
         
     }

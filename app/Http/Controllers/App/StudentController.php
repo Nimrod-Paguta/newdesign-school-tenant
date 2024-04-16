@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers\App;
 use App\Http\Controllers\Controller; 
-use Illuminate\Validation\Rules;
-use App\Models\Student;
-use App\Models\User;
-use Spatie\Permission\Models\Role; 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Students;
 
 class StudentController extends Controller
 {
@@ -17,9 +12,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
-        
-        return view('app.student', compact('students'));   
+        $students = Students::all();
+        return view('app.students.index', compact('students'));
     }
 
     /**
@@ -35,27 +29,22 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email',
-            'password' => 'required|confirmed|min:8', // Adjust password requirements as needed
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'age' => 'required|string',
+            'email' => 'required|string|max:255',
+            'date_of_birth' => 'required|string|max:255',
+            'address' => 'required|string',
         ]);
 
-        // Create the teacher
-        $student = Student::create($validatedData);
+        Students::create($request->all());
 
-        // Create a user with the teacher's details
-        $user = User::create([
-            'name' => $student->name,
-            'email' => $student->email,
-            'password' => Hash::make($request->password), // Ensure to hash the password
-        ]);
+        return redirect()->route('students.index')->with('success', 'Student created successfully!');
 
-        // Login the user
-       
-        
-        return redirect()->route('dashboard');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -68,17 +57,33 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $students = Students::findOrFail($id);
+        return view('app.students.edit', compact('students'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'age' => 'required|string',
+            'email' => 'required|string|max:255',
+            'date_of_birth' => 'required|string|max:255',
+            'address' => 'required|string',
+        ]);
+
+        $students = Students::findOrFail($id);
+        $students->update($request->all());
+
+        return redirect()->route('students.edit', $id)->with('success', 'Student updated successfully!');
+
+
     }
 
     /**
