@@ -14,6 +14,65 @@
                             <form method="POST" action="{{ route('users.store') }}">
                     @csrf
 
+
+
+                    
+    <!-- firstname  -->
+    <div class="col-md-6">
+        <label for="depadminfirstname" class="form-label">First Name:</label>
+        <input id="depadminfirstname" class="form-control" type="text" name="depadminfirstname" value="{{ old('depadminfirstname') }}" required autofocus autocomplete="depadminfirstname" />
+        <x-input-error :messages="$errors->get('depadminfirstname')" class="mt-2" />
+    </div>
+
+    <!-- middlename -->
+    <div class="col-md-6">
+        <label for="depadminmiddlename" class="form-label">Middle Name:</label>
+        <input id="depadminmiddlename" class="form-control" type="text" name="depadminmiddlename" value="{{ old('depadminmiddlename') }}" required autofocus autocomplete="depadminmiddlename" />
+        <x-input-error :messages="$errors->get('depadminmiddlename')" class="mt-2" />
+    </div>
+
+    <!-- lastname -->
+    <div class="col-md-6">
+        <label for="depadminlastname" class="form-label">Last Name:</label>
+        <input id="depadminlastname" class="form-control" type="text" name="depadminlastname" value="{{ old('depadminlastname') }}" required autofocus autocomplete="depadminlastname" />
+        <x-input-error :messages="$errors->get('depadminlastname')" class="mt-2" />
+    </div>
+
+
+    <!-- Address -->
+    <div class="col-md-6">
+        <label for="street" class="form-label">Street:</label>
+        <input id="street" class="form-control" type="text" name="street" value="{{ old('street') }}" required autofocus autocomplete="street" />
+        <x-input-error :messages="$errors->get('street')" class="mt-2" />
+    </div>
+
+      <!-- Address -->
+      <div class="col-md-6">
+        <label for="barangay" class="form-label">Barangay:</label>
+        <input id="barangay" class="form-control" type="text" name="barangay" value="{{ old('barangay') }}" required autofocus autocomplete="barangay" />
+        <x-input-error :messages="$errors->get('barangay')" class="mt-2" />
+    </div>
+
+      <!-- Address -->
+      <div class="col-md-6">
+        <label for="municipality" class="form-label">Municipality:</label>
+        <input id="municipality" class="form-control" type="text" name="municipality" value="{{ old('municipality') }}" required autofocus autocomplete="municipality" />
+        <x-input-error :messages="$errors->get('municipality')" class="mt-2" />
+    </div>
+
+      <!-- Address -->
+      <div class="col-md-6">
+        <label for="city" class="form-label">City:</label>
+        <input id="city" class="form-control" type="text" name="city" value="{{ old('city') }}" required autofocus autocomplete="city" />
+        <x-input-error :messages="$errors->get('city')" class="mt-2" />
+    </div>
+
+     
+
+
+
+
+
                     <!-- Name -->
                     <div>
                         <x-input-label for="name" :value="__('Name')" />

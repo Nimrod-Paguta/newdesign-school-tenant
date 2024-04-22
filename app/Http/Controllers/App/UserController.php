@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller; 
 use App\Models\User; 
+use App\Models\DepartmentAdmin; 
 use Spatie\Permission\Models\Role; 
 
 class UserController extends Controller
@@ -38,12 +39,37 @@ class UserController extends Controller
         //validation 
         $ValidatedData = $request->validate([
                 'name' => 'required|string|max:255', 
-                'email' => 'required|email|max:255|unique:users,email', 
+                'email' => 'required|email|max:255|unique:users,email',  
+                'depadminfirstname'  => 'required|string|max:255', 
+                'depadminmiddlename'  => 'required|string|max:255', 
+                'depadminlastname'  => 'required|string|max:255', 
+                'street'  => 'required|string|max:255', 
+                'barangay'  => 'required|string|max:255', 
+                'municipality'  => 'required|string|max:255', 
+                'city'  => 'required|string|max:255', 
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]); 
         
 
-        User::create($ValidatedData); 
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password, // Store the password as provided, without hashing
+        ]);
+
+        $departmentadmin = DepartmentAdmin::create([
+            'departmentadmin' =>  $user->id, 
+            'email' => $request->email,
+            'depadminfirstname' => $request->depadminfirstname,
+            'depadminmiddlename' => $request->depadminmiddlename,
+            'depadminlastname' => $request->depadminlastname,
+            'street' => $request->street,
+            'barangay' => $request->barangay,
+            'municipality' => $request->municipality,
+            'city' => $request->city,
+            'password' => $request->password, // Store the password as provided, without hashing
+        ]);
+        // User::create($ValidatedData); 
 //  $user->roles()->sync($request->input('roles')); 
 
            

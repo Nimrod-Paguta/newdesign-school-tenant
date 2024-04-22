@@ -63,6 +63,7 @@ Route::middleware([
     Route::resource('teacher', TeacherController::class)->only('index');
     Route::resource('teacher', TeacherController::class)->only('store');
     
+
     // -------------------------------------------------------
     // crud 
     

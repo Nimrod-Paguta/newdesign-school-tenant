@@ -31,17 +31,13 @@
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+<link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+<link href="{{ asset('tenant/css/sidebar.css') }}" rel="stylesheet">
+<link href="{{ asset('tenant/css/sb-admin-2.min.css') }}" rel="stylesheet">
+<link href="{{ asset('tenant/css/noanimation.css') }}" rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="tenant/css/sidebar.css" rel="stylesheet">
-    <link href="tenant/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="tenant/css/noanimation.css" rel="stylesheet">
-
-    
 
     
 
@@ -67,12 +63,29 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
+
+            @role('admin')
+
              
             <li class="nav-item">
                 <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/users">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Users</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/department">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Department Admin</span></a>
+            </li>
+           
+            @endrole
            
             <li class="nav-item">
                 <a class="nav-link" href="/teacher">
@@ -87,12 +100,7 @@
                     <span>Students</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/department">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Department</span></a>
-            </li>
-           
+         
 
        
 
@@ -229,14 +237,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="tenant/vendor/jquery/jquery.min.js"></script>
-    <script src="tenant/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="tenant/vendor/jquery/jquery.min.js"></script>
+    <script src="tenant/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 
     <!-- Core plugin JavaScript-->
-    <script src="tenant/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- <script src="tenant/vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
     <!-- Custom scripts for all pages-->
-    <script src="tenant/js/sb-admin-2.min.js"></script>
+    <!-- <script src="tenant/js/sb-admin-2.min.js"></script> -->
 
 </body>
 

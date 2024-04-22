@@ -7,76 +7,54 @@
         </h2>
    
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900"> 
-                    
-                <div class="relative over-flow-x-auto">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table  id="yourDataTableID" class="table table-striped" style="width:100%">
+        <thead  class="table-header">
             <tr>
-                <th scope="col" class="px-6 py-3">
-                    Name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Email
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Role
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Action
-                </th>
+                <th >Name</th>
+                <th >Email</th>
+                <th > Role</th>
+                <th >Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach($users as $user) 
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                       
-                        <div class="ml-4">
-                            <!-- Add your product name here -->
-                            <div class="text-sm font-medium text-gray-900">
-                                {{$user->name}}
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <!-- Add your product color here -->
-                    <span class="text-gray-500">
-                    {{$user->email}}
-                    </span>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <!-- Add your product category here -->
-                    <span class="text-gray-500">
-                        @foreach($user->roles as $role)
+                <td >{{$user->name}} </td>
+                <td >{{$user->email}}</td>
+                <td > @foreach($user->roles as $role)
                         {{ $role->name }}{{ $loop->last ? '':',' }}
-                        @endforeach
-                            
-                    </span> 
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <!-- Add your product price here -->
-                    <span class="text-gray-900">
-                    <x-btn-link href="{{ route('users.edit',$user->id)}}">Edit</x-btn-link>  
-                    </span>
-                </td>
+                        @endforeach </td>
+                <td > <x-btn-link href="{{ route('users.edit',$user->id)}}">Edit</x-btn-link>  </td>
             </tr>
-            <!-- Add more rows with your data as needed -->
+          
             @endforeach
         </tbody>
     </table>
-</div>
 
-                   
-                </div> 
-            </div>
-        </div>
-    </div>
+
+        
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Include DataTables JS -->
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
+
+    <script>
+        $(document).ready(function() {
+            $('#yourDataTableID').DataTable();
+        });
+    </script>
+
 </x-user-layout>
 
 
