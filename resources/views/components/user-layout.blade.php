@@ -64,7 +64,7 @@
 
             <!-- Nav Item - Dashboard -->
 
-            @role('admin')
+            <!-- @role('admin') -->
 
              
             <li class="nav-item">
@@ -85,7 +85,7 @@
                     <span>Department Admin</span></a>
             </li>
            
-            @endrole
+            <!-- @endrole -->
            
             <li class="nav-item">
                 <a class="nav-link" href="/teacher">
@@ -245,6 +245,18 @@
 
     <!-- Custom scripts for all pages-->
     <!-- <script src="tenant/js/sb-admin-2.min.js"></script> -->
+
+
+    
+    <!-- Bootstrap core JavaScript-->
+    <!-- <script src="tenant/vendor/jquery/jquery.min.js"></script> -->
+    <script src="tenant/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="tenant/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="tenant/js/sb-admin-2.min.js"></script>
 
 </body>
 

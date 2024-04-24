@@ -10,12 +10,21 @@ class Students extends Model
     use HasFactory;
     protected $fillable = [
 
+        'Student_no', 
         'first_name', 
+        'middle_name', 
         'last_name', 
-        'age', 
+        'department', 
         'email', 
         'date_of_birth', 
-        'address', 
+        'age', 
+        'mobile_no', 
+        'year', 
+        'status',  
+        'street', 
+        'barangay', 
+        'municipality', 
+        'province', 
 
         
     ]; 

@@ -10,29 +10,22 @@ class Teacher extends Model
     use HasFactory;
     protected $table = 'teacher'; // Specify the correct table name
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
 
-        /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-       
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
+        protected $fillable = [
+    
+            'instructor_id', 
+            'first_name', 
+            'middle_name', 
+            'last_name', 
+            'department', 
+            'email', 
+            'status', 
+            'date_of_birth', 
+            'contact_number', 
+            'street', 
+            'barangay', 
+            'municipality', 
+            'province', 
+         
+        ];   
 }

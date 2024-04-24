@@ -30,12 +30,22 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'Student_no' => 'required|string|max:255',
             'first_name' => 'required|string|max:255',
+            'middle_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'age' => 'required|string',
+            'department' => 'required|string',
             'email' => 'required|string|max:255',
             'date_of_birth' => 'required|string|max:255',
-            'address' => 'required|string',
+            'age' => 'required|string',
+            'mobile_no' => 'required|string|max:255',
+            'year' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
+            'street' => 'required|string',
+            'barangay' => 'required|string|max:255',
+            'municipality' => 'required|string|max:255',
+            'province' => 'required|string|max:255',
+         
         ]);
 
         Students::create($request->all());

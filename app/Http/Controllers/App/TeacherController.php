@@ -4,11 +4,6 @@ namespace App\Http\Controllers\App;
 use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
 use App\Models\Teacher;  
-use App\Models\User;
-use Illuminate\Validation\Rules;
-use Spatie\Permission\Models\Role; 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 class TeacherController extends Controller
 {
     /**
@@ -18,7 +13,7 @@ class TeacherController extends Controller
     {
         $teachers = Teacher::all();
         
-        return view('app.teacher', compact('teachers'));   
+        return view('app.teacher.index', compact('teachers'));   
     }
     
 
@@ -35,26 +30,25 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email',
-            'password' => 'required|confirmed|min:8', // Adjust password requirements as needed
+        $request->validate([
+            'instructor_id' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'middle_name' => 'required|string',
+            'last_name' => 'required|string|max:255',
+            'department' => 'required|string',
+            'email' => 'required|string|max:255',
+            'date_of_birth' => 'required|string',
+            'status' => 'required|string',
+            'street' => 'required|string',
+            'barangay' => 'required|string',
+            'municipality' => 'required|string',
+            'province' => 'required|string',
+
         ]);
 
-        // Create the teacher
-        $teacher = Teacher::create($validatedData);
+        Teacher::create($request->all());
 
-        // Create a user with the teacher's details
-        $user = User::create([
-            'name' => $teacher->name,
-            'email' => $teacher->email,
-            'password' => Hash::make($request->password), // Ensure to hash the password
-        ]);
-
-        // Login the user
-       
-
-        return redirect()->route('dashboard');
+        return redirect()->route('teacher.index')->with('success', 'Teacher created successfully!');
 
     }
 
