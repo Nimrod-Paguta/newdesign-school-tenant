@@ -27,38 +27,48 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('app.users.create'); 
+        $users = User::with('roles')->get();
+    
+        return view('app.users.create', ['users' => $users]);
     }
+    
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        // dd($request->all());   
-        //validation 
-        $ValidatedData = $request->validate([
-                'name' => 'required|string|max:255', 
-                'email' => 'required|email|max:255|unique:users,email',  
-                'depadminfirstname'  => 'required|string|max:255', 
-                'depadminmiddlename'  => 'required|string|max:255', 
-                'depadminlastname'  => 'required|string|max:255', 
-                'street'  => 'required|string|max:255', 
-                'barangay'  => 'required|string|max:255', 
-                'municipality'  => 'required|string|max:255', 
-                'city'  => 'required|string|max:255', 
-                'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]); 
-        
-
+        // Validation
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
+            'depadminfirstname' => 'required|string|max:255',
+            'depadminmiddlename' => 'required|string|max:255',
+            'depadminlastname' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'barangay' => 'required|string|max:255',
+            'municipality' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+           
+        ]);
+    
+        // Check if user count exceeds 3
+        // if (User::count() >= 3) {
+        //     // If more than or equal to 3 users, redirect back with an error message
+        //     return redirect()->route('users.create')->with('exceeded_limit', true);
+        // }
+    
+        // If user count is less than 3, proceed to create user and department admin
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password, // Store the password as provided, without hashing
+          
         ]);
-
-        $departmentadmin = DepartmentAdmin::create([
-            'departmentadmin' =>  $user->id, 
+    
+        $departmentAdmin = DepartmentAdmin::create([
+            'departmentadmin' => $user->id,
             'email' => $request->email,
             'depadminfirstname' => $request->depadminfirstname,
             'depadminmiddlename' => $request->depadminmiddlename,
@@ -69,15 +79,10 @@ class UserController extends Controller
             'city' => $request->city,
             'password' => $request->password, // Store the password as provided, without hashing
         ]);
-        // User::create($ValidatedData); 
-//  $user->roles()->sync($request->input('roles')); 
-
-           
-
-        return redirect()->route('users.index'); 
-
-
+    
+        return redirect()->route('users.create');
     }
+    
 
     /**
      * Display the specified resource.
@@ -117,6 +122,25 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+
+
+     public function payment(Request $request, string $id)
+     {
+         $request->validate([
+             'payment' => 'required|numeric', // Assuming payment is a numeric value
+         ]);
+     
+         $user = User::findOrFail($id);
+         $user->payment = $request->input('payment');
+         $user->save();
+     
+         return redirect()->route('users.index')->with('success', 'Payment information updated successfully.');
+     }
+     
+     
+
+
     public function destroy(User $user)
     {
         //

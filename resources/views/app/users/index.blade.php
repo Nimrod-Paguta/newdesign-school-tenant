@@ -31,8 +31,38 @@
         </tbody>
     </table>
 
+    
+ <!-- Modal -->
+ @if($user->id == 1)
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Welcome</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('users.payment', $user->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <label for="payment">Payment:</label>
+                        <input type="text" name="payment" value="{{ $user->payment }}" required>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 
-        
+
+
+
+
+
+
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
@@ -55,8 +85,12 @@
         });
     </script>
 
+<script>
+    $(document).ready(function() {
+        $('#yourDataTableID').DataTable();
+        // Show the modal on page load
+        $('#exampleModal').modal('show');
+    });
+</script>
+
 </x-user-layout>
-
-
-
-<!-- 47:03 -->

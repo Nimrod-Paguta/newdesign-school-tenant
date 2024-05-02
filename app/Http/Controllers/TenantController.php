@@ -88,9 +88,11 @@ class TenantController extends Controller
      
              // Prepare email data
              $mailData = [
-                 'title' => 'Welcome to our platform!',
-                 'body' => 'Your account has been created successfully. Here is your password: ' . $request->password,
-             ];
+                'title' => 'Welcome to our platform!',
+                'body' => 'Your account has been created successfully.',
+                'name' => $request->name, // Pass name here
+                'password' =>  $request->password, // Pass password here
+            ];
      
              // Send email
              Mail::to($request->email)->send(new MailNotify($mailData));

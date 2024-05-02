@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\App;
-
+use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
+use App\Models\DepartmentAdmin;
 
 class DepartmentAdminController extends Controller
 {
@@ -11,7 +12,9 @@ class DepartmentAdminController extends Controller
      */
     public function index()
     {
-        //
+        
+        $departmentadmins = DepartmentAdmin::all();
+        return view('app.departmentadmin.index', compact('departmentadmins'));
     }
 
     /**

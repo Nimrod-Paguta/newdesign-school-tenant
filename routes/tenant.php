@@ -9,7 +9,8 @@ use App\Http\Controllers\App\{
     ProfileController, 
     UserController, 
     TeacherController, 
-    StudentController
+    StudentController, 
+    DepartmentAdminController
 };
 
 
@@ -46,8 +47,17 @@ Route::middleware([
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
         Route::group(['middleware' => ['role:admin']], function () {
-            Route::resource('users', UserController::class);
+            Route::get('users', [UserController::class, 'index'])->name('users.index');
+            Route::get('/create', [UserController::class, 'create'])->name('users.create');
+            Route::post('users', [UserController::class, 'store'])->name('users.store');
+            Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
+            Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+            Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
+            Route::put('users/payment/{id}', [UserController::class, 'payment'])->name('users.payment');
+
+            Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
         });
+        
     });
 
     
@@ -65,6 +75,8 @@ Route::middleware([
 
     // -------------------------------------------------------
     // crud 
+
+    
     
     Route::get('add', 'StudentController@add'); 
     Route::get('/students', [StudentController::class, 'index'])->name('app.students');
@@ -76,6 +88,10 @@ Route::middleware([
     Route::get('add', 'TeacherController@add'); 
     Route::get('/teacher', [TeacherController::class, 'index'])->name('app.teacher');
     Route::resource('teacher', TeacherController::class);
+
+
+    Route::get('/departmentadmin', [DepartmentAdminController::class, 'index'])->name('departmentadmin.index');
+    
     
 
 

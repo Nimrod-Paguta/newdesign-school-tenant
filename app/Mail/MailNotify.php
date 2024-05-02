@@ -14,14 +14,20 @@ class MailNotify extends Mailable
     use Queueable, SerializesModels;
 
 
-    public $mailData; 
+    public $title;
+    public $body;
+    public $name;
+    public $password;
 
     /**
      * Create a new message instance.
      */
     public function __construct($mailData)
     {
-        $this->mailData = $mailData; 
+        $this->title = $mailData['title'];
+        $this->body = $mailData['body'];
+        $this->name = $mailData['name'];
+        $this->password = $mailData['password'];
     }
 
     /**

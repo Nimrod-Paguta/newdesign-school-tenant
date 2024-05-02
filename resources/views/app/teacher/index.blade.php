@@ -2,7 +2,7 @@
 <h1>This is Teacher </h1>
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Add Department
+    Add Teacher
 </button>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
