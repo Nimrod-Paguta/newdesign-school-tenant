@@ -1,15 +1,15 @@
 <x-user-layout>
-<h1>This is Teacher </h1>
+<center><h3>Instructors:</h3></center>
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Add Teacher
+    Add Instructors
 </button>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add teacher</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Instructors</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -103,7 +103,12 @@
                             <input id="province" class="form-control" type="text" name="province" value="{{ old('province') }}" required autofocus autocomplete="address-level1" />
                             <x-input-error :messages="$errors->get('province')" class="mt-2" />
                         </div>
+
+
+
                     </div>
+
+
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>

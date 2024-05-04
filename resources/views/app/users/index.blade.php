@@ -24,12 +24,24 @@
                 <td > @foreach($user->roles as $role)
                         {{ $role->name }}{{ $loop->last ? '':',' }}
                         @endforeach </td>
-                <td > <x-btn-link href="{{ route('users.edit',$user->id)}}">Edit</x-btn-link>  </td>
+                <td > 
+                    <x-btn-link href="{{ route('users.edit',$user->id)}}">Edit</x-btn-link>
+                    <x-btn-link href="{{ route('users.view',$user->id)}}">View</x-btn-link> 
+              </td>
             </tr>
           
             @endforeach
         </tbody>
     </table>
+
+
+    @if(count($users) == 5)
+    <script>
+        $(document).ready(function(){
+            $('#exampleModal').modal('show');
+        });
+    </script>
+    @endif
 
     
  <!-- Modal -->
@@ -44,13 +56,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('users.payment', $user->id) }}" method="POST">
+                    <!-- <form action="{{ route('users.payment', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <label for="payment">Payment:</label>
                         <input type="text" name="payment" value="{{ $user->payment }}" required>
-                        <button type="submit">Submit</button>
-                    </form>
+                        <a href="/create"> <button type="submit">Submit</button></a>
+                    </form> -->
+
+
+                                
+
+                <a href="{{ route('payment.payment', ['id' => $user->id]) }}">Please Pay to add more User</a>
+
+
+
+                            
                 </div>
             </div>
         </div>

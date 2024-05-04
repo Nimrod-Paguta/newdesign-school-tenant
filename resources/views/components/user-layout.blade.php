@@ -3,6 +3,64 @@
 
 <head>
 
+
+<style>
+
+    /* Sidebar */
+
+/* Brand Logo */
+.sidebar-brand {
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* Brand Logo Icon */
+.sidebar-brand-icon {
+    font-size: 1.5rem;
+}
+
+/* Brand Logo Text */
+.sidebar-brand-text {
+    font-size: 1.1rem;
+}
+
+/* Sidebar Links */
+.nav-item {
+    padding: 0;
+}
+
+.nav-link {
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #3c5dc9;
+}
+
+/* Divider */
+.sidebar-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Active Link */
+.nav-item.active .nav-link {
+    background-color: #3c5dc9 !important;
+}
+
+/* Active Link Text */
+.nav-item.active .nav-link span {
+    font-weight: bold;
+}
+
+    
+</style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -39,6 +97,7 @@
 <link href="{{ asset('tenant/css/noanimation.css') }}" rel="stylesheet">
 
 
+
     
 
 </head>
@@ -48,76 +107,75 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+ <!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <div class="sidebar-brand-icon rotate-n-15">
+        <i class="fas fa-laugh-wink"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+@role('admin'); 
 
-            <!-- Nav Item - Dashboard -->
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- @role('admin') -->
+<!-- Nav Item - Dashboard -->
+<li class="nav-item">
+    <a class="nav-link" href="/dashboard">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span>
+    </a>
+</li>
 
-             
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+<!-- Nav Item - Users -->
+<li class="nav-item">
+    <a class="nav-link" href="/users">
+        <i class="fas fa-fw fa-user"></i>
+        <span>Users</span>
+    </a>
+</li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/users">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Users</span></a>
-            </li>
+<!-- Nav Item - Department Admin -->
+<li class="nav-item">
+    <a class="nav-link" href="/departmentadmin">
+        <i class="fas fa-fw fa-users-cog"></i>
+        <span>Department Admin</span>
+    </a>
+</li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/departmentadmin">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Department Admin</span></a>
-            </li>
-           
-            <!-- @endrole -->
-           
-            <li class="nav-item">
-                <a class="nav-link" href="/teacher">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Teachers</span></a>
-            </li>
+@endrole
+<!-- Nav Item - Teachers -->
+<li class="nav-item">
+    <a class="nav-link" href="/teacher">
+        <i class="fas fa-fw fa-chalkboard-teacher"></i>
+        <span>Teachers</span>
+    </a>
+</li>
 
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/students">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Students</span></a>
-            </li>
+<!-- Nav Item - Students -->
+<li class="nav-item">
+    <a class="nav-link" href="/students">
+        <i class="fas fa-fw fa-user-graduate"></i>
+        <span>Students</span>
+    </a>
+</li>
 
-         
+<!-- Nav Item - Announcement -->
+<li class="nav-item">
+    <a class="nav-link" href="/announcement">
+        <i class="fas fa-fw fa-bullhorn"></i>
+        <span>Announcement</span>
+    </a>
+</li>
 
-       
-
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Announcement</span></a>
-            </li>
-           
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-         
-
-        </ul>
-        <!-- End of Sidebar -->
+<!-- Divider -->
+<hr class="sidebar-divider">
+</ul>
+<!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

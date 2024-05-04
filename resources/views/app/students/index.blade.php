@@ -1,5 +1,5 @@
 <x-user-layout>
-<h1>This is Students</h1>
+<center><h3>Students:</h3></center>
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Add Student

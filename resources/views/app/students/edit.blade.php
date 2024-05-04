@@ -1,3 +1,4 @@
+<x-user-layout>
 <h1>hi im edit</h1>
 <td>{{ $students->first_name }} {{ $students->last_name }}</td>
 
@@ -27,5 +28,8 @@
     <button type="submit">Submit</button>
 </form>
 
+
+
+</x-user-layout>
 
 

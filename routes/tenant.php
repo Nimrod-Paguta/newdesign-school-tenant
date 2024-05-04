@@ -51,7 +51,7 @@ Route::middleware([
             Route::get('/create', [UserController::class, 'create'])->name('users.create');
             Route::post('users', [UserController::class, 'store'])->name('users.store');
             Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
-            Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+            Route::get('{user}edit', [UserController::class, 'edit'])->name('users.edit');
             Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
             Route::put('users/payment/{id}', [UserController::class, 'payment'])->name('users.payment');
 
@@ -81,22 +81,28 @@ Route::middleware([
     Route::get('add', 'StudentController@add'); 
     Route::get('/students', [StudentController::class, 'index'])->name('app.students');
     Route::resource('students', StudentController::class);
-    Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
+    Route::get('/students-edit{id}', [StudentController::class, 'edit'])->name('students.edit');
     Route::put('/students/{id}', [StudentController::class, 'update'])->name('students.update');
 
 
     Route::get('add', 'TeacherController@add'); 
     Route::get('/teacher', [TeacherController::class, 'index'])->name('app.teacher');
     Route::resource('teacher', TeacherController::class);
-
-
     Route::get('/departmentadmin', [DepartmentAdminController::class, 'index'])->name('departmentadmin.index');
-    
-    
+    Route::get('/payment/{id}', [UserController::class, 'paymentroute'])->name('payment.payment');
 
+
+    Route::get('/department{id}', [DepartmentAdminController::class, 'show'])->name('departmentadmin.view');
+    Route::get('/{id}edits', [DepartmentAdminController::class, 'edit'])->name('departmentadmin.edit');
+
+    Route::put('/department-update{id}', [DepartmentAdminController::class, 'update'])->name('departmentadmin.update');
+
+
+    Route::get('/user-view{id}', [UserController::class, 'show'])->name('users.view');
 
     
     require __DIR__.'/tenant-auth.php';
 });
+
 
 

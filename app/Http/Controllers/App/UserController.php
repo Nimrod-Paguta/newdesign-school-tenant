@@ -22,6 +22,12 @@ class UserController extends Controller
         
     }
 
+    public function paymentroute($id){
+        $user = User::findOrFail($id);
+        return view('app.payment.payment', ['user' => $user]); 
+    }
+    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -38,6 +44,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+        if (auth()->user()->id === 1 && empty(auth()->user()->payment)) {
+            return redirect()->route('users.create')->with('payment_required', true);
+        }
+        
+        if (User::count() == 3) {
+            if (auth()->user()->id == 1) {
+                if (auth()->user()->payment != 100) {
+                    return redirect()->route('payment.payment', ['id' => auth()->user()->id])->with('exceeded_limit', true);
+                }
+            } else {
+                return redirect()->route('users.create');
+            }
+        }
+        
+    
+
+
         // Validation
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -66,6 +90,12 @@ class UserController extends Controller
             'password' => $request->password, // Store the password as provided, without hashing
           
         ]);
+
+
+            // Assign the "department" role to the user
+        $departmentRole = Role::where('name', 'department')->first();
+        $user->assignRole($departmentRole);
+
     
         $departmentAdmin = DepartmentAdmin::create([
             'departmentadmin' => $user->id,
@@ -87,10 +117,15 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $departmentadmin = DepartmentAdmin::findOrFail($id);
+        
+        return view('app.users.view', compact('user', 'departmentadmin'));
     }
+    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -114,9 +149,9 @@ class UserController extends Controller
         ]); 
     
 
-    $user->update($ValidatedData);  
-    $user->roles()->sync($request->input('roles')); 
-    return redirect()->route('users.index'); 
+            $user->update($ValidatedData);  
+            $user->roles()->sync($request->input('roles')); 
+            return redirect()->route('users.index'); 
     }
 
     /**
@@ -135,8 +170,12 @@ class UserController extends Controller
          $user->payment = $request->input('payment');
          $user->save();
      
-         return redirect()->route('users.index')->with('success', 'Payment information updated successfully.');
+         return redirect()->route('users.create')->with('success', 'Payment information updated successfully.');
      }
+
+
+
+
      
      
 

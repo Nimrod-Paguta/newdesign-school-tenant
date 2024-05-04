@@ -24,60 +24,12 @@
 </head>
 <body class="font-sans antialiased">
     <div id="wrapper">
-
-    
-
-        <!-- Sidebar -->
-        
-        <ul class="navbar-nav sidecolor sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}" :class="{ 'active': request()->routeIs('dashboard') }">
-                <div class="sidebar-brand-text mx-3"> CDRRMO</div>
-            </a>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="/dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Home</span></a>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="/department">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Department</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-    
-
-        </ul>
-        <!-- End of Sidebar -->
-
-        
     
 
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
             <div id="content">
-
-            @include('layouts.navigation')
-
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
 
                 <!-- Page Content -->
                 <main class="container-fluid">

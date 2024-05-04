@@ -1,29 +1,41 @@
 <x-user-layout>
     <h1>Department Admins</h1>
 
-    <table  id="yourDataTableID" class="table table-striped" style="width:100%">
-        <thead class="table-header">
-            <tr>
-                <th>ID</th>
-                <th>First Name:</th>
-               <th>Address:</th>
-                <th>Email</th>
-                <!-- Add other column headings here -->
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($departmentadmins as $admin)
-                <tr>
-                    <td>{{ $admin->departmentadmin }}</td>
-                    <td>{{ $admin->depadminfirstname }} {{ $admin->depadminmiddlename }} {{ $admin->depadminlastname }}</td>
-                    <td>{{ $admin->street }} {{ $admin->barangay }} {{ $admin->municipality }} {{ $admin->city }}</td>
-                    <td>{{ $admin->email }}</td>
-                    <!-- Add other table data columns here --> 
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-
+    <table id="yourDataTableID" class="table table-striped" style="width:100%">
+    <thead class="table-header">
+        <tr>
+            <th>ID</th>
+            <th>First Name:</th>
+            <th>Address:</th>
+          
+            <th>Department</th>
+            <th>Action</th>
+            <!-- Add other column headings here -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($departmentadmins as $admin)
+        <tr>
+            <td>{{ $admin->departmentadmin }}</td>
+            <td>{{ $admin->depadminfirstname }} {{ $admin->depadminmiddlename }} {{ $admin->depadminlastname }}</td>
+            <td>{{ $admin->street }} {{ $admin->barangay }} {{ $admin->municipality }} {{ $admin->city }}</td>
+            
+            <td>
+                @foreach($users as $user)
+                    @if($admin->departmentadmin == $user->id)
+                        {{ $user->name }}
+                    @endif
+                @endforeach
+            </td>
+            <td>
+            <a  href="{{ route('departmentadmin.view', ['id' => $admin->id]) }}"><button type="submit" class="btn btn-secondary actions-buttons">View</button></a>
+            <a  href="{{ route('departmentadmin.edit', ['id' => $admin->id]) }}"><button type="submit" class="btn btn-warning actions-buttons">Edit</button></a>
+        </td>
+            <!-- Add other table data columns here -->
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 
 
     
