@@ -19,13 +19,23 @@ class UserController extends Controller
 
         return view('app.users.index', ['users'=>$users]);    
         
+
+    }
+
+
+
+    public function userlayout($id){
+        $users = User::all($id);
         
+        return view('components.user-layout', compact('users'));   
     }
 
     public function paymentroute($id){
         $user = User::findOrFail($id);
         return view('app.payment.payment', ['user' => $user]); 
     }
+
+    
     
 
     /**
@@ -44,6 +54,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+        
+        $path = ''; // Initialize $path variable
+        $filename = ''; // Initialize $filename variable
+
 
         if (auth()->user()->id === 1 && empty(auth()->user()->payment)) {
             return redirect()->route('users.create')->with('payment_required', true);
@@ -73,9 +88,24 @@ class UserController extends Controller
             'barangay' => 'required|string|max:255',
             'municipality' => 'required|string|max:255',
             'city' => 'required|string|max:255',
+            'logo' => 'nullable|mimes:png,jpg,jpeg,webp',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
            
         ]);
+
+
+        
+        if($request->has('logo')){
+            $file = $request->file('logo'); 
+            $extension = $file->getClientOriginalExtension(); 
+
+            $filename = time().'.'.$extension; 
+
+            $path = 'upload/logos/'; 
+            $file->move( $path, $filename); 
+        }
+
+
     
         // Check if user count exceeds 3
         // if (User::count() >= 3) {
@@ -88,6 +118,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password, // Store the password as provided, without hashing
+            'logo' => $path.$filename ,
           
         ]);
 
@@ -153,6 +184,41 @@ class UserController extends Controller
             $user->roles()->sync($request->input('roles')); 
             return redirect()->route('users.index'); 
     }
+
+
+
+
+    public function updateLogo(Request $request, $userId)
+    {
+        // Validate the incoming request
+        $request->validate([
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
+        ]);
+
+        // Find the user by ID
+        $user = User::findOrFail($userId);
+
+        // Handle the logo upload
+        if ($request->hasFile('logo')) {
+            // Get the uploaded file
+            $logo = $request->file('logo');
+            // Generate a unique filename for the logo
+            $logoName = 'logo_' . time() . '.' . $logo->getClientOriginalExtension();
+            // Store the logo in the public directory
+            $logo->move(public_path('upload/logos'), $logoName);
+            // Update the user's logo path in the database
+            $user->logo = 'upload/logos/' . $logoName;
+            $user->save();
+        }
+
+        // Redirect back or return a response as needed
+        return redirect()->back()->with('success', 'Logo updated successfully');
+    }
+
+
+    
+
+    
 
     /**
      * Remove the specified resource from storage.

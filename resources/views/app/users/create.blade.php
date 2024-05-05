@@ -1,7 +1,7 @@
 <x-user-layout>
 
 
-<form action="{{ route('users.store') }}" method="POST">
+<form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                    
@@ -19,6 +19,17 @@
                                         <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}" required autofocus />
                                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                     </div>
+                                    
+
+                                    </div>
+                                    <div class="col-md-4">                    
+                                    <div class="form-group">
+
+                                        <label for="logo">Upload Logo:</label>
+                                        <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus />
+                                        <x-input-error :messages="$errors->get('logo')" class="mt-2" />
+                                    </div>
+                                    
 
                                     </div>
 

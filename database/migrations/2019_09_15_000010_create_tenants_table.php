@@ -22,6 +22,7 @@ class CreateTenantsTable extends Migration
             $table->string('email');
             $table->string('domain_name');
             $table->string('password');
+            $table->string('logo')->nullable();
             $table->timestamps(); 
             $table->json('data')->nullable();
         });

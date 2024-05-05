@@ -105,76 +105,178 @@
 <body id="page-top">
 
     <!-- Page Wrapper -->
-    <div id="wrapper">
+<div id="wrapper">
 
  <!-- Sidebar -->
+<!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-    <div class="sidebar-brand-icon rotate-n-15">
-        <i class="fas fa-laugh-wink"></i>
-    </div>
-    <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-</a>
+@role('department')
+        <!-- Sidebar - Brand -->
+        <label data-toggle="modal" data-target="#exampleModal" for="logo-upload" class="sidebar-brand d-flex align-items-center justify-content-center" style="padding-top: 110px; padding-bottom: 110px; display: flex; cursor: pointer;">
+        <div class="sidebar-brand-icon" style="border-radius: 50%; overflow: hidden;">
+                <!-- Use PHP to dynamically change the logo based on the authenticated user's ID -->
+                @php
+                $userId = auth()->id(); // Get the authenticated user's ID
+                $user = App\Models\User::find($userId); // Find the user by ID
+                @endphp
+                @if($user->logo)
+                <img id="sidebar-logo" style="width: 250px; height: 185px;" src="{{ url($user->logo) }}" alt="User Logo">
+            @else
+                <img id="sidebar-logo" style="width: 250px; height: 185px;" src="{{ url('upload/logos/uploadlogo.jpg') }}" alt="Default Logo">
+            @endif
+                </div>
+    </label>
+    @endrole
 
-@role('admin'); 
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+    @role('admin')
+    <!-- Sidebar - Brand -->
+    <label data-toggle="modal" data-target="#exampleModal" for="logo-upload" class="sidebar-brand d-flex align-items-center justify-content-center" style="padding-top: 110px; padding-bottom: 110px; display: flex; cursor: pointer;">
+        <div class="sidebar-brand-icon" style="border-radius: 50%; overflow: hidden;">
+            <!-- Use JavaScript to dynamically change the logo -->
+            @php
+                $user = App\Models\User::find(1); // Assuming your User model is in the App\Models namespace
+            @endphp
+            @if($user->logo)
+                <img id="sidebar-logo" style="width: 250px; height: 185px;" src="{{ url($user->logo) }}" alt="User Logo">
+            @else
+                <img id="sidebar-logo" style="width: 250px; height: 185px;" src="{{ url('upload/logos/uploadlogo.jpg') }}" alt="Default Logo">
+            @endif
+        </div>
+    </label>
+  
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item">
-    <a class="nav-link" href="/dashboard">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span>
-    </a>
-</li>
-
-<!-- Nav Item - Users -->
-<li class="nav-item">
-    <a class="nav-link" href="/users">
-        <i class="fas fa-fw fa-user"></i>
-        <span>Users</span>
-    </a>
-</li>
-
-<!-- Nav Item - Department Admin -->
-<li class="nav-item">
-    <a class="nav-link" href="/departmentadmin">
-        <i class="fas fa-fw fa-users-cog"></i>
-        <span>Department Admin</span>
-    </a>
-</li>
 
 @endrole
-<!-- Nav Item - Teachers -->
-<li class="nav-item">
-    <a class="nav-link" href="/teacher">
-        <i class="fas fa-fw fa-chalkboard-teacher"></i>
-        <span>Teachers</span>
-    </a>
-</li>
 
-<!-- Nav Item - Students -->
-<li class="nav-item">
-    <a class="nav-link" href="/students">
-        <i class="fas fa-fw fa-user-graduate"></i>
-        <span>Students</span>
-    </a>
-</li>
 
-<!-- Nav Item - Announcement -->
-<li class="nav-item">
-    <a class="nav-link" href="/announcement">
-        <i class="fas fa-fw fa-bullhorn"></i>
-        <span>Announcement</span>
-    </a>
-</li>
 
-<!-- Divider -->
-<hr class="sidebar-divider">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Instructors</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" action="{{ route('update.logo', $user->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('put')
+
+                    <div class="form-group">
+                        <label for="logo">Upload Logo:</label>
+                        <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus />
+                        <x-input-error :messages="$errors->get('logo')" class="mt-2" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Update Logo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ 
+
+
+
+<!-- 
+<img id="sidebar-logo" style="width: 250px; height: 200px;" src="{{ url('upload/logos/1714831219.png') }}" alt="New Logo">
+ -->
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="/dashboard">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    @role('admin')
+
+    <!-- Nav Item - Users -->
+    <li class="nav-item">
+        <a class="nav-link" href="/users">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Users</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Department Admin -->
+    <li class="nav-item">
+        <a class="nav-link" href="/departmentadmin">
+            <i class="fas fa-fw fa-users-cog"></i>
+            <span>Department Admin</span>
+        </a>
+    </li>
+
+  
+
+    <!-- Nav Item - Teachers -->
+    <li class="nav-item">
+        <a class="nav-link" href="/teacher">
+            <i class="fas fa-fw fa-chalkboard-teacher"></i>
+            <span>Teachers</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Students -->
+    <li class="nav-item">
+        <a class="nav-link" href="/students">
+            <i class="fas fa-fw fa-user-graduate"></i>
+            <span>Students</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Announcement -->
+    <li class="nav-item">
+        <a class="nav-link" href="/announcement">
+            <i class="fas fa-fw fa-bullhorn"></i>
+            <span>Announcement</span>
+        </a>
+    </li>
+
+    @endrole
+
+    
+    @role('department')
+    <!-- Nav Item - Teachers -->
+    <li class="nav-item">
+        <a class="nav-link" href="/teacher">
+            <i class="fas fa-fw fa-chalkboard-teacher"></i>
+            <span>Teachers</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Students -->
+    <li class="nav-item">
+        <a class="nav-link" href="/students">
+            <i class="fas fa-fw fa-user-graduate"></i>
+            <span>Students</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Announcement -->
+    <li class="nav-item">
+        <a class="nav-link" href="/announcement">
+            <i class="fas fa-fw fa-bullhorn"></i>
+            <span>Announcement</span>
+        </a>
+    </li>
+
+    @endrole
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 </ul>
+
+
 <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -243,6 +345,9 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+
+
+                
 
                  {{ $slot }}
             </div>

@@ -46,6 +46,9 @@ class TenantController extends Controller
 
      public function store(Request $request)
      {
+        $path = ''; // Initialize $path variable
+        $filename = ''; // Initialize $filename variable
+        
          // Validate the request data
          $validatedData = $request->validate([
              'name' => 'required|string|max:255',
@@ -58,8 +61,20 @@ class TenantController extends Controller
              'barangay' => 'required|string|max:255',
              'municipality' => 'required|string|max:255',
              'city' => 'required|string|max:255',
+             'logo' => 'nullable|mimes:png,jpg,jpeg,webp',
              'password' => ['required', 'confirmed', Rules\Password::defaults()],
+             
          ]);
+
+         if($request->has('logo')){
+            $file = $request->file('logo'); 
+            $extension = $file->getClientOriginalExtension(); 
+
+            $filename = time().'.'.$extension; 
+
+            $path = 'upload/logos/'; 
+            $file->move( $path, $filename); 
+        }
      
          try {
              // Create the tenant
@@ -69,6 +84,9 @@ class TenantController extends Controller
                  'email' => $request->email,
                  'domain_name' => $request->domain_name,
                  'password' => $request->password, // Store the password as provided, without hashing
+                 'logo' => $path.$filename ,
+
+
              ]);
      
              // Create the tenant admin

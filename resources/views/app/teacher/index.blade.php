@@ -15,7 +15,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('teacher.store') }}" method="POST">
+                <form action="{{ route('teacher.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-row">
@@ -104,6 +104,14 @@
                             <x-input-error :messages="$errors->get('province')" class="mt-2" />
                         </div>
 
+                        <div class="form-group col-md-4">
+                            <label for="logo">Logo:</label>
+                            <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus autocomplete="address-level1" />
+                            <x-input-error :messages="$errors->get('logo')" class="mt-2" />
+                        </div>
+
+
+                        
 
 
                     </div>
@@ -122,7 +130,6 @@
 
 
 
-
 @role('admin')
 <table  id="yourDataTableID" class="table table-striped" style="width:100%" >
   <thead  class="table-header">
@@ -133,6 +140,7 @@
       <th>Email</th>
       <th>Department</th>
       <th>Date of Birth</th>
+      <th>logo</th>
     
       <th>Address</th>
       <th>Actions</th>
@@ -147,6 +155,14 @@
         <td>{{ $teacher->email }}</td>
         <td>{{ $teacher->department }}</td>
         <td>{{ $teacher->date_of_birth }}</td>
+        <td>
+        <img src="{{ asset('http://localhost:8000/' . $teacher->logo) }}" alt="Img" style="width: 70px; height: 70px;">
+
+
+          <!-- <img src="http://oi.localhost:8000/upload/logos/1714831219.png" alt="Img"> -->
+
+        </td>
+
         <td>{{ $teacher->address }}</td>
         <td>
           <a href="{{ route('teacher.edit', $teacher->id) }}"><button type="button" class="btn btn-primary">Edit</button></a>
@@ -180,7 +196,7 @@
       <th>Email</th>
       <th>Department</th>
       <th>Date of Birth</th>
-    
+      <th>logo</th>
       <th>Address</th>
       <th>Actions</th>
     </tr>
@@ -195,6 +211,9 @@
         <td>{{ $teacher->email }}</td>
         <td>{{ $teacher->department }}</td>
         <td>{{ $teacher->date_of_birth }}</td>
+        <td>
+          <img src="{{asset($teacher->logo) }}" alt="" style = "width: 70px; height:70px;">
+        </td>
         <td>{{ $teacher->address }}</td>
         <td>
           <a href="{{ route('teacher.edit', $teacher->id) }}"><button type="button" class="btn btn-primary">Edit</button></a>

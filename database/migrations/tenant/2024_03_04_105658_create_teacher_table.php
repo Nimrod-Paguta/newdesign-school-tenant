@@ -26,9 +26,12 @@ return new class extends Migration
             $table->string('municipality');
             $table->string('province');
             $table->string('department');
+
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

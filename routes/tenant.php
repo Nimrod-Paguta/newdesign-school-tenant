@@ -50,7 +50,7 @@ Route::middleware([
             Route::get('users', [UserController::class, 'index'])->name('users.index');
             Route::get('/create', [UserController::class, 'create'])->name('users.create');
             Route::post('users', [UserController::class, 'store'])->name('users.store');
-            Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
+            Route::get('{user}viewuser', [UserController::class, 'show'])->name('users.view');
             Route::get('{user}edit', [UserController::class, 'edit'])->name('users.edit');
             Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
             Route::put('users/payment/{id}', [UserController::class, 'payment'])->name('users.payment');
@@ -76,6 +76,7 @@ Route::middleware([
     // -------------------------------------------------------
     // crud 
 
+    Route::put('/users/{id}/update-logo', [UserController::class, 'updateLogo'])->name('update.logo');
     
     
     Route::get('add', 'StudentController@add'); 
@@ -98,9 +99,6 @@ Route::middleware([
     Route::put('/department-update{id}', [DepartmentAdminController::class, 'update'])->name('departmentadmin.update');
 
 
-    Route::get('/user-view{id}', [UserController::class, 'show'])->name('users.view');
-
-    
     require __DIR__.'/tenant-auth.php';
 });
 

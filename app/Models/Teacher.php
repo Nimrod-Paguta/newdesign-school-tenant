@@ -26,6 +26,7 @@ class Teacher extends Model
             'barangay', 
             'municipality', 
             'province', 
+            'logo', 
          
         ];   
 }

@@ -66,6 +66,8 @@
                         @endforeach
                     </span>
                 </p>
+               <center> <img src="{{ asset($tenant->logo) }}" alt="Img" style="width: 150px; height: 150px;">
+</center>
             </div>
             <a href="{{ route('tenants.view', $tenant->id) }}">
             <form action="{{ route('tenants.destroy', $tenant->id) }}" method="post">
@@ -97,7 +99,7 @@
 
 
 
-                <form method="POST" action="{{ route('tenants.store') }}" class="row g-3">
+                <form method="POST" action="{{ route('tenants.store') }}" class="row g-3" enctype="multipart/form-data">
     @csrf
     <!-- Name -->
     <div class="col-md-6">
@@ -112,6 +114,13 @@
         <input id="domain_name" class="form-control" type="text" name="domain_name" value="{{ old('domain_name') }}" required autofocus autocomplete="domain_name" />
         <x-input-error :messages="$errors->get('domain_name')" class="mt-2" />
     </div>
+
+
+    <div class="form-group col-md-4">
+                            <label for="logo">Logo:</label>
+                            <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus autocomplete="address-level1" />
+                            <x-input-error :messages="$errors->get('logo')" class="mt-2" />
+                        </div>
 
 
 
