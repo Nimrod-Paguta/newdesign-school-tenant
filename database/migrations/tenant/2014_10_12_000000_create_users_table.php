@@ -19,6 +19,13 @@ return new class extends Migration
             $table->string('password');
             $table->string('payment')->nullable();
             $table->string('logo')->nullable();
+            $table->string('adminfirstname');
+            $table->string('adminmiddlename');
+            $table->string('adminlastname');
+            $table->string('street');
+            $table->string('barangay');
+            $table->string('municipality');
+            $table->string('city');
             $table->rememberToken();
             $table->timestamps();
             

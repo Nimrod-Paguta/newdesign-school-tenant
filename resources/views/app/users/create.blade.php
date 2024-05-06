@@ -44,9 +44,9 @@
                                 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="depadminfirstname">Fistname: </label>
-                                <input id="depadminfirstname" class="form-control" type="text" name="depadminfirstname" value="{{ old('depadminfirstname') }}" required autofocus autocomplete="off" />
-                                <x-input-error :messages="$errors->get('depadminfirstname')" class="mt-2" />
+                                <label for="adminfirstname">Fistname: </label>
+                                <input id="adminfirstname" class="form-control" type="text" name="adminfirstname" value="{{ old('adminfirstname') }}" required autofocus autocomplete="off" />
+                                <x-input-error :messages="$errors->get('adminfirstname')" class="mt-2" />
                             </div>
 
                             <div class="form-group">
@@ -81,9 +81,9 @@
 
                         <div class="col-md-4">
                         <div class="form-group">
-                                <label for="depadminmiddlename">Middle Name:</label>
-                                <input id="depadminmiddlename" class="form-control" type="text" name="depadminmiddlename" value="{{ old('depadminmiddlename') }}" required autofocus autocomplete="name" />
-                                <x-input-error :messages="$errors->get('depadminmiddlename')" class="mt-2" />
+                                <label for="adminmiddlename">Middle Name:</label>
+                                <input id="adminmiddlename" class="form-control" type="text" name="adminmiddlename" value="{{ old('adminmiddlename') }}" required autofocus autocomplete="name" />
+                                <x-input-error :messages="$errors->get('adminmiddlename')" class="mt-2" />
                             </div>
 
                             <div class="form-group">
@@ -109,9 +109,9 @@
 
 
 <div class="form-group">
-                                <label for="depadminlastname">Last Name:</label>
-                                <input id="depadminlastname" class="form-control" type="text" name="depadminlastname" value="{{ old('depadminlastname') }}" required autofocus autocomplete="name" />
-                                <x-input-error :messages="$errors->get('depadminlastname')" class="mt-2" />
+                                <label for="adminlastname">Last Name:</label>
+                                <input id="adminlastname" class="form-control" type="text" name="adminlastname" value="{{ old('adminlastname') }}" required autofocus autocomplete="name" />
+                                <x-input-error :messages="$errors->get('adminlastname')" class="mt-2" />
                             </div>
                         
 
@@ -150,6 +150,8 @@
 
 
                 </form>
+
+                
 
 
     <!-- Include jQuery -->

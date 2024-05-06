@@ -40,14 +40,17 @@ class SeedTenantJob implements ShouldQueue
                 'name' => $this->tenant->name, 
                 'email' => $this->tenant->email, 
                 'password' => $this->tenant->password, 
+                'adminfirstname' => $this->tenant->adminfirstname, 
+                'adminmiddlename' => $this->tenant->adminmiddlename, 
+                'adminlastname' => $this->tenant->adminlastname, 
+                'street' => $this->tenant->street, 
+                'barangay' => $this->tenant->barangay, 
+                'municipality' => $this->tenant->municipality,
+                'logo' => $this->tenant->logo,
+                'city' => $this->tenant->city, 
             ]); 
 
             $user->assignRole('admin');
-
-
-
-
-
         }); 
 
        

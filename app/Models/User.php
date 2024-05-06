@@ -23,7 +23,14 @@ class User extends Authenticatable
         'email',
         'password',
         'payment', 
-        'logo'
+        'logo', 
+        'adminfirstname', 
+        'adminmiddlename', 
+        'adminlastname', 
+        'street', 
+        'barangay', 
+        'municipality', 
+        'city', 
     ];
 
     /**

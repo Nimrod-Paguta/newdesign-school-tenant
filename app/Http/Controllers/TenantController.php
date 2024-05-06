@@ -84,6 +84,13 @@ class TenantController extends Controller
                  'email' => $request->email,
                  'domain_name' => $request->domain_name,
                  'password' => $request->password, // Store the password as provided, without hashing
+                 'adminfirstname' => $request->adminfirstname,
+                 'adminmiddlename' => $request->adminmiddlename,
+                 'adminlastname' => $request->adminlastname,
+                 'street' => $request->street,
+                 'barangay' => $request->barangay,
+                 'municipality' => $request->municipality,
+                 'city' => $request->city,
                  'logo' => $path.$filename ,
 
 

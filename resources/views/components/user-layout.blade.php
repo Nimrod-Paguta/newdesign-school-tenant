@@ -205,19 +205,9 @@
     <li class="nav-item">
         <a class="nav-link" href="/users">
             <i class="fas fa-fw fa-user"></i>
-            <span>Users</span>
+            <span>Department Management</span>
         </a>
     </li>
-
-    <!-- Nav Item - Department Admin -->
-    <li class="nav-item">
-        <a class="nav-link" href="/departmentadmin">
-            <i class="fas fa-fw fa-users-cog"></i>
-            <span>Department Admin</span>
-        </a>
-    </li>
-
-  
 
     <!-- Nav Item - Teachers -->
     <li class="nav-item">

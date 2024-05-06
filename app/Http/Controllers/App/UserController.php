@@ -66,12 +66,20 @@ class UserController extends Controller
         
         if (User::count() == 3) {
             if (auth()->user()->id == 1) {
-                if (auth()->user()->payment != 100) {
+                $payment = auth()->user()->payment;
+                if ($payment != 100 && $payment != 200) {
                     return redirect()->route('payment.payment', ['id' => auth()->user()->id])->with('exceeded_limit', true);
                 }
-            } else {
-                return redirect()->route('users.create');
-            }
+            } 
+        }
+        
+
+        if (User::count() == 6) {
+            if (auth()->user()->id == 1) {
+                if (auth()->user()->payment != 300) {
+                    return redirect()->route('payment.payment', ['id' => auth()->user()->id])->with('exceeded_limit', true);
+                }
+            } 
         }
         
     
@@ -81,9 +89,9 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email',
-            'depadminfirstname' => 'required|string|max:255',
-            'depadminmiddlename' => 'required|string|max:255',
-            'depadminlastname' => 'required|string|max:255',
+            'adminfirstname' => 'required|string|max:255',
+            'adminmiddlename' => 'required|string|max:255',
+            'adminlastname' => 'required|string|max:255',
             'street' => 'required|string|max:255',
             'barangay' => 'required|string|max:255',
             'municipality' => 'required|string|max:255',
@@ -119,6 +127,14 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password, // Store the password as provided, without hashing
             'logo' => $path.$filename ,
+            'adminfirstname' => $request->adminfirstname,
+            'adminmiddlename' => $request->adminmiddlename,
+            'adminlastname' => $request->adminlastname,
+            'street' => $request->street,
+            'barangay' => $request->barangay,
+            'municipality' => $request->municipality,
+            'city' => $request->city,
+
           
         ]);
 
@@ -128,18 +144,18 @@ class UserController extends Controller
         $user->assignRole($departmentRole);
 
     
-        $departmentAdmin = DepartmentAdmin::create([
-            'departmentadmin' => $user->id,
-            'email' => $request->email,
-            'depadminfirstname' => $request->depadminfirstname,
-            'depadminmiddlename' => $request->depadminmiddlename,
-            'depadminlastname' => $request->depadminlastname,
-            'street' => $request->street,
-            'barangay' => $request->barangay,
-            'municipality' => $request->municipality,
-            'city' => $request->city,
-            'password' => $request->password, // Store the password as provided, without hashing
-        ]);
+        // $departmentAdmin = DepartmentAdmin::create([
+        //     'departmentadmin' => $user->id,
+        //     'email' => $request->email,
+        //     'depadminfirstname' => $request->depadminfirstname,
+        //     'depadminmiddlename' => $request->depadminmiddlename,
+        //     'depadminlastname' => $request->depadminlastname,
+        //     'street' => $request->street,
+        //     'barangay' => $request->barangay,
+        //     'municipality' => $request->municipality,
+        //     'city' => $request->city,
+        //     'password' => $request->password, // Store the password as provided, without hashing
+        // ]);
     
         return redirect()->route('users.create');
     }
@@ -151,9 +167,9 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        $departmentadmin = DepartmentAdmin::findOrFail($id);
+    
         
-        return view('app.users.view', compact('user', 'departmentadmin'));
+        return view('app.users.view', compact('user'));
     }
     
 
@@ -176,7 +192,14 @@ class UserController extends Controller
         $ValidatedData = $request->validate([
             'name' => 'required|string|max:255', 
             'email' => 'required|email|max:255|unique:users,email,'.$user->id, 
-             'roles'=>'required|array'
+             'roles'=>'required|array', 
+             'adminfirstname' => 'required|string|max:255',
+             'adminmiddlename' => 'required|string|max:255',
+             'adminlastname' => 'required|string|max:255',
+             'street' => 'required|string|max:255',
+             'barangay' => 'required|string|max:255',
+             'municipality' => 'required|string|max:255',
+             'city' => 'required|string|max:255',
         ]); 
     
 

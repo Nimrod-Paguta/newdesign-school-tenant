@@ -3,14 +3,14 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('users') }}
             <x-btn-link class="ml-4 float-right" href="{{ route('users.create')}}">
-                        Add Users</x-btn-link>  
+                        Add Departments</x-btn-link>  
         </h2>
    
 
     <table  id="yourDataTableID" class="table table-striped" style="width:100%">
         <thead  class="table-header">
             <tr>
-                <th >Name</th>
+                <th >Department Name</th>
                 <th >Email</th>
                 <th > Role</th>
                 <th >Action</th>

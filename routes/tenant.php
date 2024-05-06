@@ -90,7 +90,7 @@ Route::middleware([
     Route::get('/teacher', [TeacherController::class, 'index'])->name('app.teacher');
     Route::resource('teacher', TeacherController::class);
     Route::get('/departmentadmin', [DepartmentAdminController::class, 'index'])->name('departmentadmin.index');
-    Route::get('/payment/{id}', [UserController::class, 'paymentroute'])->name('payment.payment');
+    Route::get('/payment{id}', [UserController::class, 'paymentroute'])->name('payment.payment');
 
 
     Route::get('/department{id}', [DepartmentAdminController::class, 'show'])->name('departmentadmin.view');
