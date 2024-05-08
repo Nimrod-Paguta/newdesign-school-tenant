@@ -47,14 +47,15 @@
                                 <x-input-error :messages="$errors->get('city')" class="mt-2" />
                             </div>
 
+
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email" />
+                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                            </div>
                          
                         <div class="form-group">
-                                                  
-                        <div class="form-group">
-                              <label for="password_confirmation">Confirm Password:</label>
-                              <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" required autofocus autocomplete="new-password_confirmation" />
-                              <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                         </div>
+                    
 
                         </div>
                      </div>
@@ -72,10 +73,26 @@
                                 <x-input-error :messages="$errors->get('barangay')" class="mt-2" />
                             </div>
 
+                            
                             <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email" />
-                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                <label for="gender">Gender:</label>
+                                <select id="gender" class="form-control" name="gender" required autofocus>
+                                    <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+                                    <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                                </select>
+                                <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+                            </div>
+
+
+                           
+                                <!-- Password -->
+                            <div class="form-group">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <input id="password" class="form-control" type="password" name="password" readonly required autocomplete="new-password" />
+                                    <button type="button" class=" form-control btn btn-secondary" id="generatePassword" style="height: 36px;">Generate</button>
+                                </div>
+                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
                             </div>
                        
@@ -92,11 +109,26 @@
                                 <input id="municipality" class="form-control" type="text" name="municipality" value="{{ old('municipality') }}" required autofocus />
                                 <x-input-error :messages="$errors->get('municipality')" class="mt-2" />
                             </div>
+                          
+
                             <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input id="password" class="form-control" type="password" name="password" value="{{ old('password') }}" required autofocus />
-                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                <label for="phonenumber">Contact Number:</label>
+                                <input id="phonenumber" class="form-control" type="text" name="phonenumber" value="{{ old('phonenumber') }}" required autofocus oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" />
+                                <x-input-error :messages="$errors->get('phonenumber')" class="mt-2" />
                             </div>
+
+
+                            <div class="col-md-6" id="confirmPasswordWrapper" style="display: none;">
+                                <label for="password_confirmation" class="form-label">Confirm Password</label>
+                                <div class="input-group">
+                                    <input id="password_confirmation" class="form-control" type="text" name="password_confirmation" required autocomplete="new-password" />
+                                    <button type="button" class="btn btn-primary" id="confirmPassword">Confirm</button>
+                                </div>
+                                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                            </div>
+
+
+
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Add Department</button>
@@ -122,6 +154,38 @@
 
     <!-- Include DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
+
+
+    <script>
+    function generatePassword() {
+        const length = 10; // Length of the generated password
+        const charset = "abcdefghijklmnopqrstuvwxyz"; // Characters to include in the password
+        let password = "";
+        for (let i = 0; i < length; ++i) {
+            const randomIndex = Math.floor(Math.random() * charset.length);
+            password += charset[randomIndex];
+        }
+        return password;
+    }
+
+    // Event listener for the generate password button
+    document.getElementById("generatePassword").addEventListener("click", function() {
+        const passwordField = document.getElementById("password");
+        const confirmPasswordField = document.getElementById("password_confirmation");
+        const generatedPassword = generatePassword();
+        passwordField.value = generatedPassword;
+        confirmPasswordField.value = generatedPassword;
+        passwordField.removeAttribute("readonly"); // Make password field editable
+        passwordField.focus(); // Set focus to the password field
+    });
+
+    // Event listener for confirming the password
+    document.getElementById("confirmPassword").addEventListener("click", function() {
+        const passwordField = document.getElementById("password");
+        passwordField.setAttribute("readonly", true); // Make password field readonly again
+    });
+</script>
+
 
 
    

@@ -26,6 +26,12 @@ return new class extends Migration
             $table->string('barangay');
             $table->string('municipality');
             $table->string('city');
+
+            $table->string('gender');
+            $table->string('phonenumber');
+
+         
+            
             $table->rememberToken();
             $table->timestamps();
             

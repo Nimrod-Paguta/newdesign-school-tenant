@@ -24,6 +24,8 @@ class Tenantadmin extends Model
         'barangay', 
         'municipality', 
         'city', 
+        'gender', 
+        'phonenumber'
      
        
         

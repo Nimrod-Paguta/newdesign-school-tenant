@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Students;
 use App\Models\DepartmentAdmin; 
 use App\Models\Teacher;  
+use App\Mail\MailNotify; 
+use Illuminate\Support\Facades\Mail; 
 use Spatie\Permission\Models\Role; 
 
 class UserController extends Controller
@@ -99,6 +101,8 @@ class UserController extends Controller
             'municipality' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'logo' => 'nullable|mimes:png,jpg,jpeg,webp',
+            'gender' => 'required|string|max:255',
+            'phonenumber' => 'required|string|max:255',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
            
         ]);
@@ -136,9 +140,21 @@ class UserController extends Controller
             'barangay' => $request->barangay,
             'municipality' => $request->municipality,
             'city' => $request->city,
+            'gender' => $request->gender,
+            'phonenumber' => $request->phonenumber,
 
           
         ]);
+
+        $mailData = [
+            'title' => 'Welcome to our platform!',
+            'body' => 'Your account has been created successfully.',
+            'name' => $request->name, // Pass name here
+            'password' =>  $request->password, // Pass password here
+        ];
+ 
+         // Send email
+         Mail::to($request->email)->send(new MailNotify($mailData));
 
 
             // Assign the "department" role to the user
@@ -203,24 +219,45 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $ValidatedData = $request->validate([
-            'name' => 'required|string|max:255', 
-            'email' => 'required|email|max:255|unique:users,email,'.$user->id, 
-            //  'roles'=>'required|array', 
-             'adminfirstname' => 'required|string|max:255',
-             'adminmiddlename' => 'required|string|max:255',
-             'adminlastname' => 'required|string|max:255',
-             'street' => 'required|string|max:255',
-             'barangay' => 'required|string|max:255',
-             'municipality' => 'required|string|max:255',
-             'city' => 'required|string|max:255',
-        ]); 
+        $validatedData = $request->validate([
+             //  'roles'=>'required|array', 
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,'.$user->id,
+            'adminfirstname' => 'required|string|max:255',
+            'adminmiddlename' => 'required|string|max:255',
+            'adminlastname' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'barangay' => 'required|string|max:255',
+            'municipality' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'gender' => 'required|string|max:255',
+            'phonenumber' => 'required|string|max:255',
+        ]);
     
-
-            $user->update($ValidatedData);  
-            // $user->roles()->sync($request->input('roles')); 
-            return redirect()->route('users.index'); 
+        $user->update($validatedData);
+         // $user->roles()->sync($request->input('roles')); 
+    
+        // Handle the logo upload
+        if ($request->hasFile('logo')) {
+            // Validate the logo
+            $request->validate([
+                'logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+    
+            // Get the uploaded file
+            $logo = $request->file('logo');
+            // Generate a unique filename for the logo
+            $logoName = 'logo_' . time() . '.' . $logo->getClientOriginalExtension();
+            // Store the logo in the public directory
+            $logo->move(public_path('upload/logos'), $logoName);
+            // Update the user's logo path in the database
+            $user->logo = 'upload/logos/' . $logoName;
+            $user->save();
+        }
+    
+        return redirect()->route('users.index')->with('success', 'User updated successfully');
     }
+    
 
 
 

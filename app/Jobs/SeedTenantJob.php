@@ -48,6 +48,10 @@ class SeedTenantJob implements ShouldQueue
                 'municipality' => $this->tenant->municipality,
                 'logo' => $this->tenant->logo,
                 'city' => $this->tenant->city, 
+                'gender' => $this->tenant->gender,
+                'phonenumber' => $this->tenant->phonenumber, 
+
+
             ]); 
 
             $user->assignRole('admin');

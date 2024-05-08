@@ -1,7 +1,7 @@
 <x-user-layout>
 
 
-        <form method="POST" action="{{ route('users.update', $user->id) }}">
+        <form method="POST" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('put') 
                    
@@ -17,12 +17,22 @@
 
                                         <label for="name">Department Name:</label>
                                         <input id="name" class="form-control" type="text" name="name" value="{{ $user->name }}" required autofocus />
-                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                        <x-input-error :messages="$errors->get('name')" class="mt-2" /> 
                                     </div>
-                                    
 
+                                                              
                                     </div>
-                                    <div class="col-md-4">     </div>
+                                    <div class="col-md-4">                    
+                                    <div class="form-group">
+
+                                        <label for="logo">Upload Logo:</label>
+                                        <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus />
+                                        <x-input-error :messages="$errors->get('logo')" class="mt-2" />
+                                    </div>
+                                    </div>
+
+
+                            
                                      <h5><center>Admin info:</center></h5>
                                  <div class="col-md-4">
                             <div class="form-group">
@@ -42,6 +52,12 @@
                                 <label for="city">City:</label>
                                 <input id="city" class="form-control" type="text" name="city" value="{{ $user->city }}" required autofocus />
                                 <x-input-error :messages="$errors->get('city')" class="mt-2" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phonenumber">Contact Number:</label>
+                                <input id="phonenumber" class="form-control" type="text" name="phonenumber" value="{{ $user->phonenumber }}" required autofocus oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" />
+                                <x-input-error :messages="$errors->get('phonenumber')" class="mt-2" />
                             </div>
 
                             
@@ -85,6 +101,11 @@
                                 <label for="municipality">Municipality:</label>
                                 <input id="municipality" class="form-control" type="text" name="municipality" value="{{ $user->municipality }}" required autofocus />
                                 <x-input-error :messages="$errors->get('municipality')" class="mt-2" />
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender:</label>
+                                <input id="gender" class="form-control" type="text" name="gender" value="{{ $user->gender }}" required autofocus autocomplete="name" />
+                                <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                             </div>
 <!-- 
                             <div class="mb-6">

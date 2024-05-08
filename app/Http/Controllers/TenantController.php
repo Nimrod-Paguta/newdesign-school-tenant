@@ -61,6 +61,8 @@ class TenantController extends Controller
              'barangay' => 'required|string|max:255',
              'municipality' => 'required|string|max:255',
              'city' => 'required|string|max:255',
+             'gender' => 'required|string|max:255',
+             'phonenumber' => 'required|string|max:255',
              'logo' => 'nullable|mimes:png,jpg,jpeg,webp',
              'password' => ['required', 'confirmed', Rules\Password::defaults()],
              
@@ -92,10 +94,12 @@ class TenantController extends Controller
                  'municipality' => $request->municipality,
                  'city' => $request->city,
                  'logo' => $path.$filename ,
+                 'gender' => $request->gender,
+                 'phonenumber' => $request->phonenumber,
 
 
              ]);
-     
+             
              // Create the tenant admin
              $tenantadmin = Tenantadmin::create([
                  'tenant_id' => $tenant->id,    
@@ -109,6 +113,8 @@ class TenantController extends Controller
                  'municipality' => $request->municipality,
                  'city' => $request->city,
                  'password' => $request->password, // Store the password as provided, without hashing
+                 'gender' => $request->gender,
+                 'phonenumber' => $request->phonenumber,
              ]);
      
              // Prepare email data

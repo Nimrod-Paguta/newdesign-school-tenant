@@ -31,6 +31,8 @@ class User extends Authenticatable
         'barangay', 
         'municipality', 
         'city', 
+        'gender', 
+        'phonenumber'
     ];
 
     /**

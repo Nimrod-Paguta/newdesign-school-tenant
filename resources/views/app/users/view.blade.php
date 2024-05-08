@@ -74,7 +74,7 @@
            <p class="mb-0">Phone Number:</p>
          </div>
          <div class="col-sm-9">
-           <p class="text-muted mb-0">{{ $user->contactnumber }}</p>
+           <p class="text-muted mb-0">{{ $user->phonenumber }}</p>
          </div>
        </div>
        <hr>

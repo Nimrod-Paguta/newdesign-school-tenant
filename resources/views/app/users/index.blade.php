@@ -10,35 +10,39 @@
     <table  id="yourDataTableID" class="table table-striped" style="width:100%">
         <thead  class="table-header">
             <tr>
-                <th>Logo:</th>
-                <th >Department Name</th>
-                <th >Department Admin:</th>
-                <th > Role</th>
-                <th >Action</th>
+                <th>Id:</th>
+                <th><center>Logo:</center></th>
+                <th><center>Department Name:</center></th>
+                <th><center>Department Admin:</center></th>
+                <!-- <th > Role</th> -->
+                <th><center>Action:</center></th>
             </tr>
         </thead>
         <tbody>
             @foreach($users as $user) 
             @if($user->hasRole('department'))
                 <tr>
+                     <td><h5>{{$user->id}}</h5></td>
                     <td>
-                        <img src="{{ url($user->logo) }}" alt="User Logo" style="border-radius: 50%; width: 50px; height: 50px;">
+                      <center>  <img src="{{ url($user->logo) }}" alt="User Logo" style="border-radius: 50%; width: 50px; height: 50px;"></center>
                     </td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->adminfirstname}} {{$user->adminmiddlename}} {{$user->adminlastname}}</td>
-                    <td>
+                    <td><center>{{$user->name}}</center></td>
+                    <td><center>{{$user->adminfirstname}} {{$user->adminmiddlename}} {{$user->adminlastname}}</center></td>
+                    <!-- <td>
                         @foreach($user->roles as $role)
                             {{$role->name}}{{ $loop->last ? '' : ',' }}
                         @endforeach
-                    </td>
+                    </td> -->
                     <td>
-                        <x-btn-link href="{{ route('users.edit',$user->id)}}">Edit</x-btn-link>
+                    <center>
+                    <x-btn-link href="{{ route('users.edit',$user->id)}}">Edit</x-btn-link>
                         <x-btn-link href="{{ route('users.view',$user->id)}}">View</x-btn-link>
                         <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger actions-buttons">Delete</button>
                         </form>
+                    </center>
                     </td>
                 </tr>
             @endif

@@ -182,6 +182,20 @@
         <x-input-error :messages="$errors->get('city')" class="mt-2" />
     </div>
 
+     <!-- Address -->
+     <div class="col-md-6">
+        <label for="gender" class="form-label">Gender:</label>
+        <input id="gender" class="form-control" type="text" name="gender" value="{{ old('gender') }}" required autofocus autocomplete="gender" />
+        <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+    </div>
+
+
+     <!-- Address -->
+     <div class="col-md-6">
+        <label for="phonenumber" class="form-label">Contact Number:</label>
+        <input id="phonenumber" class="form-control" type="text" name="phonenumber" value="{{ old('phonenumber') }}" required autofocus autocomplete="phonenumber" />
+        <x-input-error :messages="$errors->get('phonenumber')" class="mt-2" />
+    </div>
      
 
  
