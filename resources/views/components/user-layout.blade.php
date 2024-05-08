@@ -209,6 +209,9 @@
         </a>
     </li>
 
+    @endrole
+
+
     <!-- Nav Item - Teachers -->
     <li class="nav-item">
         <a class="nav-link" href="/teacher">
@@ -225,33 +228,6 @@
         </a>
     </li>
 
-    <!-- Nav Item - Announcement -->
-    <li class="nav-item">
-        <a class="nav-link" href="/announcement">
-            <i class="fas fa-fw fa-bullhorn"></i>
-            <span>Announcement</span>
-        </a>
-    </li>
-
-    @endrole
-
-    
-    @role('department')
-    <!-- Nav Item - Teachers -->
-    <li class="nav-item">
-        <a class="nav-link" href="/teacher">
-            <i class="fas fa-fw fa-chalkboard-teacher"></i>
-            <span>Teachers</span>
-        </a>
-    </li>
-
-    <!-- Nav Item - Students -->
-    <li class="nav-item">
-        <a class="nav-link" href="/students">
-            <i class="fas fa-fw fa-user-graduate"></i>
-            <span>Students</span>
-        </a>
-    </li>
 
     <!-- Nav Item - Announcement -->
     <li class="nav-item">
@@ -261,7 +237,6 @@
         </a>
     </li>
 
-    @endrole
     <!-- Divider -->
     <hr class="sidebar-divider">
 </ul>

@@ -2,10 +2,14 @@
 <center><h3>Instructors:</h3></center>
 
 @role('department')
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#teachermodal">
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#teachermodal">
     Add Instructors
 </button>
 @endrole
+<button type="button" class="btn btn-primary" onclick="window.location.href='/archived'">
+    Archived
+</button>
+
 
 <div class="modal fade" id="teachermodal" tabindex="-1" role="dialog" aria-labelledby="teachermodalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -106,13 +110,7 @@
                             <x-input-error :messages="$errors->get('province')" class="mt-2" />
                         </div>
 
-                        <div class="form-group col-md-4">
-                            <label for="logo">Logo:</label>
-                            <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus autocomplete="address-level1" />
-                            <x-input-error :messages="$errors->get('logo')" class="mt-2" />
-                        </div>
-
-
+                  
                         
 
 
@@ -167,12 +165,17 @@
 
         <td>{{ $teacher->address }}</td>
         <td>
-          <a href="{{ route('teacher.edit', $teacher->id) }}"><button type="button" class="btn btn-primary">Edit</button></a>
-          <form action="{{ route('teacher.destroy', $teacher->id) }}" method="POST" style="display:inline;">
+        <a href="{{ route('teacher.view', ['id' => $teacher->id]) }}">
+                                <button type="submit" class="btn btn-success " style="width: 100%;">View</button>
+          </a>
+        
+          <!-- <form action="{{ route('teacher.delete', $teacher->id) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
+            <button type="submit" class="btn btn-danger">archive</button>
+          </form> -->
+
+          <!-- <a class="ahhh"  href="{{ route('teacher.edit', ['id' => $teacher->id]) }}"><button type="submit" class="btn btn-warning actions-buttons">Edit</button></a> -->
         </td>
       </tr>
     @empty
@@ -218,12 +221,17 @@
         </td>
         <td>{{ $teacher->address }}</td>
         <td>
-          <a href="{{ route('teacher.edit', $teacher->id) }}"><button type="button" class="btn btn-primary">Edit</button></a>
-          <form action="{{ route('teacher.destroy', $teacher->id) }}" method="POST" style="display:inline;">
+        <a href="{{ route('teacher.view', ['id' => $teacher->id]) }}">
+                                <button type="submit" class="btn btn-secondary actions-buttons" style="width: auto;">View</button>
+          </a>
+        
+          <form action="{{ route('teacher.delete', $teacher->id) }}"  method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <button type="submit" style="width: auto;" class="btn btn-danger">archive</button>
           </form>
+
+          <a class="ahhh"  href="{{ route('teacher.edit', ['id' => $teacher->id]) }}"><button type="submit" style="width: auto;" class="btn btn-warning actions-buttons">Edit</button></a>
         </td>
       </tr>
       @endif

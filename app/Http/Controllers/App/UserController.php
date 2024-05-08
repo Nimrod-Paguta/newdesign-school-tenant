@@ -5,7 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller; 
 use App\Models\User; 
+use App\Models\Students;
 use App\Models\DepartmentAdmin; 
+use App\Models\Teacher;  
 use Spatie\Permission\Models\Role; 
 
 class UserController extends Controller
@@ -167,11 +169,23 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+        $studentCount = 0;
     
-        
-        return view('app.users.view', compact('user'));
+        // Check if the user is a teacher
+        if ($user->id != 1) {
+            $students = Students::where('department', $user->name)->get();
+            $studentCount = $students->count();
+        }
+
+                // Check if the user is a teacher
+        if ($user->id != 1) {
+            $teacher = Teacher::where('department', $user->name)->get();
+            $teacherCount = $teacher->count();
+        }
+    
+        return view('app.users.view', compact('user', 'studentCount', 'teacherCount'));
     }
-    
+
 
 
     /**
@@ -192,7 +206,7 @@ class UserController extends Controller
         $ValidatedData = $request->validate([
             'name' => 'required|string|max:255', 
             'email' => 'required|email|max:255|unique:users,email,'.$user->id, 
-             'roles'=>'required|array', 
+            //  'roles'=>'required|array', 
              'adminfirstname' => 'required|string|max:255',
              'adminmiddlename' => 'required|string|max:255',
              'adminlastname' => 'required|string|max:255',
@@ -204,7 +218,7 @@ class UserController extends Controller
     
 
             $user->update($ValidatedData);  
-            $user->roles()->sync($request->input('roles')); 
+            // $user->roles()->sync($request->input('roles')); 
             return redirect()->route('users.index'); 
     }
 
@@ -264,13 +278,32 @@ class UserController extends Controller
 
 
 
+     public function destroy($id)
+     {
+         $user = User::findOrFail($id);
+         
+         // Find students and teachers with matching department
+         $students = Students::where('department', $user->name)->get();
+         $teachers = Teacher::where('department', $user->name)->get();
+         
+         // Delete associated students
+         foreach ($students as $student) {
+             $student->delete();
+         }
+         
+         // Delete associated teachers
+         foreach ($teachers as $teacher) {
+             $teacher->delete();
+         }
+         
+         // Delete the user
+         $user->delete();
+     
+         return redirect()->route('users.index')->with('success', 'User, students, and teachers deleted successfully');
+     }
 
      
-     
 
 
-    public function destroy(User $user)
-    {
-        //
-    }
+
 }

@@ -3,16 +3,11 @@
 
 <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-
-                   
-
-                    <div class="row">
+                       <div class="row">
 
                     
                                 <h5><center>Department info:</center></h5>
-
-                                                        
-                                <div class="col-md-4">                    
+                                 <div class="col-md-4">                    
                                     <div class="form-group">
 
                                         <label for="name">Department Name:</label>
@@ -29,20 +24,10 @@
                                         <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus />
                                         <x-input-error :messages="$errors->get('logo')" class="mt-2" />
                                     </div>
-                                    
-
                                     </div>
-
-
-
-
-
-                                <h5><center>Admin info:</center></h5>
-
-
-
-                                
-                        <div class="col-md-4">
+                            
+                            <h5><center>Admin info:</center></h5>
+                                 <div class="col-md-4">
                             <div class="form-group">
                                 <label for="adminfirstname">Fistname: </label>
                                 <input id="adminfirstname" class="form-control" type="text" name="adminfirstname" value="{{ old('adminfirstname') }}" required autofocus autocomplete="off" />
@@ -65,19 +50,14 @@
                          
                         <div class="form-group">
                                                   
-                                        <div class="form-group">
-                                            <label for="password_confirmation">Confirm Password:</label>
-                                            <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" required autofocus autocomplete="new-password_confirmation" />
-                                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                                        </div>
+                        <div class="form-group">
+                              <label for="password_confirmation">Confirm Password:</label>
+                              <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" required autofocus autocomplete="new-password_confirmation" />
+                              <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                         </div>
 
                         </div>
-
-                        
-                           
-                       
-                           
-                        </div>
+                     </div>
 
                         <div class="col-md-4">
                         <div class="form-group">
@@ -97,59 +77,32 @@
                                 <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email" />
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                             </div>
-
-
-                     
-
-</div>
+                            </div>
                        
 
 
-<div class="col-md-4">
-
-
-<div class="form-group">
+                        <div class="col-md-4">
+                        <div class="form-group">
                                 <label for="adminlastname">Last Name:</label>
                                 <input id="adminlastname" class="form-control" type="text" name="adminlastname" value="{{ old('adminlastname') }}" required autofocus autocomplete="name" />
                                 <x-input-error :messages="$errors->get('adminlastname')" class="mt-2" />
                             </div>
-                        
-
-
-                            
                             <div class="form-group">
                                 <label for="municipality">Municipality:</label>
                                 <input id="municipality" class="form-control" type="text" name="municipality" value="{{ old('municipality') }}" required autofocus />
                                 <x-input-error :messages="$errors->get('municipality')" class="mt-2" />
                             </div>
-
-                            
-                   
-                        <div class="form-group">
-                                                    <label for="password">Password:</label>
-                                                    <input id="password" class="form-control" type="password" name="password" value="{{ old('password') }}" required autofocus />
-                                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input id="password" class="form-control" type="password" name="password" value="{{ old('password') }}" required autofocus />
+                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            </div>
                         </div>
-
-                   
-                          
-
-
-                            
-
-
-</div>
-
-
-
-                                <div class="form-group">
+                        <div class="form-group">
                             <button type="submit" class="btn btn-primary">Add Department</button>
                                 <a href="{{ route('students.index') }}" class="btn btn-secondary">Back</a>
                                 </div>
-
-
-
-                </form>
+                         </form>
 
                 
 

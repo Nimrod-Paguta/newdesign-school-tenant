@@ -10,25 +10,38 @@
     <table  id="yourDataTableID" class="table table-striped" style="width:100%">
         <thead  class="table-header">
             <tr>
+                <th>Logo:</th>
                 <th >Department Name</th>
-                <th >Email</th>
+                <th >Department Admin:</th>
                 <th > Role</th>
                 <th >Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach($users as $user) 
-            <tr>
-                <td >{{$user->name}} </td>
-                <td >{{$user->email}}</td>
-                <td > @foreach($user->roles as $role)
-                        {{ $role->name }}{{ $loop->last ? '':',' }}
-                        @endforeach </td>
-                <td > 
-                    <x-btn-link href="{{ route('users.edit',$user->id)}}">Edit</x-btn-link>
-                    <x-btn-link href="{{ route('users.view',$user->id)}}">View</x-btn-link> 
-              </td>
-            </tr>
+            @if($user->hasRole('department'))
+                <tr>
+                    <td>
+                        <img src="{{ url($user->logo) }}" alt="User Logo" style="border-radius: 50%; width: 50px; height: 50px;">
+                    </td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->adminfirstname}} {{$user->adminmiddlename}} {{$user->adminlastname}}</td>
+                    <td>
+                        @foreach($user->roles as $role)
+                            {{$role->name}}{{ $loop->last ? '' : ',' }}
+                        @endforeach
+                    </td>
+                    <td>
+                        <x-btn-link href="{{ route('users.edit',$user->id)}}">Edit</x-btn-link>
+                        <x-btn-link href="{{ route('users.view',$user->id)}}">View</x-btn-link>
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger actions-buttons">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endif
           
             @endforeach
         </tbody>

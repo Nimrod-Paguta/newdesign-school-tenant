@@ -1,10 +1,14 @@
 <x-user-layout>
 <center><h3>Students:</h3></center>
 @role('department')
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentmodal">
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#studentmodal">
     Add Student
 </button>
 @endrole
+<button type="button" class="btn btn-primary" onclick="window.location.href='/archivedstudent'">
+    Archived
+</button>
+
 
 <div class="modal fade" id="studentmodal" tabindex="-1" role="dialog" aria-labelledby="studentmodalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -170,11 +174,7 @@
        
         <td>
           <a href="{{ route('students.edit', $student->id) }}"><button type="button" class="btn btn-primary">Edit</button></a>
-          <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
+    
         </td>
       </tr>
     @empty
@@ -217,11 +217,15 @@
                             <td>{{ $student->address }}</td>
                             <td>{{ $student->department }}</td>
                             <td>
+                            <a href="{{ route('students.view', ['id' => $student->id]) }}">
+                                <button type="submit" class="btn btn-secondary actions-buttons">View</button>
+                               </a>
+        
                                 <a href="{{ route('students.edit', $student->id) }}"><button type="button" class="btn btn-primary">Edit</button></a>
-                                <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('students.delete', $student->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-danger">archive</button>
                                 </form>
                             </td>
                         </tr>

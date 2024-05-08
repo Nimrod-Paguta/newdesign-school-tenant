@@ -10,7 +10,8 @@ use App\Http\Controllers\App\{
     UserController, 
     TeacherController, 
     StudentController, 
-    DepartmentAdminController
+    DepartmentAdminController, 
+    AnnouncementController
 };
 
 
@@ -54,7 +55,6 @@ Route::middleware([
             Route::get('{user}edit', [UserController::class, 'edit'])->name('users.edit');
             Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
             Route::put('users/payment/{id}', [UserController::class, 'payment'])->name('users.payment');
-
             Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
         });
         
@@ -76,19 +76,39 @@ Route::middleware([
     // -------------------------------------------------------
     // crud 
 
-    Route::put('/users/{id}/update-logo', [UserController::class, 'updateLogo'])->name('update.logo');
-    
-    
-    Route::get('add', 'StudentController@add'); 
-    Route::get('/students', [StudentController::class, 'index'])->name('app.students');
-    Route::resource('students', StudentController::class);
+
+
+    Route::delete('/teacher/delete/{id}', [TeacherController::class, 'delete'])->name('teacher.delete');
+    Route::get('add', 'TeacherController@add'); 
+    Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.index');
+    Route::post('/teacherstore', [TeacherController::class, 'store'])->name('teacher.store');
+    Route::get('/archived', [TeacherController::class, 'archived'])->name('teacher.archived');
+    Route::get('/teacher/{id}/restore', [TeacherController::class, 'restore'])->name('teacher.restore');
+    Route::get('/teacherview{id}', [TeacherController::class, 'show'])->name('teacher.view');
+    Route::get('/teacher-edit{id}', [TeacherController::class, 'edit'])->name('teacher.edit');
+
+
+    Route::get('/students', [StudentController::class, 'index'])->name('students.index');
+    Route::post('/studentstore', [StudentController::class, 'store'])->name('students.store');
     Route::get('/students-edit{id}', [StudentController::class, 'edit'])->name('students.edit');
     Route::put('/students/{id}', [StudentController::class, 'update'])->name('students.update');
+    Route::get('add', 'StudentController@add'); 
+    Route::delete('/student/delete/{id}', [StudentController::class, 'delete'])->name('students.delete');
+    Route::get('/archivedstudent', [StudentController::class, 'archived'])->name('students.archived');
+    Route::get('/student/{id}/restore', [StudentController::class, 'restore'])->name('students.restore');
+    Route::get('/studentview{id}', [StudentController::class, 'show'])->name('students.view');
 
 
-    Route::get('add', 'TeacherController@add'); 
-    Route::get('/teacher', [TeacherController::class, 'index'])->name('app.teacher');
-    Route::resource('teacher', TeacherController::class);
+    Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement.index');
+    Route::post('/Announcementstore', [AnnouncementController::class, 'store'])->name('announcement.store');
+    Route::put('/announcement/{id}', [AnnouncementController::class, 'update'])->name('announcement.update');
+    Route::get('/announcement-edit{id}', [AnnouncementController::class, 'edit'])->name('announcement.edit');
+    Route::delete('/announcement/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy');
+
+
+
+    Route::put('/users/{id}/update-logo', [UserController::class, 'updateLogo'])->name('update.logo');
+ 
     Route::get('/departmentadmin', [DepartmentAdminController::class, 'index'])->name('departmentadmin.index');
     Route::get('/payment{id}', [UserController::class, 'paymentroute'])->name('payment.payment');
 
@@ -96,6 +116,7 @@ Route::middleware([
     Route::get('/department{id}', [DepartmentAdminController::class, 'show'])->name('departmentadmin.view');
     Route::get('/{id}edits', [DepartmentAdminController::class, 'edit'])->name('departmentadmin.edit');
 
+    
     Route::put('/department-update{id}', [DepartmentAdminController::class, 'update'])->name('departmentadmin.update');
 
 

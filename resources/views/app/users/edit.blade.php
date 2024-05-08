@@ -22,25 +22,9 @@
                                     
 
                                     </div>
-                                    <div class="col-md-4">                    
-                                  
-
-                                    
-                                    
-
-                                    </div>
-
-
-
-
-
-
-                                <h5><center>Admin info:</center></h5>
-
-
-
-                                
-                        <div class="col-md-4">
+                                    <div class="col-md-4">     </div>
+                                     <h5><center>Admin info:</center></h5>
+                                 <div class="col-md-4">
                             <div class="form-group">
                                 <label for="adminfirstname">Fistname: </label>
                                 <input id="adminfirstname" class="form-control" type="text" name="adminfirstname" value="{{ $user->adminfirstname }}"  required autofocus autocomplete="off" />
@@ -62,7 +46,7 @@
 
                             
                             <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Add Department</button>
+                            <button type="submit" class="btn btn-primary">Update Department</button>
                                 <a href="/users" class="btn btn-secondary">Back</a>
                                 </div>
 
@@ -87,39 +71,29 @@
                                 <input id="email" class="form-control" type="email" name="email" value="{{ $user->email }}" required autofocus autocomplete="email" />
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                             </div>
-
-
-                     
-
-</div>
+                        </div>
                        
+                        <div class="col-md-4">
 
 
-<div class="col-md-4">
-
-
-<div class="form-group">
+                            <div class="form-group">
                                 <label for="adminlastname">Last Name:</label>
                                 <input id="adminlastname" class="form-control" type="text" name="adminlastname" value="{{ $user->adminlastname }}" required autofocus autocomplete="name" />
                                 <x-input-error :messages="$errors->get('adminlastname')" class="mt-2" />
                             </div>
-                        
-
-
-                            
-                            <div class="form-group">
+                              <div class="form-group">
                                 <label for="municipality">Municipality:</label>
                                 <input id="municipality" class="form-control" type="text" name="municipality" value="{{ $user->municipality }}" required autofocus />
                                 <x-input-error :messages="$errors->get('municipality')" class="mt-2" />
                             </div>
-
+<!-- 
                             <div class="mb-6">
                         <x-input-label for="roles" :value="__('Roles')" /> 
                         <select multiple class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" name="roles[]">
                             @foreach($roles as $role)
                                 <option value="{{ $role->id }}" @if(in_array($role->id, $user->roles->pluck('id')->toArray())) selected @endif>{{ $role->name }}</option>
                             @endforeach
-                        </select>
+                        </select> -->
                     </div>
 
                     

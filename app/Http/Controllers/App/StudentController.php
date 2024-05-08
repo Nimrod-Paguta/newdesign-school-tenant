@@ -59,11 +59,14 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $student = Students::findOrFail($id);
+    
+        
+        return view('app.students.view', compact('student'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
@@ -103,4 +106,31 @@ class StudentController extends Controller
     {
         //
     }
+
+    public function delete($id)
+    {
+        $student = Students::findOrFail($id);
+        $student->delete(); // This performs a soft delete
+
+        // You may redirect back or return a response as needed
+        return redirect()->route("students.index")->with('success', 'Teacher archived successfully');
+    }
+
+    public function restore($id){
+        $student=Students::withTrashed()->find($id); 
+        $student->restore(); 
+        return redirect()->route('students.index')->with('success', 'teacher deleted successfully!');
+    }
+
+
+    public function archived()
+    {
+        // Retrieve only archived teachers
+        $archivedStudent = Students::onlyTrashed()->get();
+        
+        return view("app.archieve.student", compact('archivedStudent'));
+    }
+
+
+
 }
