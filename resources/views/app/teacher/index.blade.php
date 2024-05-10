@@ -27,9 +27,15 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="instructor_id">Instructor ID:</label>
-                            <input id="instructor_id" class="form-control" type="text" name="instructor_id" value="{{ old('instructor_id') }}" required autofocus autocomplete="off" />
+                            <input id="instructor_id" class="form-control" type="number" name="instructor_id" value="{{ old('instructor_id') }}" required autofocus autocomplete="off" />
                             <x-input-error :messages="$errors->get('instructor_id')" class="mt-2" />
                         </div>
+
+                        <div class="form-group col-md-">
+                      <label for="logo">Upload Logo:</label>
+                      <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus />
+                      <x-input-error :messages="$errors->get('logo')" class="mt-2" />
+                      </div>
 
                         <div class="form-group col-md-4">
                             <label for="first_name">First Name:</label>
@@ -49,6 +55,18 @@
                             <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
                         </div>
 
+                        <div class="form-group col-md-4">
+                            <label for="gender">Gender:</label>
+                            <input id="gender" class="form-control" type="text" name="gender" value="{{ old('gender') }}" required autofocus autocomplete="lastname" />
+                            <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="age">Age:</label>
+                            <input id="age" class="form-control" type="text" name="age" value="{{ old('age') }}" required autofocus autocomplete="lastname" />
+                            <x-input-error :messages="$errors->get('age')" class="mt-2" />
+                        </div>
+
                         <div class="form-group col-md-8">
                             <label for="email">Email:</label>
                             <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email" />
@@ -58,8 +76,8 @@
                         <div class="form-group col-md-6">
                             <label for="status">Status:</label>
                             <select id="status" class="form-control" name="status" required>
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
+                                <option value="Regular">Regular</option>
+                                <option value="Part Time">Part Time</option>
                             </select>
                             <x-input-error :messages="$errors->get('status')" class="mt-2" />
                         </div>
@@ -70,11 +88,16 @@
                             <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2" />
                         </div>
 
+                      
+
                         <div class="form-group col-md-6">
-                            <label for="contact_number">Contact Number:</label>
-                            <input id="contact_number" class="form-control" type="text" name="contact_number" value="{{ old('contact_number') }}" required autofocus autocomplete="tel" />
-                            <x-input-error :messages="$errors->get('contact_number')" class="mt-2" />
-                        </div>
+                                <label for="contact_number">Contact Number:</label>
+                                <input id="contact_number" class="form-control" type="number" name="contact_number" value="{{ old('contact_number') }}" required autofocus oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" />
+                                <x-input-error :messages="$errors->get('contact_number')" class="mt-2" />
+                            </div>
+
+
+
                         <div class="form-group col-md-6">
                             <label for="department">Department:</label>
                             <input id="department" class="form-control" type="text" name="department" value="{{ auth()->user()->name }}" readonly required />
@@ -156,7 +179,7 @@
         <td>{{ $teacher->department }}</td>
         <td>{{ $teacher->date_of_birth }}</td>
         <td>
-        <img src="{{ asset('http://localhost:8000/' . $teacher->logo) }}" alt="Img" style="width: 70px; height: 70px;">
+        <img src="{{ url($teacher->logo) }}" alt="Img" style="width: 70px; height: 70px;">
 
 
           <!-- <img src="http://oi.localhost:8000/upload/logos/1714831219.png" alt="Img"> -->
@@ -195,33 +218,28 @@
 <table  id="yourDataTableID" class="table table-striped" style="width:100%" >
   <thead  class="table-header">
     <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Age</th>
-      <th>Email</th>
-      <th>Department</th>
-      <th>Date of Birth</th>
-      <th>logo</th>
-      <th>Address</th>
-      <th>Actions</th>
+    <th>Instructor Id:</th>
+    <th><center>logo:</center></th>
+      <th>First Name:</th>
+      <th>Last Name:</th>
+      <th>Email:</th>
+      <th><center>Actions:</center></th>
     </tr>
   </thead>
   <tbody>
     @forelse ($teachers as $teacher)
     @if($teacher->department === auth()->user()->name)
       <tr>
+      <td><center><h6>{{ $teacher->instructor_id }}</h6></center></td>
+      <td>
+       <center> <img src="{{ url($teacher->logo) }}" alt="Img" style="border-radius: 50%; width: 70px; height: 70px;"></center>
+        </td>
         <td>{{ $teacher->first_name }}</td>
         <td>{{ $teacher->last_name }}</td>
-        <td>{{ $teacher->age }}</td>
         <td>{{ $teacher->email }}</td>
-        <td>{{ $teacher->department }}</td>
-        <td>{{ $teacher->date_of_birth }}</td>
         <td>
-          <img src="{{asset($teacher->logo) }}" alt="" style = "width: 70px; height:70px;">
-        </td>
-        <td>{{ $teacher->address }}</td>
-        <td>
-        <a href="{{ route('teacher.view', ['id' => $teacher->id]) }}">
+     <center>
+     <a href="{{ route('teacher.view', ['id' => $teacher->id]) }}">
                                 <button type="submit" class="btn btn-secondary actions-buttons" style="width: auto;">View</button>
           </a>
         
@@ -232,6 +250,7 @@
           </form>
 
           <a class="ahhh"  href="{{ route('teacher.edit', ['id' => $teacher->id]) }}"><button type="submit" style="width: auto;" class="btn btn-warning actions-buttons">Edit</button></a>
+     </center>
         </td>
       </tr>
       @endif

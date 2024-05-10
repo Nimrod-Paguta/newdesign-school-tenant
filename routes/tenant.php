@@ -66,9 +66,9 @@ Route::middleware([
   
     
 
-    Route::get('/teacher', function () {
-        return view('app.teacher');
-    }); 
+    // Route::get('/teacher', function () {
+    //     return view('app.teacher');
+    // }); 
     // Route::resource('teacher', TeacherController::class)->only('index');
     // Route::resource('teacher', TeacherController::class)->only('store');
     
@@ -78,6 +78,7 @@ Route::middleware([
 
 
 
+    Route::put('/teacher/update/{id}', [TeacherController::class, 'update'])->name('teacher.update');
     Route::delete('/teacher/delete/{id}', [TeacherController::class, 'delete'])->name('teacher.delete');
     Route::get('add', 'TeacherController@add'); 
     Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.index');
@@ -86,7 +87,6 @@ Route::middleware([
     Route::get('/teacher/{id}/restore', [TeacherController::class, 'restore'])->name('teacher.restore');
     Route::get('/teacherview{id}', [TeacherController::class, 'show'])->name('teacher.view');
     Route::get('/teacher-edit{id}', [TeacherController::class, 'edit'])->name('teacher.edit');
-
 
     Route::get('/students', [StudentController::class, 'index'])->name('students.index');
     Route::post('/studentstore', [StudentController::class, 'store'])->name('students.store');

@@ -16,16 +16,18 @@ return new class extends Migration
             $table->string('instructor_id');
             $table->string('first_name');
             $table->string('middle_name');
-            $table->string('last_name')->unique();
+            $table->string('last_name'); 
             $table->string('email');
             $table->string('status')->nullable();
             $table->string('date_of_birth');
-            $table->string('contact_number')->nullable();
+            $table->string('contact_number'); 
             $table->string('street');
             $table->string('barangay');
             $table->string('municipality');
             $table->string('province');
             $table->string('department');
+            $table->string('gender');
+            $table->string('age');
 
             $table->string('logo')->nullable();
             $table->timestamps();

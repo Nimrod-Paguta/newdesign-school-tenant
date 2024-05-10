@@ -20,16 +20,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('students.store') }}" method="POST">
+                <form action="{{ route('students.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="Student_no">Student Number:</label>
-                                <input id="Student_no" class="form-control" type="text" name="Student_no" value="{{ old('Student_no') }}" required autofocus autocomplete="off" />
+                                <input id="Student_no" class="form-control" type="number" name="Student_no" value="{{ old('Student_no') }}" required autofocus autocomplete="off" />
                                 <x-input-error :messages="$errors->get('Student_no')" class="mt-2" />
                             </div>
+
 
                             <div class="form-group">
                                 <label for="first_name">First Name:</label>
@@ -47,6 +48,12 @@
                                 <label for="last_name">Last Name:</label>
                                 <input id="last_name" class="form-control" type="text" name="last_name" value="{{ old('last_name') }}" required autofocus autocomplete="lastname" />
                                 <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender">Gender:</label>
+                                <input id="gender" class="form-control" type="text" name="gender" value="{{ old('gender') }}" required autofocus autocomplete="lastname" />
+                                <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                             </div>
                         </div>
 
@@ -79,21 +86,36 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="mobile_no">Mobile No:</label>
-                                <input id="mobile_no" class="form-control" type="tel" name="mobile_no" value="{{ old('mobile_no') }}" required autofocus autocomplete="tel" />
+                                <input id="mobile_no" class="form-control" type="number" name="mobile_no" value="{{ old('mobile_no') }}" required autofocus oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" />
                                 <x-input-error :messages="$errors->get('mobile_no')" class="mt-2" />
                             </div>
 
-                            <div class="form-group">
+      <div class="form-group">
                                 <label for="year">Year:</label>
-                                <input id="year" class="form-control" type="text" name="year" value="{{ old('year') }}" required autofocus />
+                                <select id="year" class="form-control" name="year" required autofocus>
+                                    <option value="1st Year" >1st Year</option>
+                                    <option value="2nd Year" >2nd Year</option>
+                                    <option value="3rd Year" >3rd Year</option>
+                                    <option value="4th Year" >4th Year</option>
+                                </select>
                                 <x-input-error :messages="$errors->get('year')" class="mt-2" />
                             </div>
 
                             <div class="form-group">
-                                <label for="status">Status:</label>
-                                <input id="status" class="form-control" type="text" name="status" value="{{ old('status') }}" required autofocus />
-                                <x-input-error :messages="$errors->get('status')" class="mt-2" />
-                            </div>
+                                    <label for="status">Status:</label>
+                                    <select id="status" class="form-control" name="status" required autofocus>
+                                        <option value="regular" >Regular</option>
+                                        <option value="irregular" >Irregular</option>
+                                    </select>
+                                    <x-input-error :messages="$errors->get('status')" class="mt-2" />
+                                </div>
+
+                            <div class="form-group">
+                                        <label for="logo">Upload Logo:</label>
+                                        <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus />
+                                        <x-input-error :messages="$errors->get('logo')" class="mt-2" />
+                         </div>
+
                         </div>
 
                         <div class="col-md-12">
@@ -195,12 +217,10 @@
         <table  id="yourDataTableID" class="table table-striped" style="width:100%">
             <thead class="table-header">
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Age</th>
+                    <th>Student Number: </th>
+                    <th>Student Profile: </th>
+                    <th>Full Name:</th>
                     <th>Email</th>
-                    <th>Date of Birth</th>
-                    <th>Address</th>
                     <th>Department</th>
                     <th>Actions</th>
                 </tr>
@@ -209,12 +229,10 @@
                 @forelse ($students as $student)
                     @if($student->department === auth()->user()->name)
                         <tr>
-                            <td>{{ $student->first_name }}</td>
-                            <td>{{ $student->last_name }}</td>
-                            <td>{{ $student->age }}</td>
+                            <td>{{ $student->Student_no }}</td>
+                            <td> <center> <img src="{{ url($student->logo) }}" alt="Img" style="border-radius: 50%; width: 70px; height: 70px;"></center></td>
+                            <td>{{ $student->first_name }} {{ $student->middle_name }} {{ $student->last_name }}</td>
                             <td>{{ $student->email }}</td>
-                            <td>{{ $student->date_of_birth }}</td>
-                            <td>{{ $student->address }}</td>
                             <td>{{ $student->department }}</td>
                             <td>
                             <a href="{{ route('students.view', ['id' => $student->id]) }}">

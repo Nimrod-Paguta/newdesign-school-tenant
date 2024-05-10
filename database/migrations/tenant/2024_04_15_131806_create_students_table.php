@@ -28,6 +28,8 @@ return new class extends Migration
             $table->string('barangay')->nullable();
             $table->string('municipality');
             $table->string('province');
+            $table->string('gender');
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

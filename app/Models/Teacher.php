@@ -28,6 +28,8 @@ class Teacher extends Model
             'municipality', 
             'province', 
             'logo', 
+            'gender', 
+            'age', 
          
         ];   
 }
