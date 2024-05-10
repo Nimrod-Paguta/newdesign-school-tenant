@@ -14,6 +14,13 @@
                                         <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}" required autofocus />
                                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                     </div>
+
+                                    <div class="form-group">
+                                    <label for="department_id">Department ID:</label>
+                                    <input id="department_id" class="form-control" type="text" name="department_id" value="{{ old('department_id') }}" required autofocus />
+                                    <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
+                                    </div>
+
                                     
 
                                     </div>

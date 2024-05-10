@@ -52,15 +52,19 @@
 
                             <div class="form-group">
                                 <label for="gender">Gender:</label>
-                                <input id="gender" class="form-control" type="text" name="gender" value="{{ old('gender') }}" required autofocus autocomplete="lastname" />
+                                <select id="gender" class="form-control" name="gender" required autofocus>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
                                 <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                             </div>
+
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="department">Department:</label>
-                                <input id="department" class="form-control" type="text" name="department" value="{{ auth()->user()->name }}" readonly required />
+                                <input id="department" class="form-control" type="text" name="department" value="{{ auth()->user()->department_id }}" readonly required />
                                 <x-input-error :messages="$errors->get('department')" class="mt-2" />
                             </div>
 
@@ -90,7 +94,7 @@
                                 <x-input-error :messages="$errors->get('mobile_no')" class="mt-2" />
                             </div>
 
-      <div class="form-group">
+                           <div class="form-group">
                                 <label for="year">Year:</label>
                                 <select id="year" class="form-control" name="year" required autofocus>
                                     <option value="1st Year" >1st Year</option>
@@ -168,48 +172,49 @@
 
 
 @role('admin')
-
-<table  id="yourDataTableID" class="table table-striped" style="width:100%" >
-  <thead  class="table-header">
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Age</th>
-      <th>Email</th>
-      <th>Department</th>
-      <th>Date of Birth</th>
-    
-      <th>Address</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    @forelse ($students as $student)
-      <tr>
-        <td>{{ $student->first_name }}</td>
-        <td>{{ $student->last_name }}</td>
-        <td>{{ $student->age }}</td>
-        <td>{{ $student->email }}</td>
-        <td>{{ $student->department }}</td>
-        <td>{{ $student->date_of_birth }}</td>
-        <td>{{ $student->address }}</td>
-       
-        <td>
-          <a href="{{ route('students.edit', $student->id) }}"><button type="button" class="btn btn-primary">Edit</button></a>
-    
-        </td>
-      </tr>
-    @empty
-    
-    @endforelse
-  </tbody>
-</table>
-
-<!-- <tr>
-        <td colspan="7">No students found</td>
-      </tr> -->
-
+<table  id="yourDataTableID" class="table table-striped" style="width:100%">
+            <thead class="table-header">
+                <tr>
+                    <th>Student Number: </th>
+                    <th>Student Profile: </th>
+                    <th>Full Name:</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($students as $student)
+                   
+                        <tr>
+                            <td>{{ $student->Student_no }}</td>
+                            <td> <center> <img src="{{ url($student->logo) }}" alt="Img" style="border-radius: 50%; width: 70px; height: 70px;"></center></td>
+                            <td>{{ $student->first_name }} {{ $student->middle_name }} {{ $student->last_name }}</td>
+                            <td>{{ $student->email }}</td>
+                            <td>{{ $student->department }}</td>
+                            <td>
+                            <a href="{{ route('students.view', ['id' => $student->id]) }}">
+                                <button type="submit" class="btn btn-secondary actions-buttons">View</button>
+                               </a>
+        
+                                <a href="{{ route('students.edit', $student->id) }}"><button type="button" class="btn btn-primary">Edit</button></a>
+                                <form action="{{ route('students.delete', $student->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">archive</button>
+                                </form>
+                            </td>
+                        </tr>
+                   
+                @empty
+                    <!-- <tr>
+                        <td colspan="7">No students found</td>
+                    </tr> -->
+                @endforelse
+            </tbody>
+        </table>
 @endrole
+
 
 
 @role('department')
@@ -227,7 +232,7 @@
             </thead>
             <tbody>
                 @forelse ($students as $student)
-                    @if($student->department === auth()->user()->name)
+                    @if($student->department === auth()->user()->department_id)
                         <tr>
                             <td>{{ $student->Student_no }}</td>
                             <td> <center> <img src="{{ url($student->logo) }}" alt="Img" style="border-radius: 50%; width: 70px; height: 70px;"></center></td>

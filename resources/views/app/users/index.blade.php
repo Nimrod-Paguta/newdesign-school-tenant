@@ -35,8 +35,11 @@
                     </td> -->
                     <td>
                     <center>
-                    <x-btn-link href="{{ route('users.edit',$user->id)}}">Edit</x-btn-link>
-                        <x-btn-link href="{{ route('users.view',$user->id)}}">View</x-btn-link>
+                    <!-- <x-btn-link href="{{ route('users.edit',$user->id)}}">Edit</x-btn-link>
+                        <x-btn-link href="{{ route('users.view',$user->id)}}">View</x-btn-link> -->
+                        <button onclick="window.location='{{ route('users.edit',$user->id)}}'" class="btn btn-primary">Edit</button>
+                        <button onclick="window.location='{{ route('users.view',$user->id)}}'" class="btn btn-secondary">View</button>
+
                         <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')

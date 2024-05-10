@@ -101,7 +101,11 @@
     
 
 </head>
-
+                @php
+                $userId = auth()->id(); // Get the authenticated user's ID
+                $user = App\Models\User::find($userId); // Find the user by ID
+                $custom = App\Models\Custom::first();
+                @endphp
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -109,17 +113,14 @@
 
  <!-- Sidebar -->
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: {{ $custom->color }};">
 
 @role('department')
         <!-- Sidebar - Brand -->
         <label data-toggle="modal" data-target="#exampleModal" for="logo-upload" class="sidebar-brand d-flex align-items-center justify-content-center" style="padding-top: 110px; padding-bottom: 110px; display: flex; cursor: pointer;">
         <div class="sidebar-brand-icon" style="border-radius: 50%; overflow: hidden;">
                 <!-- Use PHP to dynamically change the logo based on the authenticated user's ID -->
-                @php
-                $userId = auth()->id(); // Get the authenticated user's ID
-                $user = App\Models\User::find($userId); // Find the user by ID
-                @endphp
+               
                 @if($user->logo)
                 <img id="sidebar-logo" style="width: 250px; height: 185px;" src="{{ url($user->logo) }}" alt="User Logo">
             @else
@@ -178,6 +179,50 @@
         </div>
     </div>
 </div>
+
+
+
+<div class="modal fade" id="colorsidebar" tabindex="-1" role="dialog" aria-labelledby="colorsidebarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="colorsidebarLabel">Add Instructors</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+          
+            <form method="POST" action="{{ route('custom.update', ['custom' => $custom->id]) }}" class="sidebar-color-form">
+                @csrf
+                @method('PUT')
+
+                <label for="color">Select Sidebar Color:</label>
+                <select id="color" name="color" class="form-control">
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="black">Black</option>
+                </select>
+                <button type="submit" class="btn btn-primary mt-3">Save</button>
+            </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  
@@ -239,6 +284,9 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+
+
+    <button data-toggle="modal" data-target="#colorsidebar">click here </button>
 </ul>
 
 
@@ -310,10 +358,6 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-
-                
-
                  {{ $slot }}
             </div>
                 </div>

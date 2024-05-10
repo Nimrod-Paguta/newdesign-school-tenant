@@ -62,6 +62,7 @@ class TenantController extends Controller
              'municipality' => 'required|string|max:255',
              'city' => 'required|string|max:255',
              'gender' => 'required|string|max:255',
+             'department_id' => 'required|string|max:255',
              'phonenumber' => 'required|string|max:255',
              'logo' => 'nullable|mimes:png,jpg,jpeg,webp',
              'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -96,6 +97,7 @@ class TenantController extends Controller
                  'logo' => $path.$filename ,
                  'gender' => $request->gender,
                  'phonenumber' => $request->phonenumber,
+                 'department_id' => $request->department_id,
 
 
              ]);

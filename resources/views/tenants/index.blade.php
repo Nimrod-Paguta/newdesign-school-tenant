@@ -108,6 +108,16 @@
         <x-input-error :messages="$errors->get('name')" class="mt-2" />
     </div>
 
+       <!-- Name -->
+       <div class="col-md-6">
+        <label for="department_id" class="form-label">Department ID:</label>
+        <input id="department_id" class="form-control" type="text" name="department_id" value="{{ old('department_id') }}" required autofocus autocomplete="department_id" />
+        <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
+    </div>
+
+
+    
+
     <!-- Domain Name -->
     <div class="col-md-6">
         <label for="domain_name" class="form-label">Department Domain:</label>

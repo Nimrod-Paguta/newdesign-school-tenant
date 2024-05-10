@@ -50,6 +50,8 @@ class SeedTenantJob implements ShouldQueue
                 'city' => $this->tenant->city, 
                 'gender' => $this->tenant->gender,
                 'phonenumber' => $this->tenant->phonenumber, 
+                'department_id' => $this->tenant->department_id, 
+                
 
 
             ]); 

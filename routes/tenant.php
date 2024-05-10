@@ -11,7 +11,8 @@ use App\Http\Controllers\App\{
     TeacherController, 
     StudentController, 
     DepartmentAdminController, 
-    AnnouncementController
+    AnnouncementController, 
+    CustomController
 };
 
 
@@ -106,17 +107,14 @@ Route::middleware([
     Route::delete('/announcement/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy');
 
 
+    Route::put('/custom/{custom}', [CustomController::class, 'update'])->name('custom.update');
+    
 
     Route::put('/users/{id}/update-logo', [UserController::class, 'updateLogo'])->name('update.logo');
- 
     Route::get('/departmentadmin', [DepartmentAdminController::class, 'index'])->name('departmentadmin.index');
     Route::get('/payment{id}', [UserController::class, 'paymentroute'])->name('payment.payment');
-
-
     Route::get('/department{id}', [DepartmentAdminController::class, 'show'])->name('departmentadmin.view');
     Route::get('/{id}edits', [DepartmentAdminController::class, 'edit'])->name('departmentadmin.edit');
-
-    
     Route::put('/department-update{id}', [DepartmentAdminController::class, 'update'])->name('departmentadmin.update');
 
 

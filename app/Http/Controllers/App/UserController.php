@@ -102,6 +102,7 @@ class UserController extends Controller
             'city' => 'required|string|max:255',
             'logo' => 'nullable|mimes:png,jpg,jpeg,webp',
             'gender' => 'required|string|max:255',
+            'department_id' => 'required|string|max:255',
             'phonenumber' => 'required|string|max:255',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
            
@@ -142,8 +143,8 @@ class UserController extends Controller
             'city' => $request->city,
             'gender' => $request->gender,
             'phonenumber' => $request->phonenumber,
+            'department_id' => $request->department_id,
 
-          
         ]);
 
         $mailData = [
@@ -189,13 +190,13 @@ class UserController extends Controller
     
         // Check if the user is a teacher
         if ($user->id != 1) {
-            $students = Students::where('department', $user->name)->get();
+            $students = Students::where('department', $user->department_id)->get();
             $studentCount = $students->count();
         }
 
                 // Check if the user is a teacher
         if ($user->id != 1) {
-            $teacher = Teacher::where('department', $user->name)->get();
+            $teacher = Teacher::where('department', $user->department_id)->get();
             $teacherCount = $teacher->count();
         }
     

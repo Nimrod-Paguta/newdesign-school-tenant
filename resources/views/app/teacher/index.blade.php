@@ -56,16 +56,21 @@
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="gender">Gender:</label>
-                            <input id="gender" class="form-control" type="text" name="gender" value="{{ old('gender') }}" required autofocus autocomplete="lastname" />
-                            <x-input-error :messages="$errors->get('gender')" class="mt-2" />
-                        </div>
+                          <label for="gender">Gender:</label>
+                          <select id="gender" class="form-control" name="gender" required autofocus autocomplete="lastname">
+                              <option value="female" >Female</option>
+                              <option value="male" >Male</option>
+                          </select>
+                          <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+                      </div>
+
 
                         <div class="form-group col-md-4">
                             <label for="age">Age:</label>
-                            <input id="age" class="form-control" type="text" name="age" value="{{ old('age') }}" required autofocus autocomplete="lastname" />
+                            <input id="age" class="form-control" type="number" name="age" value="{{ old('age') }}" required autofocus autocomplete="lastname" />
                             <x-input-error :messages="$errors->get('age')" class="mt-2" />
                         </div>
+                        
 
                         <div class="form-group col-md-8">
                             <label for="email">Email:</label>
@@ -100,7 +105,7 @@
 
                         <div class="form-group col-md-6">
                             <label for="department">Department:</label>
-                            <input id="department" class="form-control" type="text" name="department" value="{{ auth()->user()->name }}" readonly required />
+                            <input id="department" class="form-control" type="text" name="department" value="{{ auth()->user()->department_id }}" readonly required />
                             <x-input-error :messages="$errors->get('department')" class="mt-2" />
                         </div>
 
@@ -152,63 +157,54 @@
 </div>
 
 
-
 @role('admin')
-<table  id="yourDataTableID" class="table table-striped" style="width:100%" >
-  <thead  class="table-header">
+
+<table id="yourDataTableID" class="table table-striped" style="width:100%">
+  <thead class="table-header">
     <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Age</th>
-      <th>Email</th>
-      <th>Department</th>
-      <th>Date of Birth</th>
-      <th>logo</th>
-    
-      <th>Address</th>
-      <th>Actions</th>
+      <th>Instructor Id:</th>
+      <th><center>Logo:</center></th>
+      <th>First Name:</th>
+      <th>Last Name:</th>
+      <th>Email:</th>
+      <th><center>Actions:</center></th>
     </tr>
   </thead>
   <tbody>
     @forelse ($teachers as $teacher)
-      <tr>
-        <td>{{ $teacher->first_name }}</td>
-        <td>{{ $teacher->last_name }}</td>
-        <td>{{ $teacher->age }}</td>
-        <td>{{ $teacher->email }}</td>
-        <td>{{ $teacher->department }}</td>
-        <td>{{ $teacher->date_of_birth }}</td>
-        <td>
-        <img src="{{ url($teacher->logo) }}" alt="Img" style="width: 70px; height: 70px;">
-
-
-          <!-- <img src="http://oi.localhost:8000/upload/logos/1714831219.png" alt="Img"> -->
-
-        </td>
-
-        <td>{{ $teacher->address }}</td>
-        <td>
-        <a href="{{ route('teacher.view', ['id' => $teacher->id]) }}">
-                                <button type="submit" class="btn btn-success " style="width: 100%;">View</button>
+    <tr>
+      <td><center><h6>{{ $teacher->instructor_id }}</h6></center></td>
+      <td>
+        <center><img src="{{ url($teacher->logo) }}" alt="Img" style="border-radius: 50%; width: 70px; height: 70px;"></center>
+      </td>
+      <td>{{ $teacher->first_name }}</td>
+      <td>{{ $teacher->last_name }}</td>
+      <td>{{ $teacher->email }}</td>
+      <td>
+        <center>
+          <a href="{{ route('teacher.view', ['id' => $teacher->id]) }}">
+            <button type="button" class="btn btn-secondary actions-buttons">View</button>
           </a>
-        
           <!-- <form action="{{ route('teacher.delete', $teacher->id) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger">archive</button>
-          </form> -->
-
-          <!-- <a class="ahhh"  href="{{ route('teacher.edit', ['id' => $teacher->id]) }}"><button type="submit" class="btn btn-warning actions-buttons">Edit</button></a> -->
-        </td>
-      </tr>
+            <button type="submit" class="btn btn-danger">Archive</button>
+          </form>
+          <a class="ahhh" href="{{ route('teacher.edit', ['id' => $teacher->id]) }}">
+            <button type="button" class="btn btn-warning actions-buttons">Edit</button>
+          </a> -->
+        </center>
+      </td>
+    </tr>
     @empty
-      <!-- <tr>
-        <td colspan="7">No teacher found</td>
-      </tr> -->
+    <tr>
+      <td colspan="6" style="text-align: center;">No data available</td>
+    </tr>
     @endforelse
   </tbody>
 </table>
 @endrole
+
 
 
 
@@ -228,7 +224,7 @@
   </thead>
   <tbody>
     @forelse ($teachers as $teacher)
-    @if($teacher->department === auth()->user()->name)
+    @if($teacher->department === auth()->user()->department_id)
       <tr>
       <td><center><h6>{{ $teacher->instructor_id }}</h6></center></td>
       <td>

@@ -32,7 +32,8 @@ class User extends Authenticatable
         'municipality', 
         'city', 
         'gender', 
-        'phonenumber'
+        'phonenumber', 
+        'department_id'
     ];
 
     /**
