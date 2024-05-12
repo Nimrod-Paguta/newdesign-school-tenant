@@ -6,7 +6,7 @@
 
 </style>
 
-
+<center><h3>Instructor's Profile</h3> </center>
 <a href="/teacher" class="btn btn-secondary">Back</a>
 <div class="row" style="margin-top: 15px;">
  <div class="col-lg-4">
@@ -24,7 +24,6 @@
  
  
  <div class="col-lg-8">
- <h3>Instructor's Profile:</h3>
    <div class="card mb-4">
      <div class="card-body">
        <div class="row">

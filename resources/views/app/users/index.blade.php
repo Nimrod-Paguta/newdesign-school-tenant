@@ -1,21 +1,21 @@
 <x-user-layout>
    
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h3 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Department') }}
             <x-btn-link class="ml-4 float-right" href="{{ route('users.create')}}">
-                        Add Departments</x-btn-link>  
+                        Add Department</x-btn-link>  
         </h2>
    
 
     <table  id="yourDataTableID" class="table table-striped" style="width:100%">
         <thead  class="table-header">
             <tr>
-                <th>Id:</th>
-                <th><center>Logo:</center></th>
-                <th><center>Department Name:</center></th>
-                <th><center>Department Admin:</center></th>
+                <th>ID</th>
+                <th><center>Logo</center></th>
+                <th><center>Department Name</center></th>
+                <th><center>Department Admin</center></th>
                 <!-- <th > Role</th> -->
-                <th><center>Action:</center></th>
+                <th><center>Action</center></th>
             </tr>
         </thead>
         <tbody>
@@ -66,7 +66,30 @@
     
  <!-- Modal -->
  @if($user->id == 1)
-    <div class="modal fade" id="paymentmodal" tabindex="-1" role="dialog" aria-labelledby="paymentmodalLabel" aria-hidden="true">
+ <div class="modal fade" id="paymentmodal" tabindex="-1" role="dialog" aria-labelledby="paymentmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentmodalLabel">Welcome</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center;">
+                    <img src="img/subscribe.png" alt="Image" style="max-width: 200px; height: auto; display: block; margin: 0 auto;">
+                </div>
+                <div style="text-align: center;">
+                    <p>Discover exclusive perks with our subscription plan: premium content, priority support, and regular updates. Elevate your experience hassle-free with flexible pricing. Join now for endless benefits!</p>
+                    <button onclick="window.location.href='{{ route('payment.payment', ['id' => $user->id]) }}'" class="btn btn-primary" style="margin-top: 10px;">Proceed to Subscription Plan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- <div class="modal fade" id="paymentmodal" tabindex="-1" role="dialog" aria-labelledby="paymentmodalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -76,26 +99,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- <form action="{{ route('users.payment', $user->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <label for="payment">Payment:</label>
-                        <input type="text" name="payment" value="{{ $user->payment }}" required>
-                        <a href="/create"> <button type="submit">Submit</button></a>
-                    </form> -->
-
-
-                                
-
-                <a href="{{ route('payment.payment', ['id' => $user->id]) }}">Please Pay to add more User</a>
-
-
-
-                            
+                <a href="{{ route('payment.payment', ['id' => $user->id]) }}">Proceed to Subscription Plan</a>        
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     @endif
 
 

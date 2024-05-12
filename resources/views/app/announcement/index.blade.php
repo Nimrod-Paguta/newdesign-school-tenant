@@ -15,8 +15,17 @@
 }
 .my-custom-height {
     height: 300px; /* Adjust the value as needed */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
+.actions-buttons
+{
+    margin-top: 20px;
+}
+
+.value {
+    font-weight: normal; 
+}
 
 </style>
 
@@ -129,12 +138,13 @@
     <div class="row-sm-4 my-custom-padding-top my-custom-padding-left">
         <div class="card my-custom-height">
             <div class="card-body my-custom-height">
-                <h5 class="card-title">What: {{ $announcement->what }}</h5>
-                <h5 class="card-title">Why: {{ $announcement->why }}</h5>
-                <h5 class="card-title">Who: {{ $announcement->who }}</h5>
-                <h5 class="card-title">When: {{ $announcement->when }}</h5>
-                <h5 class="card-title">Where: {{ $announcement->where }}</h5>
-                <h5 class="card-title">Date: {{ $announcement->date }}</h5>
+            <h5 class="card-title"><strong>What:</strong> <span class="value">{{ $announcement->what }}</span></h5>
+            <h5 class="card-title"><strong>Why:</strong> <span class="value">{{ $announcement->why }}</span></h5>
+            <h5 class="card-title"><strong>Who:</strong> <span class="value">{{ $announcement->who }}</span></h5>
+            <h5 class="card-title"><strong>When:</strong> <span class="value">{{ $announcement->when }}</span></h5>
+            <h5 class="card-title"><strong>Where:</strong> <span class="value">{{ $announcement->where }}</span></h5>
+            <h5 class="card-title"><strong>Date:</strong> <span class="value">{{ $announcement->date }}</h5>
+
                 @role('admin')
                 <a class="ahhh" href="{{ route('announcement.edit', ['id' => $announcement->id]) }}"><button type="submit" class="btn btn-warning actions-buttons">Edit</button></a>
                 

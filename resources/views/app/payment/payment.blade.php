@@ -77,7 +77,7 @@
                 <h2>Basic</h2>
                 <p><span style="font-size: 28px; font-weight: bold;">Free</span> basic features</p>
                 <ul>
-                    <li><span style="color: #4CAF50;">&#10003;</span> 1 department</li>
+                    <li><span style="color: #4CAF50;">&#10003;</span> 3 department</li>
                     <li><span style="color: #4CAF50;">&#10003;</span> Default logo</li>
                     <li><span style="color: #4CAF50;">&#10003;</span> Default theme</li>
                 </ul>
@@ -115,10 +115,9 @@
                 <h2>Premium</h2>
                 <p><span style="font-size: 28px; font-weight: bold;">₱300</span> per month</p>
                 <ul>
-                    <li><span style="color: #4CAF50;">&#10003;</span> 10 departments</li>
+                    <li><span style="color: #4CAF50;">&#10003;</span> Unlimited Departments</li>
                     <li><span style="color: #4CAF50;">&#10003;</span> Customizable logo</li>
                     <li><span style="color: #4CAF50;">&#10003;</span> Change theme color</li>
-                    <li><span style="color: #4CAF50;">&#10003;</span> Dark mode</li>
                 </ul>
                 <form action="{{ route('users.payment', $user->id) }}" method="POST">
                     @csrf

@@ -103,14 +103,14 @@
     @csrf
     <!-- Name -->
     <div class="col-md-6">
-        <label for="name" class="form-label">Department Name:</label>
+        <label for="name" class="form-label">Department Name</label>
         <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" />
         <x-input-error :messages="$errors->get('name')" class="mt-2" />
     </div>
 
        <!-- Name -->
        <div class="col-md-6">
-        <label for="department_id" class="form-label">Department ID:</label>
+        <label for="department_id" class="form-label">Department ID</label>
         <input id="department_id" class="form-control" type="text" name="department_id" value="{{ old('department_id') }}" required autofocus autocomplete="department_id" />
         <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
     </div>
@@ -120,14 +120,14 @@
 
     <!-- Domain Name -->
     <div class="col-md-6">
-        <label for="domain_name" class="form-label">Department Domain:</label>
+        <label for="domain_name" class="form-label">Department Domain</label>
         <input id="domain_name" class="form-control" type="text" name="domain_name" value="{{ old('domain_name') }}" required autofocus autocomplete="domain_name" />
         <x-input-error :messages="$errors->get('domain_name')" class="mt-2" />
     </div>
 
 
     <div class="form-group col-md-4">
-                            <label for="logo">Logo:</label>
+                            <label for="logo">Logo</label>
                             <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus autocomplete="address-level1" />
                             <x-input-error :messages="$errors->get('logo')" class="mt-2" />
                         </div>
@@ -137,7 +137,7 @@
 
         <!-- Domain Name -->
         <div class="col-md-10">
-        <label for="domain_name" class="form-label"><p><center>Admin for Department:</center></p></label>
+        <label for="domain_name" class="form-label"><p><center>Admin for Department</center></p></label>
         </div>
 
 

@@ -1,9 +1,9 @@
 <x-user-layout>
-<center><h3>Instructors:</h3></center>
+<h3>Instructors</h3>
 
 @role('department')
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#teachermodal">
-    Add Instructors
+    Add Instructor
 </button>
 @endrole
 <button type="button" class="btn btn-primary" onclick="window.location.href='/archived'">

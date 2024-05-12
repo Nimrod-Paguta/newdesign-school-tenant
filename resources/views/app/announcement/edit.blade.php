@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="what">What:</label>
+                    <label for="what">What</label>
                     <input id="what" class="form-control" type="text" name="what" value="{{ $announcement->what }}" required autofocus autocomplete="off" style="height: 60px;"/>
                     <x-input-error :messages="$errors->get('what')" class="mt-2" />
                 </div>
@@ -14,7 +14,7 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="why">Why:</label>
+                    <label for="why">Why</label>
                     <input id="why" class="form-control" type="text" name="why" value="{{ $announcement->why }}" required autofocus autocomplete="off" style="height: 60px;"/>
                     <x-input-error :messages="$errors->get('why')" class="mt-2" />
                 </div>
@@ -22,7 +22,7 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="where">Where:</label>
+                    <label for="where">Where</label>
                     <input id="where" class="form-control" type="text" name="where" value="{{ $announcement->where }}" required autofocus autocomplete="off" style="height: 60px;"/>
                     <x-input-error :messages="$errors->get('where')" class="mt-2" />
                 </div>
@@ -30,7 +30,7 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="when">When:</label>
+                    <label for="when">When</label>
                     <input id="when" class="form-control" type="text" name="when" value="{{ $announcement->when }}" required autofocus autocomplete="off" style="height: 60px;"/>
                     <x-input-error :messages="$errors->get('when')" class="mt-2" />
                 </div>
@@ -38,7 +38,7 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="who">Who:</label>
+                    <label for="who">Who</label>
                     <input id="who" class="form-control" type="text" name="who" value="{{ $announcement->who }}" required autofocus autocomplete="off" style="height: 60px;"/>
                     <x-input-error :messages="$errors->get('who')" class="mt-2" />
                 </div>

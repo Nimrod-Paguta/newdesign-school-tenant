@@ -9,13 +9,13 @@
                     <div class="row">
 
                     
-                                <h5><center>Department info:</center></h5>
+                                <h5 style="margin-bottom: 20px;"><center>Department Information</center></h5>
 
                                                         
                                 <div class="col-md-4">                    
                                     <div class="form-group">
 
-                                        <label for="name">Department Name:</label>
+                                        <label for="name">Department Name</label>
                                         <input id="name" class="form-control" type="text" name="name" value="{{ $user->name }}" required autofocus />
                                         <x-input-error :messages="$errors->get('name')" class="mt-2" /> 
                                     </div>
@@ -25,7 +25,7 @@
                                     <div class="col-md-4">                    
                                     <div class="form-group">
 
-                                        <label for="logo">Upload Logo:</label>
+                                        <label for="logo">Upload Logo</label>
                                         <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus />
                                         <x-input-error :messages="$errors->get('logo')" class="mt-2" />
                                     </div>
@@ -33,29 +33,29 @@
 
 
                             
-                                     <h5><center>Admin info:</center></h5>
+                                     <h5 style="margin-top: 10px; margin-bottom: 20px;"><center>Admin Information</center></h5>
                                  <div class="col-md-4">
                             <div class="form-group">
-                                <label for="adminfirstname">Fistname: </label>
+                                <label for="adminfirstname">Fistname</label>
                                 <input id="adminfirstname" class="form-control" type="text" name="adminfirstname" value="{{ $user->adminfirstname }}"  required autofocus autocomplete="off" />
                                 <x-input-error :messages="$errors->get('adminfirstname')" class="mt-2" />
                             </div>
 
                             <div class="form-group">
-                                <label for="street">Street:</label>
+                                <label for="street">Street</label>
                                 <input id="street" class="form-control" type="text" name="street" value="{{ $user->street }}" required autofocus autocomplete="lastname" />
                                 <x-input-error :messages="$errors->get('street')" class="mt-2" />
                             </div>
 
                             
                             <div class="form-group">
-                                <label for="city">City:</label>
+                                <label for="city">City</label>
                                 <input id="city" class="form-control" type="text" name="city" value="{{ $user->city }}" required autofocus />
                                 <x-input-error :messages="$errors->get('city')" class="mt-2" />
                             </div>
 
                             <div class="form-group">
-                                <label for="phonenumber">Contact Number:</label>
+                                <label for="phonenumber">Contact Number</label>
                                 <input id="phonenumber" class="form-control" type="text" name="phonenumber" value="{{ $user->phonenumber }}" required autofocus oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" />
                                 <x-input-error :messages="$errors->get('phonenumber')" class="mt-2" />
                             </div>
@@ -71,7 +71,7 @@
 
                         <div class="col-md-4">
                         <div class="form-group">
-                                <label for="adminmiddlename">Middle Name:</label>
+                                <label for="adminmiddlename">Middle Name</label>
                                 <input id="adminmiddlename" class="form-control" type="text" name="adminmiddlename" value="{{ $user->adminmiddlename }}" required autofocus autocomplete="name" />
                                 <x-input-error :messages="$errors->get('adminmiddlename')" class="mt-2" />
                             </div>
@@ -83,7 +83,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="email">Email:</label>
+                                <label for="email">Email</label>
                                 <input id="email" class="form-control" type="email" name="email" value="{{ $user->email }}" required autofocus autocomplete="email" />
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                             </div>
@@ -93,17 +93,17 @@
 
 
                             <div class="form-group">
-                                <label for="adminlastname">Last Name:</label>
+                                <label for="adminlastname">Last Name</label>
                                 <input id="adminlastname" class="form-control" type="text" name="adminlastname" value="{{ $user->adminlastname }}" required autofocus autocomplete="name" />
                                 <x-input-error :messages="$errors->get('adminlastname')" class="mt-2" />
                             </div>
                               <div class="form-group">
-                                <label for="municipality">Municipality:</label>
+                                <label for="municipality">Municipality</label>
                                 <input id="municipality" class="form-control" type="text" name="municipality" value="{{ $user->municipality }}" required autofocus />
                                 <x-input-error :messages="$errors->get('municipality')" class="mt-2" />
                             </div>
                             <div class="form-group">
-                                <label for="gender">Gender:</label>
+                                <label for="gender">Gender</label>
                                 <input id="gender" class="form-control" type="text" name="gender" value="{{ $user->gender }}" required autofocus autocomplete="name" />
                                 <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                             </div>
