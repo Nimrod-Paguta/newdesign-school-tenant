@@ -59,8 +59,8 @@
         <div class="card">
             <div class="card-header">{{ $tenant->name }}</div>
             <div class="card-body">
-                <p>College Admin: <span class="text-blue-500">{{ $tenant->email }}</span></p>
-                <p>Domain: 
+                <p>College Email: <span class="text-blue-500">{{ $tenant->email }}</span></p>
+                <p>CollegeDomain: 
                     <span class="text-green-500">
                         @foreach($tenant->domains as $domain)
                             {{ $domain->domain }}{{ $loop->last ? '' : ',' }}

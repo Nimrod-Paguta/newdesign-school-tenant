@@ -52,7 +52,9 @@
                     </div>
 
                                 <!-- Content Row -->
+                               
                 <div class="row">
+                @role('admin')
 
 <!-- Total Department Card -->
 <div class="col-lg-6 col-md-12 mb-4">
@@ -196,6 +198,55 @@
              </div>
          </div>
 
+         @endrole
+
+         @role('department')
+         @php
+                    $teacherCount = \App\Models\Teacher::count();
+                @endphp
+   <!-- Total Instructor Card -->
+   <div class="col-lg-6 col-md-12 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Total Instructors
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $teacherCount }}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @php
+                $studentCount = \App\Models\Students::count();
+                @endphp
+
+                <!-- Total Student Card -->
+                <div class="col-lg-6 col-md-12 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Total Students
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $studentCount }}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-user-graduate fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+@endrole
+
 
                 </div>
 
@@ -239,36 +290,52 @@
     <script src="js/demo/bar-chart.js"></script> 
 
     
+    @php
+// Retrieve the top 5 users with the different counts of students
+$topUsers = \App\Models\User::select('users.id', 'users.name', 'users.department_id')
+    ->leftJoin('students', 'users.department_id', '=', 'students.department')
+    ->selectRaw('COUNT(students.id) as student_count')
+    ->where('users.id', '!=', 1) // Exclude user with ID 1
+    ->groupBy('users.id', 'users.name', 'users.department_id') // Include department_id in the GROUP BY clause
+    ->orderByDesc('student_count')
+    ->limit(5) // Limit the results to top 5 users
+    ->get();
 
-    <script>
-    // Dummy data for the bar graph
+// Prepare data for JavaScript
+$labels = [];
+$data = [];
+
+foreach ($topUsers as $user) {
+    $labels[] = $user->name;
+    $data[] = $user->student_count;
+}
+@endphp
+
+<script>
     var barChartData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: @json($labels),
         datasets: [{
-            label: 'HAHAHAHAH',
+            label: 'Number of Students',
             backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                ],
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+            ],
             borderWidth: 1,
-            data: [65, 59, 80, 81, 56, 55, 40]
+            data: @json($data)
         }]
     };
 
-    // Get the canvas element
     var ctx = document.getElementById('barChart').getContext('2d');
-
-    // Create the bar chart
     var barChart = new Chart(ctx, {
         type: 'bar',
         data: barChartData,

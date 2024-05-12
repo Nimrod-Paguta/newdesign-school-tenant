@@ -154,7 +154,7 @@
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex flex-column align-items-center" href="index.html">
     <div class="sidebar-brand-icon rotate-n-9">
-        <img src="img/logo3.png" style="max-height: 70px; margin-bottom: 10px">
+        <img   src="{{ asset('img/logo3.png') }}" style="max-height: 70px; margin-bottom: 10px">
     </div>
     <div class="ucms-container">
     <h2 class="ucms-text" style="font-size: 2em; letter-spacing: 5px; font-weight: bold">UCMS</h2>

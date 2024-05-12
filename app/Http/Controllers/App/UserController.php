@@ -176,7 +176,7 @@ class UserController extends Controller
         //     'password' => $request->password, // Store the password as provided, without hashing
         // ]);
     
-        return redirect()->route('users.create');
+        return redirect()->route('users.index');
     }
     
 
