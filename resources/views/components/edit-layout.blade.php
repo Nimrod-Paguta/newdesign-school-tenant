@@ -2,7 +2,7 @@
 <div>
 
             <a class="top" href="/dashboard">
-                <button class="editbutton">back</button>
+                <button class="btn btn-primary" style="margin-left: 30px; margin-top: 20px; width: 200px; ">back</button>
             </a>     
 
            

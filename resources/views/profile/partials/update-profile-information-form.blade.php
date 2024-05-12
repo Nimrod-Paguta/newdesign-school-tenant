@@ -1,4 +1,6 @@
 <section>
+
+
     <header>
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Profile Information') }}
@@ -18,7 +20,18 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            @role('department')
+            <x-input-label for="name" :value="__('Department Name')" />
+            @endrole
+
+            @role('admin')
+            <x-input-label for="name" :value="__('Admin Name:')" />
+            @endrole
+           
+            @unless(auth()->user()->hasRole('department'))
+        <x-input-label for="name" :value="__(' Name')" />
+            @endunless
+
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
