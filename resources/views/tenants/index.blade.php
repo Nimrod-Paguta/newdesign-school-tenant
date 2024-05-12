@@ -59,7 +59,7 @@
         <div class="card">
             <div class="card-header">{{ $tenant->name }}</div>
             <div class="card-body">
-                <p>Department Admin: <span class="text-blue-500">{{ $tenant->email }}</span></p>
+                <p>College Admin: <span class="text-blue-500">{{ $tenant->email }}</span></p>
                 <p>Domain: 
                     <span class="text-green-500">
                         @foreach($tenant->domains as $domain)
@@ -75,9 +75,11 @@
                         @csrf
                         @method('DELETE')
                         <input type="submit" class="btn btn-danger btn-sm" value="Delete" />
+                        <button type="button" class="btn btn-secondary actions-buttons">View</button>
                     </form>
 
-        <button type="button" class="btn btn-secondary actions-buttons">View</button>
+        <!-- <button type="button" class="btn btn-secondary actions-buttons">View</button> -->
+        
     </a>
         </div>
     @endforeach
@@ -90,7 +92,7 @@
         <div class="modal-dialog modal-lg" role="document"> <!-- Change modal-dialog class to adjust width (e.g., modal-sm, modal-lg, modal-xl) -->
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add College</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -104,14 +106,14 @@
     @csrf
     <!-- Name -->
     <div class="col-md-6">
-        <label for="name" class="form-label">Department Name</label>
+        <label for="name" class="form-label">College Name</label>
         <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" />
         <x-input-error :messages="$errors->get('name')" class="mt-2" />
     </div>
 
        <!-- Name -->
        <div class="col-md-6">
-        <label for="department_id" class="form-label">Department ID</label>
+        <label for="department_id" class="form-label">College ID</label>
         <input id="department_id" class="form-control" type="text" name="department_id" value="{{ old('department_id') }}" required autofocus autocomplete="department_id" />
         <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
     </div>
@@ -121,7 +123,7 @@
 
     <!-- Domain Name -->
     <div class="col-md-6">
-        <label for="domain_name" class="form-label">Department Domain</label>
+        <label for="domain_name" class="form-label">College Domain</label>
         <input id="domain_name" class="form-control" type="text" name="domain_name" value="{{ old('domain_name') }}" required autofocus autocomplete="domain_name" />
         <x-input-error :messages="$errors->get('domain_name')" class="mt-2" />
     </div>
@@ -138,28 +140,28 @@
 
         <!-- Domain Name -->
         <div class="col-md-10">
-        <label for="domain_name" class="form-label"><p><center>Admin for Department</center></p></label>
+        <h5><label for="domain_name" class="form-label"><p><center>Admin for College</center></p></label></h5>
         </div>
 
 
 
     <!-- firstname  -->
     <div class="col-md-6">
-        <label for="adminfirstname" class="form-label">First Name:</label>
+        <label for="adminfirstname" class="form-label">First Name</label>
         <input id="adminfirstname" class="form-control" type="text" name="adminfirstname" value="{{ old('adminfirstname') }}" required autofocus autocomplete="adminfirstname" />
         <x-input-error :messages="$errors->get('adminfirstname')" class="mt-2" />
     </div>
 
     <!-- middlename -->
     <div class="col-md-6">
-        <label for="adminmiddlename" class="form-label">Middle Name:</label>
+        <label for="adminmiddlename" class="form-label">Middle Name</label>
         <input id="adminmiddlename" class="form-control" type="text" name="adminmiddlename" value="{{ old('adminmiddlename') }}" required autofocus autocomplete="adminmiddlename" />
         <x-input-error :messages="$errors->get('adminmiddlename')" class="mt-2" />
     </div>
 
     <!-- lastname -->
     <div class="col-md-6">
-        <label for="adminlastname" class="form-label">Last Name:</label>
+        <label for="adminlastname" class="form-label">Last Name</label>
         <input id="adminlastname" class="form-control" type="text" name="adminlastname" value="{{ old('adminlastname') }}" required autofocus autocomplete="adminlastname" />
         <x-input-error :messages="$errors->get('adminlastname')" class="mt-2" />
     </div>
@@ -167,35 +169,35 @@
 
     <!-- Address -->
     <div class="col-md-6">
-        <label for="street" class="form-label">Street:</label>
+        <label for="street" class="form-label">Street</label>
         <input id="street" class="form-control" type="text" name="street" value="{{ old('street') }}" required autofocus autocomplete="street" />
         <x-input-error :messages="$errors->get('street')" class="mt-2" />
     </div>
 
       <!-- Address -->
       <div class="col-md-6">
-        <label for="barangay" class="form-label">Barangay:</label>
+        <label for="barangay" class="form-label">Barangay</label>
         <input id="barangay" class="form-control" type="text" name="barangay" value="{{ old('barangay') }}" required autofocus autocomplete="barangay" />
         <x-input-error :messages="$errors->get('barangay')" class="mt-2" />
     </div>
 
       <!-- Address -->
       <div class="col-md-6">
-        <label for="municipality" class="form-label">Municipality:</label>
+        <label for="municipality" class="form-label">Municipality</label>
         <input id="municipality" class="form-control" type="text" name="municipality" value="{{ old('municipality') }}" required autofocus autocomplete="municipality" />
         <x-input-error :messages="$errors->get('municipality')" class="mt-2" />
     </div>
 
       <!-- Address -->
       <div class="col-md-6">
-        <label for="city" class="form-label">City:</label>
+        <label for="city" class="form-label">City</label>
         <input id="city" class="form-control" type="text" name="city" value="{{ old('city') }}" required autofocus autocomplete="city" />
         <x-input-error :messages="$errors->get('city')" class="mt-2" />
     </div>
 
      <!-- Address -->
      <div class="col-md-6">
-        <label for="gender" class="form-label">Gender:</label>
+        <label for="gender" class="form-label">Gender</label>
         <input id="gender" class="form-control" type="text" name="gender" value="{{ old('gender') }}" required autofocus autocomplete="gender" />
         <x-input-error :messages="$errors->get('gender')" class="mt-2" />
     </div>
@@ -203,7 +205,7 @@
 
      <!-- Address -->
      <div class="col-md-6">
-        <label for="phonenumber" class="form-label">Contact Number:</label>
+        <label for="phonenumber" class="form-label">Contact Number</label>
         <input id="phonenumber" class="form-control" type="text" name="phonenumber" value="{{ old('phonenumber') }}" required autofocus autocomplete="phonenumber" />
         <x-input-error :messages="$errors->get('phonenumber')" class="mt-2" />
     </div>
@@ -240,7 +242,7 @@
 
 <div class="modal-footer" style="padding-top: 26px;">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-primary">Add Department</button>
+    <button type="submit" class="btn btn-primary">Add College</button>
 </div>
 
 </form>
