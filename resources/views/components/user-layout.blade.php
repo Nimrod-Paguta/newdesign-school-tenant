@@ -323,11 +323,11 @@
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         @if($custom)
         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#colorsidebar">
-            Change Side-bar Color
+            Change Sidebar Color
         </a>
         @else
         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#storecolorsidebar">
-            Change Side-bar Color
+            Change Sidebar Color
         </a>
         @endif
         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">

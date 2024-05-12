@@ -1,16 +1,14 @@
 <x-newuser-layout>
 <div class="hayt">
-            <h3>Reporting Details</h3>
-            <button type="button" class="btn btn-outline-primary ms-1 mb-3" onclick="window.location.href='/tenants'">Back</button>
 
-
+<center><h3>Tenant Admin Details</h3></center>
+            <button type="button" class="btn btn-primary ms-1 mb-3" onclick="window.location.href='/tenants'">Back</button>
         <div class="row">
             <div class="col-lg-5">
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <div class="mapform">
-                        <center> <img src="{{ asset($tenant->logo) }}" alt="Img" style="width: 250px; height: 250px;">
-                        </center>
+                        <center> <img src="{{ asset($tenant->logo) }}" alt="Img" style="width: 250px; height: 250px;"></center>
                             <h3>{{ $tenant->name }}</h3>
                             <p>lorem ipsum, lorem ipsum</p>
                         </div>
@@ -19,7 +17,7 @@
                 </div>
             </div>
             <div class="col-lg-7">
-            <h3>Tenant's Information:</h3>
+            <h5>Tenant Information</h5>
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="row">
@@ -70,13 +68,13 @@
                 </div>
 
                 @if ($tenant->admin)
-                <h3>Tenant Admin Details:</h3>
+                <h5>Tenant Admin Information</h5>
                 <div class="card mb-4">
                     <div class="card-body">
 
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Admin id:</p>
+                                <p class="mb-0">Admin ID:</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{ $tenant->admin->id }}</p>

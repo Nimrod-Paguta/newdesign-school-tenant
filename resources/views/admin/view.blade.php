@@ -1,7 +1,7 @@
 <x-newuser-layout>
 <div class="hayt">
-            <h3>Reporting Details</h3>
-            <button type="button" class="btn btn-outline-primary ms-1 mb-3" onclick="window.location.href='/tenants'">Back</button>
+            <center><h3>Admin Information</h3></center>
+            <button type="button" class="btn btn-primary ms-1 mb-3" onclick="window.location.href='/tenants'">Back</button>
 
 
         <div class="row">
@@ -19,7 +19,6 @@
                 </div>
             </div>
             <div class="col-lg-7">
-            <h3>admins's Information:</h3>
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="row">

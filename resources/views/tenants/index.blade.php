@@ -12,6 +12,7 @@
         display: flex;
         vertical-align: top;
         box-sizing: border-box;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
 
     .card-header {
@@ -40,10 +41,10 @@
         background-color: #dc3545;
     }
 </style>
-<h1>Total Tenants: {{ $totalTenants }}</h1>
+<h3>Total Colleges: {{ $totalTenants }}</h3>
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Add Department
+    Add College
 </button>
 @if ($errors->has('email'))
     <div class="alert alert-danger mt-2" role="alert">
