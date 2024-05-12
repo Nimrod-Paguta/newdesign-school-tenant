@@ -108,7 +108,7 @@ Route::middleware([
 
 
     Route::put('/custom/{custom}', [CustomController::class, 'update'])->name('custom.update');
-    
+    Route::post('/customestore', [CustomController::class, 'store'])->name('custom.store');
 
     Route::put('/users/{id}/update-logo', [UserController::class, 'updateLogo'])->name('update.logo');
     Route::get('/departmentadmin', [DepartmentAdminController::class, 'index'])->name('departmentadmin.index');

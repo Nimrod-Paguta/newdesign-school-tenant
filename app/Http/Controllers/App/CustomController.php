@@ -32,7 +32,13 @@ class CustomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'color' => 'required|string|max:255',
+
+        ]);
+        Custom::create($request->all());
+
+        return redirect()->back()->with('success', 'Logo updated successfully');
     }
 
     /**

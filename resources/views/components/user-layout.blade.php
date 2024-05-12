@@ -113,7 +113,7 @@
 
  <!-- Sidebar -->
 <!-- Sidebar -->
-<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: {{ $custom->color }};">
+<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: {{ $custom ? $custom->color : 'blue' }};">
 
 @role('department')
         <!-- Sidebar - Brand -->
@@ -182,6 +182,11 @@
 
 
 
+@php
+    $showColorForm = !is_null($custom);
+@endphp
+
+@if($showColorForm)
 <div class="modal fade" id="colorsidebar" tabindex="-1" role="dialog" aria-labelledby="colorsidebarLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -192,10 +197,38 @@
                 </button>
             </div>
             <div class="modal-body">
+                <form method="POST" action="{{ route('custom.update', ['custom' => $custom->id]) }}" class="sidebar-color-form">
+                    @csrf
+                    @method('PUT')
+
+                    <label for="color">Select Sidebar Color:</label>
+                    <select id="color" name="color" class="form-control">
+                        <option value="red">Red</option>
+                        <option value="green">Green</option>
+                        <option value="black">Black</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mt-3">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
+
+<div class="modal fade" id="storecolorsidebar" tabindex="-1" role="dialog" aria-labelledby="storecolorsidebarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="storecolorsidebarLabel">Add Instructors</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
           
-            <form method="POST" action="{{ route('custom.update', ['custom' => $custom->id]) }}" class="sidebar-color-form">
-                @csrf
-                @method('PUT')
+            <form action="{{ route('custom.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
 
                 <label for="color">Select Sidebar Color:</label>
                 <select id="color" name="color" class="form-control">
@@ -282,13 +315,16 @@
         </a>
     </li>
 
-      <!-- Nav Item - Announcement -->
-        <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#colorsidebar">
-                <i class="fas fa-fw fa-cog"></i> <!-- Use an appropriate setting icon -->
-                <span>Change Side-bar Color</span>
-            </a>
-        </li>
+    @if($custom)
+    <!-- Nav Item - Announcement -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#colorsidebar">
+                    <i class="fas fa-fw fa-cog"></i> <!-- Use an appropriate setting icon -->
+                    <span>Change Side-bar Color</span>
+                </a>
+            </li>
+        @endif
+
 
         <li class="nav-item">
             <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">
@@ -297,6 +333,15 @@
             </a>
         </li>
 
+
+        @if(!$custom)
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#storecolorsidebar">
+                    <i class="fas fa-fw fa-cog"></i> <!-- Use an appropriate setting icon -->
+                    <span>Change Side-bar Color</span>
+                </a>
+            </li>
+        @endif
 
 
 
