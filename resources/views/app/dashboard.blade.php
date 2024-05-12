@@ -61,7 +61,7 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        Total Department
+                                        Total Departments
                                     </div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                         @php
@@ -106,9 +106,9 @@
                 $studentCount = \App\Models\Students::count();
                 @endphp
 
-                <!-- Total Department Card -->
+                <!-- Total Student Card -->
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-info shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
@@ -118,7 +118,7 @@
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $studentCount }}</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-building fa-2x text-gray-300"></i>
+                                    <i class="fas fa-user-graduate fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
 
                   
                 <div class="col-xl-8 col-lg-9">
-    <h6 class="m-0 font-weight-bold text-primary">Recently Added Department:</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Recently Added Department</h6>
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div class="table-responsive tablename" style="max-height: 390px; overflow-y: auto;">
