@@ -12,7 +12,8 @@ use App\Http\Controllers\App\{
     StudentController, 
     DepartmentAdminController, 
     AnnouncementController, 
-    CustomController
+    CustomController, 
+    TenantDashboardController
 };
 
 
@@ -39,10 +40,11 @@ Route::middleware([
         return view('app.welcome');
     });
 
-    Route::get('/dashboard', function () {
-        return view('app.dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/dashboard', [TenantDashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('app.dashboard');
 
+    
     Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -106,7 +108,8 @@ Route::middleware([
     Route::get('/announcement-edit{id}', [AnnouncementController::class, 'edit'])->name('announcement.edit');
     Route::delete('/announcement/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy');
 
-
+   
+    
     Route::put('/custom/{custom}', [CustomController::class, 'update'])->name('custom.update');
     Route::post('/customestore', [CustomController::class, 'store'])->name('custom.store');
 
