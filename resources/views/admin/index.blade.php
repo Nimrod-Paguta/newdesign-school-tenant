@@ -78,6 +78,7 @@
                 <th>Municipality</th>
                 <th>City</th>
                 <th>Email</th>
+                <th>Action:</th>
             </tr>
         </thead>
         <tbody>
@@ -91,6 +92,11 @@
                     <td>{{ $student->municipality }}</td>
                     <td>{{ $student->city }}</td>
                     <td>{{ $student->email }}</td>
+                    <td>
+                    <a href="{{ route('admin.view', ['id' => $student->id]) }}">
+                    <button type="button" class="btn btn-secondary actions-buttons">View</button>
+                    </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

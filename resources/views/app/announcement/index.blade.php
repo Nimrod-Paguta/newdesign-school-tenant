@@ -116,10 +116,11 @@
 
 <div class="marg">
 <h3>Announcement!</h3>
-
+@role('admin')
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentmodal">
     Add Announcement
 </button>
+@endrole
 
 <div class="row">
     @foreach($announcements as $announcement)

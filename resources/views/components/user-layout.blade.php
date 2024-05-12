@@ -117,7 +117,7 @@
 
 @role('department')
         <!-- Sidebar - Brand -->
-        <label data-toggle="modal" data-target="#exampleModal" for="logo-upload" class="sidebar-brand d-flex align-items-center justify-content-center" style="padding-top: 110px; padding-bottom: 110px; display: flex; cursor: pointer;">
+        <label for="logo-upload" class="sidebar-brand d-flex align-items-center justify-content-center" style="padding-top: 110px; padding-bottom: 110px; display: flex; cursor: pointer;">
         <div class="sidebar-brand-icon" style="border-radius: 50%; overflow: hidden;">
                 <!-- Use PHP to dynamically change the logo based on the authenticated user's ID -->
                
@@ -133,7 +133,7 @@
 
     @role('admin')
     <!-- Sidebar - Brand -->
-    <label data-toggle="modal" data-target="#exampleModal" for="logo-upload" class="sidebar-brand d-flex align-items-center justify-content-center" style="padding-top: 110px; padding-bottom: 110px; display: flex; cursor: pointer;">
+    <label  for="logo-upload" class="sidebar-brand d-flex align-items-center justify-content-center" style="padding-top: 110px; padding-bottom: 110px; display: flex; cursor: pointer;">
         <div class="sidebar-brand-icon" style="border-radius: 50%; overflow: hidden;">
             <!-- Use JavaScript to dynamically change the logo -->
             @php
@@ -282,11 +282,28 @@
         </a>
     </li>
 
+      <!-- Nav Item - Announcement -->
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#colorsidebar">
+                <i class="fas fa-fw fa-cog"></i> <!-- Use an appropriate setting icon -->
+                <span>Change Side-bar Color</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">
+                <i class="fas fa-fw fa-cog"></i> <!-- Use an appropriate setting icon -->
+                <span>Change Logo</span>
+            </a>
+        </li>
+
+
+
+
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-
-    <button data-toggle="modal" data-target="#colorsidebar">click here </button>
 </ul>
 
 

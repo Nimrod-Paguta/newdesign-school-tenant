@@ -62,7 +62,7 @@ class CustomController extends Controller
 
         $custom->update($validatedData);
 
-    return redirect()->route('students.index')->with('success', 'User updated successfully');
+        return redirect()->back()->with('success', 'Logo updated successfully');
     }
 
     

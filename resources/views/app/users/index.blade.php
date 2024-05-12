@@ -1,7 +1,7 @@
 <x-user-layout>
    
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('users') }}
+            {{ __('Department') }}
             <x-btn-link class="ml-4 float-right" href="{{ route('users.create')}}">
                         Add Departments</x-btn-link>  
         </h2>

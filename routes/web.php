@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/tenants/{id}', [TenantController::class, 'show'])->name('tenants.view');
+    Route::get('/tenantadminview/{id}', [AdminController::class, 'show'])->name('admin.view');
 
 
     // Route::get('send-email', [MailController::class, 'index']); 

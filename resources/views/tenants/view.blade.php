@@ -1,7 +1,7 @@
 <x-newuser-layout>
 <div class="hayt">
             <h3>Reporting Details</h3>
-            <button type="button" class="btn btn-outline-primary ms-1 mb-3" onclick="window.location.href='/reporting'">Back</button>
+            <button type="button" class="btn btn-outline-primary ms-1 mb-3" onclick="window.location.href='/tenants'">Back</button>
 
 
         <div class="row">
@@ -9,7 +9,8 @@
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <div class="mapform">
-                            <center> <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" style="width: 350px;"></center>
+                        <center> <img src="{{ asset($tenant->logo) }}" alt="Img" style="width: 250px; height: 250px;">
+                        </center>
                             <h3>{{ $tenant->name }}</h3>
                             <p>lorem ipsum, lorem ipsum</p>
                         </div>

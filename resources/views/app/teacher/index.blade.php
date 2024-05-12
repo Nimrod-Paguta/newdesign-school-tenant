@@ -70,7 +70,7 @@
                             <input id="age" class="form-control" type="number" name="age" value="{{ old('age') }}" required autofocus autocomplete="lastname" />
                             <x-input-error :messages="$errors->get('age')" class="mt-2" />
                         </div>
-                        
+
 
                         <div class="form-group col-md-8">
                             <label for="email">Email:</label>
@@ -157,53 +157,53 @@
 </div>
 
 
-@role('admin')
+  @role('admin')
 
-<table id="yourDataTableID" class="table table-striped" style="width:100%">
-  <thead class="table-header">
-    <tr>
-      <th>Instructor Id:</th>
+  <table id="yourDataTableID" class="table table-striped" style="width:100%">
+    <thead class="table-header">
+      <tr>
       <th><center>Logo:</center></th>
-      <th>First Name:</th>
-      <th>Last Name:</th>
-      <th>Email:</th>
-      <th><center>Actions:</center></th>
-    </tr>
-  </thead>
-  <tbody>
-    @forelse ($teachers as $teacher)
-    <tr>
-      <td><center><h6>{{ $teacher->instructor_id }}</h6></center></td>
+        <th>Instructor Id:</th>
+        <th>First Name:</th>
+        <th>Last Name:</th>
+        <th>Email:</th>
+        <th><center>Actions:</center></th>
+      </tr>
+    </thead>
+    <tbody>
+      @forelse ($teachers as $teacher)
+      <tr>
       <td>
-        <center><img src="{{ url($teacher->logo) }}" alt="Img" style="border-radius: 50%; width: 70px; height: 70px;"></center>
-      </td>
-      <td>{{ $teacher->first_name }}</td>
-      <td>{{ $teacher->last_name }}</td>
-      <td>{{ $teacher->email }}</td>
-      <td>
-        <center>
-          <a href="{{ route('teacher.view', ['id' => $teacher->id]) }}">
-            <button type="button" class="btn btn-secondary actions-buttons">View</button>
-          </a>
-          <!-- <form action="{{ route('teacher.delete', $teacher->id) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Archive</button>
-          </form>
-          <a class="ahhh" href="{{ route('teacher.edit', ['id' => $teacher->id]) }}">
-            <button type="button" class="btn btn-warning actions-buttons">Edit</button>
-          </a> -->
-        </center>
-      </td>
-    </tr>
-    @empty
-    <tr>
-      <td colspan="6" style="text-align: center;">No data available</td>
-    </tr>
-    @endforelse
-  </tbody>
-</table>
-@endrole
+          <center><img src="{{ url($teacher->logo) }}" alt="Img" style="border-radius: 50%; width: 70px; height: 70px;"></center>
+        </td>
+        <td><h5>{{ $teacher->instructor_id }}</h5></td>
+        <td>{{ $teacher->first_name }}</td>
+        <td>{{ $teacher->last_name }}</td>
+        <td>{{ $teacher->email }}</td>
+        <td>
+          <center>
+            <a href="{{ route('teacher.view', ['id' => $teacher->id]) }}">
+              <button type="button" class="btn btn-secondary actions-buttons">View</button>
+            </a>
+            <!-- <form action="{{ route('teacher.delete', $teacher->id) }}" method="POST" style="display:inline;">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger">Archive</button>
+            </form>
+            <a class="ahhh" href="{{ route('teacher.edit', ['id' => $teacher->id]) }}">
+              <button type="button" class="btn btn-warning actions-buttons">Edit</button>
+            </a> -->
+          </center>
+        </td>
+      </tr>
+      @empty
+      <tr>
+        <td colspan="6" style="text-align: center;">No data available</td>
+      </tr>
+      @endforelse
+    </tbody>
+  </table>
+  @endrole
 
 
 
@@ -226,7 +226,7 @@
     @forelse ($teachers as $teacher)
     @if($teacher->department === auth()->user()->department_id)
       <tr>
-      <td><center><h6>{{ $teacher->instructor_id }}</h6></center></td>
+      <td><h6>{{ $teacher->instructor_id }}</h6></td>
       <td>
        <center> <img src="{{ url($teacher->logo) }}" alt="Img" style="border-radius: 50%; width: 70px; height: 70px;"></center>
         </td>

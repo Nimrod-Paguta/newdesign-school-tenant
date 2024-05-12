@@ -118,12 +118,12 @@ class TeacherController extends Controller
 public function update(Request $request, string $id)
 {
     $validatedData = $request->validate([
-        'instructor_id' => 'required|string|max:255',
+        'instructor_id' => 'required|string|max:255|unique:teacher,instructor_id',
         'first_name' => 'required|string|max:255',
         'middle_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
         'department' => 'required|string|max:255',
-        'email' => 'required|string|max:255',
+        'email' => 'required|string|max:255|unique:teacher,email',
         'date_of_birth' => 'required|date',
         'status' => 'required|string|max:255',
         'street' => 'required|string|max:255',

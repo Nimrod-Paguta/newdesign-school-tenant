@@ -6,28 +6,34 @@
         <table id="yourDataTableID" class="table table-striped" style="width:100%">
             <thead class="table-header">
                 <tr>
-                    <th>Id</th>
+                <th>Profile:</th>
+                    <th>Instrutor Id:</th>
+                    <th>Name:</th>
+                    <th>Address:</th>
                     <th>Date</th>
                     <th>Time</th>
-                    <th>Barangay</th>
-                    <th>City</th>
-                   <td>Action</td>
+                   
+                  <th>Action:</th>
                 </tr>
             </thead>
             <tbody>
             @foreach($archivedTeachers as $teacher)
                 <tr>
-                    <td>{{ $teacher->id }}</td>
-                    <td>{{ explode(' ', $teacher->created_at)[0] }}</td>
-                    <td>{{ explode(' ', $teacher->created_at)[1] }}</td>
-                    <td>{{ $teacher->barangay }}</td>
-                    <td>{{ $teacher->city }}</td>
                     <td>
-                    <form method="POST" action="{{ route('teacher.restore', ['id' => $teacher->id]) }}" style="display:inline;">
+                    <center> <img src="{{ url($teacher->logo) }}" alt="Img" style="border-radius: 50%; width: 70px; height: 70px;"></center>
+                    </td>
+                    <td>{{ $teacher->instructor_id }}</td>
+                    <td>{{ $teacher->first_name }} {{ $teacher->middle_name }} {{ $teacher->last_name }}</td>
+                    <td>{{ $teacher->street }} {{ $teacher->barangay }} {{ $teacher->municipality }}</td>
+                    <td>{{ explode(' ', $teacher->deleted_at)[0] }}</td>
+                    <td>{{ explode(' ', $teacher->created_at)[1] }}</td>
+                    <td>
+                    <form method="POST" action="{{ route('teacher.restore', ['id' => $teacher->id]) }}" style="display:inline; ">
                             @csrf
                             @method('GET')
-                            <button type="submit" class="btn btn-warning actions-buttons btn-sm">Restore</button>
+                            <button type="submit" style="width: 100%;" class="btn btn-warning actions-buttons btn-sm">Restore</button>
                         </form>
+                        
                     </td>
                 </tr>
             @endforeach

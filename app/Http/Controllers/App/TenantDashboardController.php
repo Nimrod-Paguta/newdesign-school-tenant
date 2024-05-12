@@ -1,22 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\App;
 use Illuminate\Http\Request;
-use App\Models\Tenantadmin;
-class AdminController extends Controller
+
+class TenantDashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
-       
-        $admins = Tenantadmin::all();
-      
-        
-        return view('admin.index', compact('admins'));   
+        //
     }
 
     /**
@@ -32,33 +27,15 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'firstname' => 'required|string|max:255',
-            'middlename' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'contactnumber' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
-            
-           
-        ]);
-
-        Tenantadmin::create($request->all());
-
-        return redirect()->route('admin.index')->with('success', 'Student created successfully!');
+        //
     }
-
-
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-      
-        $admins = Tenantadmin::findOrFail($id);
-      
-        
-        return view('admin.view', compact('admins')); 
+        //
     }
 
     /**

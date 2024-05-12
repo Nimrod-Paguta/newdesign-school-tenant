@@ -102,7 +102,7 @@ class UserController extends Controller
             'city' => 'required|string|max:255',
             'logo' => 'nullable|mimes:png,jpg,jpeg,webp',
             'gender' => 'required|string|max:255',
-            'department_id' => 'required|string|max:255',
+            'department_id' => 'required|string|max:255|unique:users,department_id',
             'phonenumber' => 'required|string|max:255',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
            
@@ -321,8 +321,8 @@ class UserController extends Controller
          $user = User::findOrFail($id);
          
          // Find students and teachers with matching department
-         $students = Students::where('department', $user->name)->get();
-         $teachers = Teacher::where('department', $user->name)->get();
+         $students = Students::where('department', $user->department_id)->get();
+         $teachers = Teacher::where('department', $user->department_id)->get();
          
          // Delete associated students
          foreach ($students as $student) {
