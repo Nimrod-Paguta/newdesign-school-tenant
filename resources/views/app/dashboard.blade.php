@@ -56,22 +56,32 @@
 
 <!-- Total Department Card -->
 <div class="col-lg-6 col-md-12 mb-4">
-    <div class="card border-left-primary shadow h-100 py-2">
-        <div class="card-body">
-            <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Total Department
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Total Department
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        @php
+                                            // Count users excluding user with ID 1
+                                            $totalDepartments = App\Models\User::where('id', '<>', 1)->count();
+                                            echo $totalDepartments;
+                                        @endphp
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-building fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $department }}</div>
                 </div>
-                <div class="col-auto">
-                    <i class="fas fa-building fa-2x text-gray-300"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+                @php
+                    $teacherCount = \App\Models\Teacher::count();
+                @endphp
 
                 <!-- Total Instructor Card -->
                 <div class="col-lg-6 col-md-12 mb-4">
@@ -80,8 +90,9 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        Total Instructors</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $instructor }}</div>
+                                        Total Instructors
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $teacherCount }}</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
@@ -91,24 +102,32 @@
                     </div>
                 </div>
 
-             <!-- Total Student Card -->
-<div class="col-lg-6 col-md-12 mb-4">
-    <div class="card border-left-info shadow h-100 py-2">
-        <div class="card-body">
-            <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Total Students
+                @php
+                $studentCount = \App\Models\Students::count();
+                @endphp
+
+                <!-- Total Department Card -->
+                <div class="col-lg-6 col-md-12 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Total Students
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $studentCount }}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-building fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $studentCount }}</div>
                 </div>
-                <div class="col-auto">
-                    <i class="fas fa-user-graduate fa-2x text-gray-300"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+                @php
+                $announcement = \App\Models\Announcement::count();
+                @endphp
 
                 <!-- Total Event Card -->
                 <div class="col-lg-6 col-md-12 mb-4">
@@ -130,30 +149,40 @@
 
                   
                 <div class="col-xl-8 col-lg-9">
-    <h6 class="m-0 font-weight-bold text-primary">Recently Added Department</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Recently Added Department:</h6>
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div class="table-responsive tablename" style="max-height: 390px; overflow-y: auto;">
-        <table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">What</th>
-            <th scope="col">When</th>
-            <th scope="col">Where</th>
-            <th scope="col">Who</th>
-            <th scope="col">Why</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>John Doe</td>
-            <td>123-456-7890</td>
-            <td>Active</td>
-            <td>Active</td>
-        </tr>
-    </tbody>
-</table>
+        @php
+    // Get the recently added user excluding user with ID 1
+    $recentUser = \App\Models\User::whereNotIn('id', [1])->orderBy('created_at', 'desc')->first();
+@endphp
+
+@if($recentUser)
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Status</th>
+                <th scope="col">Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ $recentUser->id }}</td>
+                <td>{{ $recentUser->name }}</td>
+                <td>{{ $recentUser->email }}</td>
+                <td>{{ $recentUser->status }}</td>
+                <td>{{ $recentUser->role }}</td>
+            </tr>
+        </tbody>
+    </table>
+@else
+    <p>No users found.</p>
+@endif
+
 
         </div>
     </div>

@@ -315,33 +315,26 @@
         </a>
     </li>
 
-    @if($custom)
-    <!-- Nav Item - Announcement -->
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#colorsidebar">
-                    <i class="fas fa-fw fa-cog"></i> <!-- Use an appropriate setting icon -->
-                    <span>Change Side-bar Color</span>
-                </a>
-            </li>
+    <div class="dropdown nav-item nav-link">
+    <a class="nav-link  dropdown-toggle" href="#" role="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-cog"></i> <!-- Use an appropriate setting icon -->
+        <span>Settings</span>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        @if($custom)
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#colorsidebar">
+            Change Side-bar Color
+        </a>
+        @else
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#storecolorsidebar">
+            Change Side-bar Color
+        </a>
         @endif
-
-
-        <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">
-                <i class="fas fa-fw fa-cog"></i> <!-- Use an appropriate setting icon -->
-                <span>Change Logo</span>
-            </a>
-        </li>
-
-
-        @if(!$custom)
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#storecolorsidebar">
-                    <i class="fas fa-fw fa-cog"></i> <!-- Use an appropriate setting icon -->
-                    <span>Change Side-bar Color</span>
-                </a>
-            </li>
-        @endif
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">
+            Change Logo
+        </a>
+    </div>
+</div>
 
 
 

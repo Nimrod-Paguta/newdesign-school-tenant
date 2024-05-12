@@ -14,15 +14,25 @@ class TenantDashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $studentCount = Students::count();
-        $instructor = Teacher::count();
-        $announcement = Announcement::count();
-        $department = User::where('id', '<>', 1)->count();
+    // public function index()
+    // {
+    //     $studentCount = Students::count();
+    //     $instructor = Teacher::count();
+    //     $announcement = Announcement::count();
+    //     $department = User::where('id', '<>', 1)->count();
 
-        return view('app.dashboard', compact('studentCount', 'instructor', 'department', 'announcement'));
-    }
+    //     return view('app.dashboard', compact('studentCount', 'instructor', 'department', 'announcement'));
+    // }
+
+
+        public function index()
+        {
+            // Assuming you want to fetch all users except the one with ID 1
+            $users = User::where('id', '<>', 1)->get();
+
+            return view('app.dashboard', compact('users'));
+        }
+
     
     /**
      * Show the form for creating a new resource.
