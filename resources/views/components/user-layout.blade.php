@@ -315,26 +315,36 @@
         </a>
     </li>
 
+    
+    @php
+    $user = auth()->user();
+    $payment = $user->payment;
+@endphp
+
+@if($user->id == 1 && ($payment === null || $payment == 50))
+    {{-- Do not display anything --}}
+@elseif($user->id == 1 && ($payment == 200 || $payment == 300))
     <div class="dropdown nav-item nav-link">
-    <a class="nav-link  dropdown-toggle" href="#" role="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-fw fa-cog"></i> <!-- Use an appropriate setting icon -->
-        <span>Settings</span>
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        @if($custom)
-        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#colorsidebar">
-            Change Sidebar Color
+        <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Settings</span>
         </a>
-        @else
-        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#storecolorsidebar">
-            Change Sidebar Color
-        </a>
-        @endif
-        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">
-            Change Logo
-        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            @if($payment == 200 || $payment == 300)
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#colorsidebar">
+                    Change Sidebar Color
+                </a>
+            @else
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#storecolorsidebar">
+                    Change Sidebar Color
+                </a>
+            @endif
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">
+                Change Logo
+            </a>
+        </div>
     </div>
-</div>
+@endif
 
 
 
