@@ -266,54 +266,6 @@
 <img id="sidebar-logo" style="width: 250px; height: 200px;" src="{{ url('upload/logos/1714831219.png') }}" alt="New Logo">
  -->
 
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
-        <a class="nav-link" href="/dashboard">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-        </a>
-    </li>
-
-    @role('admin')
-
-    <!-- Nav Item - Users -->
-    <li class="nav-item">
-        <a class="nav-link" href="/users">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Department Management</span>
-        </a>
-    </li>
-
-    @endrole
-
-
-    <!-- Nav Item - Teachers -->
-    <li class="nav-item">
-        <a class="nav-link" href="/teacher">
-            <i class="fas fa-fw fa-chalkboard-teacher"></i>
-            <span>Instructors</span>
-        </a>
-    </li>
-
-    <!-- Nav Item - Students -->
-    <li class="nav-item">
-        <a class="nav-link" href="/students">
-            <i class="fas fa-fw fa-user-graduate"></i>
-            <span>Students</span>
-        </a>
-    </li>
-
-
-    <!-- Nav Item - Announcement -->
-    <li class="nav-item">
-        <a class="nav-link" href="/announcement">
-            <i class="fas fa-fw fa-bullhorn"></i>
-            <span>Announcement</span>
-        </a>
-    </li>
 
     
     @php
@@ -377,6 +329,58 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+
+                    
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+<!-- Nav Item - Dashboard -->
+<li class="nav-item">
+    <a class="nav-link" href="/dashboard">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span>
+    </a>
+</li>
+
+@role('admin')
+
+<!-- Nav Item - Users -->
+<li class="nav-item">
+    <a class="nav-link" href="/users">
+        <i class="fas fa-fw fa-user"></i>
+        <span>Department Management</span>
+    </a>
+</li>
+
+@endrole
+
+
+<!-- Nav Item - Teachers -->
+<li class="nav-item">
+    <a class="nav-link" href="/teacher">
+        <i class="fas fa-fw fa-chalkboard-teacher"></i>
+        <span>Instructors</span>
+    </a>
+</li>
+
+<!-- Nav Item - Students -->
+<li class="nav-item">
+    <a class="nav-link" href="/students">
+        <i class="fas fa-fw fa-user-graduate"></i>
+        <span>Students</span>
+    </a>
+</li>
+
+
+<!-- Nav Item - Announcement -->
+<li class="nav-item">
+    <a class="nav-link" href="/announcement">
+        <i class="fas fa-fw fa-bullhorn"></i>
+        <span>Announcement</span>
+    </a>
+</li>
+
+
 
                        
  <!-- Settings Dropdown -->

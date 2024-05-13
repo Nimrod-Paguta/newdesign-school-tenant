@@ -77,7 +77,7 @@
                 <h2>Basic</h2>
                 <p><span style="font-size: 28px; font-weight: bold;">Free</span> basic features</p>
                 <ul>
-                    <li><span style="color: #4CAF50;">&#10003;</span> 3 Departments</li>
+                    <li><span style="color: #4CAF50;">&#10003;</span> 2 Departments</li>
                     <li><span style="color: #4CAF50;">&#10003;</span> Default logo</li>
                     <li><span style="color: #4CAF50;">&#10003;</span> Default theme</li>
                 </ul>
