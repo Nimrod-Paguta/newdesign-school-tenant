@@ -17,7 +17,7 @@
 
                                     <div class="form-group">
                                     <label for="department_id">Department ID</label>
-                                    <input id="department_id" class="form-control" type="text" name="department_id" value="{{ old('department_id') }}" required autofocus />
+                                    <input id="department_id" class="form-control" type="number" name="department_id" value="{{ old('department_id') }}" required autofocus />
                                     <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
                                     </div>
 
@@ -36,7 +36,7 @@
                             <h5 style="margin-bottom: 20px;"><center>Admin Informations</center></h5>
                                  <div class="col-md-4">
                             <div class="form-group">
-                                <label for="adminfirstname">Fistname</label>
+                                <label for="adminfirstname">First Name</label>
                                 <input id="adminfirstname" class="form-control" type="text" name="adminfirstname" value="{{ old('adminfirstname') }}" required autofocus autocomplete="off" />
                                 <x-input-error :messages="$errors->get('adminfirstname')" class="mt-2" />
                             </div>
@@ -120,7 +120,7 @@
 
                             <div class="form-group">
                                 <label for="phonenumber">Contact Number</label>
-                                <input id="phonenumber" class="form-control" type="text" name="phonenumber" value="{{ old('phonenumber') }}" required autofocus oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" />
+                                <input id="phonenumber" class="form-control" type="number" name="phonenumber" value="{{ old('phonenumber') }}" required autofocus oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" />
                                 <x-input-error :messages="$errors->get('phonenumber')" class="mt-2" />
                             </div>
 

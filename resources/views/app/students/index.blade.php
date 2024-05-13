@@ -1,11 +1,11 @@
 <x-user-layout>
 <h3>Students</h3>
 @role('department')
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#studentmodal">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentmodal">
     Add Student
 </button>
 @endrole
-<button type="button" class="btn btn-primary" onclick="window.location.href='/archivedstudent'">
+<button type="button" class="btn btn-danger" onclick="window.location.href='/archivedstudent'">
     Archived
 </button>
 
@@ -115,7 +115,7 @@
                                 </div>
 
                             <div class="form-group">
-                                        <label for="logo">Upload Logo</label>
+                                        <label for="logo">Upload Photo</label>
                                         <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus />
                                         <x-input-error :messages="$errors->get('logo')" class="mt-2" />
                          </div>

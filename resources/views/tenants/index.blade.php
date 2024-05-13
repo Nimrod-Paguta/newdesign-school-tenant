@@ -114,7 +114,7 @@
        <!-- Name -->
        <div class="col-md-6">
         <label for="department_id" class="form-label">College ID</label>
-        <input id="department_id" class="form-control" type="text" name="department_id" value="{{ old('department_id') }}" required autofocus autocomplete="department_id" />
+        <input id="department_id" class="form-control" type="number" name="department_id" value="{{ old('department_id') }}" required autofocus autocomplete="department_id" />
         <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
     </div>
 
@@ -197,16 +197,20 @@
 
      <!-- Address -->
      <div class="col-md-6">
-        <label for="gender" class="form-label">Gender</label>
-        <input id="gender" class="form-control" type="text" name="gender" value="{{ old('gender') }}" required autofocus autocomplete="gender" />
-        <x-input-error :messages="$errors->get('gender')" class="mt-2" />
-    </div>
+    <label for="gender" class="form-label">Gender</label>
+    <select id="gender" class="form-control" name="gender" required autofocus autocomplete="lastname">
+                              <option value="female" >Female</option>
+                              <option value="male" >Male</option>
+                          </select>
+    <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+</div>
+
 
 
      <!-- Address -->
      <div class="col-md-6">
         <label for="phonenumber" class="form-label">Contact Number</label>
-        <input id="phonenumber" class="form-control" type="text" name="phonenumber" value="{{ old('phonenumber') }}" required autofocus autocomplete="phonenumber" />
+        <input id="phonenumber" class="form-control" type="number" name="phonenumber" value="{{ old('phonenumber') }}" required autofocus autocomplete="phonenumber" />
         <x-input-error :messages="$errors->get('phonenumber')" class="mt-2" />
     </div>
      

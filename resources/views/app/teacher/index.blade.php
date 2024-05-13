@@ -2,11 +2,11 @@
 <h3>Instructors</h3>
 
 @role('department')
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#teachermodal">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#teachermodal">
     Add Instructor
 </button>
 @endrole
-<button type="button" class="btn btn-primary" onclick="window.location.href='/archived'">
+<button type="button" class="btn btn-danger" onclick="window.location.href='/archived'">
     Archived
 </button>
 
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="form-group col-md-">
-                      <label for="logo">Upload Logo:</label>
+                      <label for="logo">Upload Photo:</label>
                       <input id="logo" class="form-control" type="file" name="logo" value="{{ old('logo') }}" required autofocus />
                       <x-input-error :messages="$errors->get('logo')" class="mt-2" />
                       </div>
