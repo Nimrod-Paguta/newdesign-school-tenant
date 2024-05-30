@@ -357,7 +357,7 @@
 
 <!-- Nav Item - Teachers -->
 <li class="nav-item">
-    <a class="nav-link" href="/teacher">
+    <a class="nav-link" href="/teacher"> 
         <i class="fas fa-fw fa-chalkboard-teacher"></i>
         <span>Instructors</span>
     </a>
