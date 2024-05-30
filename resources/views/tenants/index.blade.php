@@ -67,21 +67,24 @@
                         @endforeach
                     </span>
                 </p>
-                <center>
-                    <img src="{{ asset($tenant->logo) }}" alt="Img" style="width: 150px; height: 150px;">
-                </center>
+               <center> <img src="{{ asset($tenant->logo) }}" alt="Img" style="width: 150px; height: 150px;">
+</center>
             </div>
-            <form action="{{ route('tenants.destroy', $tenant->id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this tenant?');">
-                @csrf
-                @method('DELETE')
-                <input type="submit" class="btn btn-danger btn-sm" value="Delete" />
-            </form>
             <a href="{{ route('tenants.view', $tenant->id) }}">
-                <button type="button" class="btn btn-secondary actions-buttons">View</button>
-            </a>
+            <form action="{{ route('tenants.destroy', $tenant->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" class="btn btn-danger btn-sm" value="Delete" />
+                        <button type="button" class="btn btn-secondary actions-buttons">View</button>
+                    </form>
+
+        <!-- <button type="button" class="btn btn-secondary actions-buttons">View</button> -->
+        
+    </a>
         </div>
     @endforeach
 </div>
+
 
 
 

@@ -63,20 +63,15 @@
                                 <!-- Content Row -->
                 <div class="row">
 
-                @php
-                $tenantCount = \App\Models\Tenant::count();
-                @endphp
-
-                <!-- Total Tenant Card -->
+                <!-- Total Department Card -->
                 <div class="col-lg-6 col-md-12 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        Total Tenant
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $tenantCount }}</div>
+                                        Total Department</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-building fa-2x text-gray-300"></i>
@@ -86,13 +81,7 @@
                     </div>
                 </div>
 
-
-                @php
-                $tenantadminCount = \App\Models\Tenantadmin::count();
-                @endphp
-
-
-                                <!-- Total Instructor Card -->
+                <!-- Total Instructor Card -->
                 <div class="col-lg-6 col-md-12 mb-4">
                     <div class="card border-left-success shadow h-100 py-2">
                         <div class="card-body">
@@ -100,7 +89,7 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                         Total Admin</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{$tenantadminCount}}</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-user-shield fa-2x text-gray-300"></i>
